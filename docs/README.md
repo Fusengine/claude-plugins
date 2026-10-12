@@ -6,9 +6,9 @@
 
 ## Workflow
 - [APEX Methodology](workflow/apex.md) - Analyze → Plan → Execute → eLicit → eXamine
-- [Agents](workflow/agents.md) - 18 specialized agents
+- [Agents](workflow/agents.md) - 20 specialized agents
 - [Agent Teams](workflow/agent-teams.md) - Delegation, parallel execution, coordination
-- [Skills](workflow/skills.md) - 100 framework skills
+- [Skills](workflow/skills.md) - 105 framework skills
 - [Commands](workflow/commands.md) - 26 slash commands
 
 ## Plugins
@@ -25,6 +25,8 @@
 - [changelog](plugins/changelog.md) - Claude Code update watcher, community pulse
 - [solid](plugins/solid.md) - SOLID principles
 - [prompt-engineer](plugins/prompt-engineer.md) - Prompt optimization
+- [motion](plugins/motion.md) - Product motion films and demos (HTML scenes to mp4/GIF, owner gates, critic review)
+- [statusline](plugins/statusline.md) - Responsive statusline mod (replaces the classic status line)
 
 ## Reference
 - [Architecture](reference/architecture.md) - Repository structure

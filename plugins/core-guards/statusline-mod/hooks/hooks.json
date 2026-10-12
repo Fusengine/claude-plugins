@@ -1,0 +1,4 @@
+{
+	"description": "Function-hooks mod: a responsive statusline above the prompt, laid out for the band width, its figures computed by the statusline engine (statusline-mod/emit-data.ts).",
+	"modules": ["./register.tsx"]
+}

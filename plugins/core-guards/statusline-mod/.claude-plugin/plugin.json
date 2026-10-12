@@ -1,0 +1,15 @@
+{
+	"name": "fuse-statusline",
+	"version": "1.0.15",
+	"description": "Responsive statusline mod for Claude Code (function hooks, no command hooks); figures computed by the core-guards statusline engine",
+	"author": {
+		"name": "Fusengine",
+		"email": "hello@fusengine.ch",
+		"url": "https://github.com/fusengine"
+	},
+	"homepage": "https://github.com/fusengine/agents",
+	"repository": "https://github.com/fusengine/agents",
+	"license": "MIT",
+	"types": "./types/index.d.ts",
+	"keywords": ["statusline", "mod", "hooks"]
+}

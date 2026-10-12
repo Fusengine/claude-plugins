@@ -1,6 +1,6 @@
 # Skills
 
-71 specialized skills across all plugins.
+76 specialized skills across all plugins.
 
 ## fuse-ai-pilot (9 skills)
 
@@ -131,3 +131,14 @@
 | `guardrails` | Security techniques |
 | `prompt-testing` | A/B testing |
 | `prompt-library` | 18+ templates |
+
+## fuse-motion (6 skills)
+
+| Skill | Description |
+|-------|-------------|
+| `motion-method` | Pipeline, brief lock (genre ad/demo), beat map, G0 step, owner gates G1/G2 |
+| `motion-art-direction` | G0: text sketches → blind tone lock → reference board → `.motion/look.md` dials + key frames; scene templates (cut-rhythm, composition-grid, kinetic-type) |
+| `motion-craft` | Pacing, holds, tempo grid, springs, ink/paper/accent, ban list (every decorative effect) |
+| `motion-assets` | Real screenshots, masking, provenance |
+| `motion-render` | Seek-contract mechanics, deterministic capture, ffmpeg encode, VHS terminal demos |
+| `motion-review` | Review pack, hard-fails and rubric used by motion-critic |

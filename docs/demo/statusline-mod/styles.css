@@ -1,0 +1,87 @@
+/* fuse-statusline demo: 1280x720 stage. Colors sampled from docs/img/statusline-mod-*.png. */
+:root {
+	--sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+	--mono: "JetBrains Mono", "JetBrainsMono Nerd Font Mono", "SF Mono", Menlo, Consolas, monospace;
+	--ink: #ececec;
+	--dim: #8a8a8e;
+	--accent: #46a759;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1280px; height: 720px; overflow: hidden; background: #0b0b0d; }
+body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: antialiased; }
+#stage {
+	position: relative; width: 1280px; height: 720px; overflow: hidden;
+	background: radial-gradient(900px 520px at 50% 38%, #17171b 0%, #0b0b0d 70%);
+}
+.shot { position: absolute; inset: 0; opacity: 0; visibility: hidden; }
+.frame { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+
+/* title + end card */
+#title, #end { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; }
+.chip { font: 600 56px/1 var(--mono); letter-spacing: -.02em; color: #fff; padding: 18px 34px; border-radius: 16px; background: #07182b; box-shadow: 0 0 0 1px #12345a; }
+.sub { font-size: 24px; color: var(--dim); }
+#end h2 { font: 600 44px/1.1 var(--sans); letter-spacing: -.02em; }
+#end .sub { font-size: 20px; }
+.cmd { margin-top: 14px; font: 500 22px/1 var(--mono); color: #fff; padding: 18px 26px; border-radius: 12px; background: #151518; box-shadow: 0 0 0 1px #2a2a30; }
+.cmd span { color: var(--accent); margin-right: 10px; }
+
+/* caption above each window */
+.cap { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; gap: 10px; }
+.cap .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+#cols { margin-left: 14px; font: 500 14px var(--mono); letter-spacing: 0; text-transform: none; color: #cfd2d6; background: #1d1d22; padding: 3px 9px; border-radius: 6px; }
+
+/* windows */
+.win { border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #2a2a2e, 0 30px 70px rgba(0,0,0,.55); }
+.win .bar { height: 32px; display: flex; align-items: center; gap: 8px; padding: 0 14px; position: relative; }
+.win .bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a3a3e; }
+.win .bar b { position: absolute; left: 0; right: 0; text-align: center; font-weight: 500; font-size: 12px; color: #77777c; }
+
+/* Claude Desktop */
+/* Built at the app's native scale (card 28 px, text 10 px, pill 88x20, band 960 px), then
+   magnified as a whole so the cards stay readable in a 1600 px film. */
+#desk { width: 1000px; background: #151515; zoom: 1.2; }
+#desk .bar { background: #151515; }
+.app { padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 10px; font-size: 12px; }
+.you { align-self: flex-end; background: #232326; padding: 9px 14px; border-radius: 12px; color: #dcdcdf; }
+.tool { color: var(--dim); font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.tool .ok { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.said { color: #cfcfd2; line-height: 1.5; max-width: 720px; margin-bottom: 8px; }
+.gitbar, #band { background: #212121; border-radius: 10px; }
+.gitbar { height: 38px; padding: 0 12px 0 20px; display: flex; align-items: center; gap: 10px; }
+.repo { font: 13px var(--mono); color: #7a7a7e; margin-right: auto; }
+.diff { display: flex; gap: 10px; font-size: 13px; background: #2f3c2f33; padding: 4px 10px; border-radius: 6px; background: #2c2c2c; }
+.diff em { font-style: normal; }
+.add { color: #4cd964; } .del { color: #ff453a; }
+.pr { display: flex; align-items: center; gap: 12px; font-size: 13px; background: #2c2c2c; padding: 4px 8px 4px 11px; border-radius: 6px; }
+.chev { color: #8a8a8e; border-left: 1px solid #444; padding-left: 8px; }
+.x { color: #8a8a8e; font-size: 17px; width: 22px; text-align: center; }
+#band { display: flex; gap: 10px; padding: 8px; min-height: 44px; }
+.sl-card {
+	height: 28px; border-radius: 8px; background: #07182b; padding: 0 11px; display: flex;
+	align-items: center; gap: 6px; font-size: 10px; letter-spacing: -.025em; word-spacing: -.04em; white-space: nowrap; color: #fff;
+}
+.sl-text { display: inline-block; white-space: pre; }
+.sl-bar { display: inline-flex; align-items: center; }
+.sl-bar svg { display: block; }
+/* The reference renders the pill label narrower than the SVG's 12 px; CSS beats the attribute. */
+.sl-bar text { font-size: 10px; letter-spacing: -.02em; }
+.composer { height: 40px; border-radius: 12px; border: 1px solid #3a3a3e; background: #1f1f1f; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; color: #707075; font-size: 14px; margin-top: 2px; }
+.foot { display: flex; justify-content: space-between; padding: 0 8px; font-size: 13px; color: #a9a9ae; }
+.mode { font-style: normal; color: #e0892a; }
+
+/* Claude Code CLI */
+#term { background: #0a0a0a; }
+#term .bar { background: #141414; }
+.tb { padding: 14px 18px 16px; font: 12.5px/1.7 var(--mono); color: #d8d8d8; }
+.tb p { white-space: nowrap; min-height: 21px; }
+.tb .dim { color: #767676; }
+.bullet { color: #fff; }
+.gap { height: 12px; min-height: 0 !important; }
+.rule { height: 1px; min-height: 0 !important; background: #2a2a2a; margin: 8px 0; }
+.prompt { color: #fff; }
+.caret { display: inline-block; width: 8px; height: 16px; background: #d8d8d8; vertical-align: -3px; opacity: .8; }
+#sl { color: #fff; font-size: 12.5px; line-height: 21px; min-height: 84px; }
+#sl .row { display: flex; flex-wrap: nowrap; white-space: pre; }
+.seg { display: inline-flex; align-items: baseline; flex-shrink: 0; }
+.seg .g { display: inline-block; width: 1ch; text-align: center; font-weight: normal; }
+.cell { display: inline-block; width: 1ch; height: 13px; vertical-align: -2px; }

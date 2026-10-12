@@ -1,6 +1,6 @@
 # Agents
 
-18 specialized agents across all plugins.
+20 specialized agents across all plugins.
 
 ## Core Agents (fuse-ai-pilot)
 
@@ -27,6 +27,8 @@
 | `shadcn-ui-expert` | fuse-shadcn-ui | shadcn/ui, Radix/Base UI detection |
 | `prompt-engineer` | fuse-prompt-engineer | Prompt creation & optimization |
 | `security-expert` | fuse-security | OWASP Top 10, CVE research, dependency audit |
+| `motion-expert` | fuse-motion | Product motion films and ads: brief, beat map, G0 art direction (sketches, blind tone lock, board, look.md + key frames), HTML scene, mp4/GIF render |
+| `motion-critic` | fuse-motion | Blind motion reviewer (writes only review-pack frames; write sandbox enforced by the harness `motion` scope): frame-based PASS / REVISE / FAIL / UNCERTAIN verdict |
 
 ## Monitoring Agents
 

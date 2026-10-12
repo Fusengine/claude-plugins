@@ -1,0 +1,5 @@
+# Root `bun test` config.
+# Claude Code mod tests import `claude-code/testing`, a module provided only by
+# `claude plugin test <plugin>` — keep them out of plain `bun test` discovery.
+[test]
+pathIgnorePatterns = ["plugins/core-guards/statusline-mod/**"]

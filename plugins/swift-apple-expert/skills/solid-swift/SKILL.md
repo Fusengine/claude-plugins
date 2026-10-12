@@ -10,7 +10,7 @@ related-skills: swift-core, swiftui-core, ios, macos, ipados, watchos, visionos,
 ---
 
 <objective>
-Enforces SOLID and DRY principles for Swift 6 and SwiftUI (iOS 27+) projects: a mandatory Features/[Feature]/ modular directory structure (never a flat Sources/ layout), strict file-size limits (100 lines, split at 90, with per-layer budgets for Views/ViewModels/Services/Protocols), protocols separated into their own Protocols/ directories, @Observable + @MainActor for ViewModels, Sendable structs for models, and mandatory #Preview on every View.
+Enforces SOLID and DRY principles for Swift 6 and SwiftUI (iOS 27+) projects: a mandatory Features/[Feature]/ modular directory structure (never a flat Sources/ layout), one responsibility per file with the hook's ceiling (`FUSE_SOLID_MAX_LINES`) as the only line limit, protocols separated into their own Protocols/ directories, @Observable + @MainActor for ViewModels, Sendable structs for models, and mandatory #Preview on every View.
 
 Covers all five SOLID principles with dedicated references (SRP, OCP, LSP, ISP, DIP), concurrency patterns (actors, @MainActor, Sendable), an anti-pattern catalog, and code templates for views, view models, services, protocols, and models.
 
@@ -41,13 +41,15 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 ## Architecture (Features Modular MANDATORY)
 
-| Layer | Location | Max Lines |
-|-------|----------|-----------|
-| Views | `Features/[Feature]/Views/` | 80 |
-| ViewModels | `Features/[Feature]/ViewModels/` | 100 |
-| Services | `Features/[Feature]/Services/` | 100 |
-| Protocols | `Features/[Feature]/Protocols/` | 30 |
-| Shared | `Core/{Models,Protocols,Services,Extensions,Utilities}/` | - |
+| Layer | Location |
+|-------|----------|
+| Views | `Features/[Feature]/Views/` |
+| ViewModels | `Features/[Feature]/ViewModels/` |
+| Services | `Features/[Feature]/Services/` |
+| Protocols | `Features/[Feature]/Protocols/` |
+| Shared | `Core/{Models,Protocols,Services,Extensions,Utilities}/` |
+
+File size: the only line limit is the hook ceiling (`FUSE_SOLID_MAX_LINES`). Split by responsibility well before it; if a legitimate fix cannot fit, report it - never bypass the hook.
 
 **NEVER use flat `Sources/` structure - always `Features/[Feature]/`**
 
@@ -57,7 +59,7 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines (split at 90) |
+| File limit | Hook ceiling `FUSE_SOLID_MAX_LINES` only; one responsibility per file |
 | ViewModels | `@MainActor @Observable` |
 | Protocols | `Features/[Feature]/Protocols/` or `Core/Protocols/` ONLY |
 | Models | `Sendable` structs |
@@ -97,7 +99,7 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Anti-Pattern | Fix |
 |--------------|-----|
-| Files > 100 lines | Split at 90 |
+| File with several responsibilities, or blocked by the hook ceiling | Split by responsibility |
 | Protocols in impl files | Move to `Protocols/` directory |
 | `ObservableObject` | Use `@Observable` |
 | Completion handlers | Use `async/await` |

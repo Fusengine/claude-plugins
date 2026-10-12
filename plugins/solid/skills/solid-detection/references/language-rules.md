@@ -149,6 +149,7 @@
 | File limit | 100 lines |
 | Interface location | `src/interfaces/` |
 | Forbidden | ABC outside interfaces/ |
+| SOLID skill | `solid-python` |
 
 **Pattern detection**:
 ```regex

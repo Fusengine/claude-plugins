@@ -17,6 +17,7 @@ import { promptSolidMaxLines } from "./solid-lines";
 import { configureShell } from "./env-manager";
 import { configureMcpServers } from "./mcp-setup";
 import { promptPerfEnv } from "./perf-env";
+import { isStatuslineModActive, promptStatuslineMod } from "./statusline-mod";
 import { purgeFuseEnvVars } from "./settings-env-purge";
 import {
 	backupSettings, configureDefaults, configureHooks, enableAgentTeams,
@@ -56,7 +57,8 @@ export async function runSetup(
 	const resolved = await resolveHomeInHooks(pluginsDir);
 	homeSpinner.stop(`${resolved} hooks.json paths resolved`);
 
-	settings = await setupStatusline(pluginsDir, settings);
+	settings = await promptStatuslineMod(settings, skipEnv);
+	settings = await setupStatusline(pluginsDir, settings, isStatuslineModActive(settings));
 	settings = setHarnessRefs(settings, paths.marketplace);
 
 	if (!isAgentTeamsEnabled(settings)) {

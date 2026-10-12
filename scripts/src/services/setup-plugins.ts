@@ -60,10 +60,18 @@ export async function installDeps(pluginsDir: string): Promise<void> {
 	s.stop(`${ok}/${dirs.length} plugin dep dirs installed`);
 }
 
-/** Setup statusline if available */
+/**
+ * Setup statusline if available. The engine deps are always installed (the
+ * statusline mod relies on the engine); `statusLine` is only written when the
+ * mod is not active, to avoid a double display.
+ * @param pluginsDir - marketplace plugins directory
+ * @param settings - current settings object
+ * @param modActive - true when the statusline mod is enabled
+ */
 export async function setupStatusline(
 	pluginsDir: string,
 	settings: Settings,
+	modActive = false,
 ): Promise<Settings> {
 	const statuslineDir = join(pluginsDir, "core-guards/statusline");
 	if (!existsSync(statuslineDir)) return settings;
@@ -72,6 +80,10 @@ export async function setupStatusline(
 	s.start("Installing statusline...");
 	try {
 		await installPluginDeps(statuslineDir);
+		if (modActive) {
+			s.stop("Statusline engine ready (mod active, classic statusLine skipped)");
+			return settings;
+		}
 		settings = configureStatusLine(settings, statuslineDir);
 		s.stop("Statusline configured");
 	} catch {

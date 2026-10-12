@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.39.37] - 12-10-2026
+
+- fix(claude-rules, ai-pilot): the lead always delegates, even a one-line edit. Scope Ladder row 1 is now "1 agent (the domain expert) + sniper — the lead never edits, even a one-line change". One canonical exception, worded identically in `CLAUDE.md.template`, rule 03 (×3) and `lead-orchestration`: after 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself — the only case where the lead edits; any other blocked mandate past the 3-cycle cap escalates. `/apex-quick` now spawns one domain-expert agent (the main session never edits inline); rule 02: a trivial fix is still made by one delegated agent.
+- chore(deps): `@fusengine/harness` ^0.1.107 → ^0.1.108. (fuse-ai-pilot 1.2.46, claude-rules 1.0.26)
+
 ## [1.39.36] - 12-10-2026
 
 - refactor(skills): the only file-size authority is now the SOLID hook ceiling `FUSE_SOLID_MAX_LINES`, owner-tunable. ~400 invented caps replaced across ~200 skill, agent, command and rule files ("max 30 lines per hook", "files < 100 lines, split at 90", per-layer "Max Lines" tables, tree-diagram line counts); design intent kept (thin controller, one responsibility). The wrong "default 200" removed — the harness default is 100 and the owner's `.env` sets the value; shell snippets use `${FUSE_SOLID_MAX_LINES:-100}`. The owner rule "Zustand store max 40 lines" (rule 07) is kept, including in the solid-react templates.

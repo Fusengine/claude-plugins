@@ -5,7 +5,9 @@ argument-hint: "<fix description>"
 
 # APEX Quick Flow
 
-Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-agent orchestration.
+Fast-track workflow for simple bug fixes, typos, and minor changes. No team, no handoffs between agents.
+
+**The main session never edits.** It spawns ONE domain-expert agent (`Agent` with the Project Detection `subagent_type`, rule 01) with a self-contained brief; that agent locates, applies the minimal change, reviews and validates. The main session only briefs, verifies the result on disk, and runs sniper.
 
 ---
 
@@ -45,7 +47,7 @@ Fast-track workflow for simple bug fixes, typos, and minor changes. No multi-age
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Total: 4 steps, 1 expert, no handoffs**
+**Total: 4 steps, 1 delegated expert, no handoffs. Steps 1-4 are executed by the spawned expert, not by the main session.**
 
 ---
 
@@ -100,7 +102,7 @@ Quick verification:
 /apex-quick Fix typo in login button text
 ```
 
-**Expert executes:**
+**The spawned domain expert executes (main session then verifies on disk and runs sniper):**
 ```
 1. LOCATE: Grep "login" → Found LoginButton.tsx:23
 2. FIX: Change "Logi" → "Login"
@@ -116,7 +118,7 @@ Quick verification:
 
 | Aspect | APEX Full | APEX Quick |
 |--------|-----------|------------|
-| Agents | 3+ parallel | 1 expert |
+| Agents | 3+ parallel | 1 delegated expert (lead never edits) |
 | Phases | 4-5 (A-P-E-L-X) | 4 (Locate-Fix-Review-Verify) |
 | TaskCreate | Yes | No |
 | Sniper | Full 6-phase | Linter only |

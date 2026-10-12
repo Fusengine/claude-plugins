@@ -1,6 +1,6 @@
 ## Agent Teams
 
-**Lead = Coordinator ONLY.** Never codes, only orchestrates.
+**Lead = Coordinator ONLY.** Never codes, only orchestrates — except after 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits).
 **Procedure from owner request to verified report → skill `fuse-ai-pilot:lead-orchestration`** (intake, route, brief, follow, blocks, verify, learn, report).
 **ALWAYS DELEGATE** — the lead orchestrates, never executes (details in "Before ANY Action" below). **Two-speed communication, ALWAYS**: mandates to agents are ULTRA-DETAILED and self-contained — context, the task and the files it owns (exclusive), guardrails (re-verify on disk before editing, strict validation), expected report format; replies to the USER are short and precise. Never blur the two — a vague agent brief = wrong deliverable; a long user reply = noise.
 
@@ -26,7 +26,7 @@
 **ALL 3 in ONE message. Not 1, not 2 — ALL 3. NEVER launch sequentially.**
 **Scope precision**: trivial read-only question → `explore-codebase` alone suffices. ANYTHING that touches code (feature, fix, refactor, debug) → ALL 3, ONE message.
 **NEVER use Read/Glob/Grep yourself** — delegate via `Agent` tool with `subagent_type`. You are a COORDINATOR.
-**ONE exception**: the file you are about to Edit — Read it yourself first, ALWAYS (never edit an unread file).
+**ONE exception**: the file you are about to Edit — Read it yourself first, ALWAYS (never edit an unread file). This applies only to the case where, after 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits); otherwise the agent reads and edits.
 **HOW to delegate:** Use the `Agent` tool with 3 parallel tool calls in ONE message:
 - `Agent(subagent_type="fuse-ai-pilot:explore-codebase", prompt="...")`
 - `Agent(subagent_type="fuse-ai-pilot:research-expert", prompt="...")`
@@ -38,7 +38,7 @@ Pick the level by the WORK, not by reflex. The rules above (team min 4, mandator
 
 | Scope | Action | Why |
 |-------|--------|-----|
-| Trivial / read-only / 1 targeted file, bounded change | Direct edit (or 1 domain-expert) + sniper. NO team, NO mandatory ANALYZE trio. | Orchestration cost (spawn, briefs, FIFO cross-checks) exceeds the gain. |
+| Trivial / read-only / 1 targeted file, bounded change | 1 agent (the domain expert) + sniper — the lead never edits, even a one-line change. Read-only question → `explore-codebase` alone. NO team, NO mandatory ANALYZE trio. | Orchestration cost (spawn, briefs, FIFO cross-checks) exceeds the gain. |
 | Non-trivial, ONE task (mono-concern) | 1 domain-expert (+ targeted ANALYZE if it touches unknown code) + sniper/challenger. | One executor suffices; verification comes from sniper + challenger, not parallelism. |
 | Several tasks, SAME domain, even COUPLED | **One agent per task** — split the work into tasks; each task has one agent and owns the files it needs. Coupling is handled by the brief (shared contract stated up front) and by `SendMessage` between them, not by serializing every task onto one executor. Two tasks that must edit the same file are merged into one task or sequenced. Announce the split, don't ask. | Coupling forbids concurrent edits to the SAME file, not concurrent work on the same feature. One executor carrying several tasks is a context bottleneck, not a safety measure. |
 | Truly parallelizable: INDEPENDENT tasks, multi-domain, or large work with no cross-dependency | **Spawn teammates** — `Agent` with a `name` per teammate (that is what makes a teammate; teams are already enabled). **MINIMUM 4 in parallel**, NEVER 1 (1 agent = not a team). Announce the split, don't ask. | Parallelism only pays when the tasks have no dependency between them. |
@@ -53,7 +53,7 @@ Pick the level by the WORK, not by reflex. The rules above (team min 4, mandator
 ## Anti-Patterns (FORBIDDEN)
 - **Unnamed parallel agents for parallel tasks** → NAME each one (`Agent` with a `name`): unnamed agents cannot be addressed, so they cannot coordinate. Every agent carries `SendMessage`
 - **2 teammates on same file** → CONFLICT guaranteed (one overwrites the other) — merge the two tasks or sequence them
-- **Lead writing code** → Lead ORCHESTRATES only (`Agent` to spawn + `SendMessage` to steer)
+- **Lead writing code** → Lead ORCHESTRATES only (`Agent` to spawn + `SendMessage` to steer), except after 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself (the only case where the lead edits)
 - **Serializing several tasks onto one executor** → SPLIT one agent per task and announce it; asking permission for every split is its own anti-pattern
 - **Writing to deployed dir** → ALWAYS work in dev repo, rsync after
 - **Destructive action inside an agent brief** → FORBIDDEN. An in-flight agent cannot be reliably countermanded (messages are delivered between its turns — the original brief executes anyway). Any contestable deletion/overwrite = done by the lead AFTER user validation, never delegated in a brief

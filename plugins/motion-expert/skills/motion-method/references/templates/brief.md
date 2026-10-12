@@ -65,7 +65,7 @@ Key action on the drop at <s>.
 </structure>
 
 <build>
-1. Classic scripts in .motion/scene/: lib.js → beats.js|rhythm.js → grid.js → kinetic.js → timeline.js (motion-render timeline-seek), each < 200 lines; every style from seek(t), no timers/CSS transitions/state between frames.
+1. Classic scripts in .motion/scene/: lib.js → beats.js|rhythm.js → grid.js → kinetic.js → timeline.js (motion-render timeline-seek), each within `FUSE_SOLID_MAX_LINES`; every style from seek(t), no timers/CSS transitions/state between frames.
 2. Springs are closed-form steps (ζ ≥ 0.85, ≤ 3 % overshoot); a value with many targets is springSum, one step per change.
 3. Indicator/knob edges on two springs (dualEdge); drags computed from the cursor while held, spring-back on release (interaction-kit).
 4. Beat grid measured from the song, start on a downbeat; every SFX placed by its measured peak; -14 LUFS (audio.md).

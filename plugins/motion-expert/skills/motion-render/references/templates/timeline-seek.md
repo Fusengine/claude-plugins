@@ -10,7 +10,7 @@ The clock mechanics of a scene: `window.seek(t)` and its contract. **What** is o
 and **when** comes from `motion-art-direction` first.
 
 The scene is split into **classic scripts loaded in order**, because the hook caps a code
-file at `FUSE_SOLID_MAX_LINES` (200). Top-level `const`/`function` names of a classic
+file at the `FUSE_SOLID_MAX_LINES` ceiling. Top-level `const`/`function` names of a classic
 script are visible to the scripts loaded after it, so every block keeps its names
 unchanged. Never declare a name twice (it throws at load).
 
@@ -607,4 +607,4 @@ no gap over 0.1 s, final CTA still 5.0-6.0 s = 1.0 s ≤ 1.2.
 | Lit 3D object | [webgl-scene.md](webgl-scene.md) (pinned local three, SwiftShader, sha256 twice) |
 | Counter | Change displayed values on frame boundaries ([determinism.md](../determinism.md)) |
 | Fast camera travel | A wider window, or master motion blur (`--subframes 12`, render-cli.md) |
-| A file nearing 200 lines | Move a block into its own classic script between `beats.js` and `timeline.js` |
+| A file nearing `FUSE_SOLID_MAX_LINES` | Move a block into its own classic script between `beats.js` and `timeline.js` |

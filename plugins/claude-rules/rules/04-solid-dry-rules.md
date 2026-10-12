@@ -1,6 +1,6 @@
 ## SOLID Rules
 SOLID/DRY → **consult SOLID skills** (`solid-*` / rule `04-solid-dry-rules.md`).
-1. **File size** — the ONLY authority is the hook's ceiling (`FUSE_SOLID_MAX_LINES`, default 200). Respect it; split well before it. **Never set your own cap**, and never work around the hook's. If a legitimate correctness fix cannot fit under the ceiling, do NOT skip the fix and do NOT bypass the block: report it to the owner, who sets the variable — it is tunable at runtime and that decision is his, not yours.
+1. **File size** — the ONLY authority is the hook's ceiling (`FUSE_SOLID_MAX_LINES`, owner-tunable). Respect it; split well before it. **Never set your own cap**, and never work around the hook's. If a legitimate correctness fix cannot fit under the ceiling, do NOT skip the fix and do NOT bypass the block: report it to the owner, who sets the variable — it is tunable at runtime and that decision is his, not yours.
 2. **Interfaces separated** - Per stack location
 3. **Research first** - `research-expert` before ANY code
 4. **Validate after** - `sniper` after ANY modification

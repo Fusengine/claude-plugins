@@ -7,7 +7,7 @@ references: references/solid-principles.md, references/single-responsibility.md,
 ---
 
 <objective>
-Enforces SOLID and DRY architecture on Next.js 16 projects: files under 100 lines (pages < 50, Server Components < 80, Client Components < 60, Server Actions < 30), types isolated in `interfaces/` directories (never in components/pages), mandatory JSDoc on exports, and the module/`modules/cores/` directory structure. Requires researching current Next.js/React/Prisma docs (via Context7/Exa with the current year) before writing any code, and grepping for existing utilities before creating new ones.
+Enforces SOLID and DRY architecture on Next.js 16 projects: source files within `FUSE_SOLID_MAX_LINES` and split by responsibility when cohesion drops, types isolated in `interfaces/` directories (never in components/pages), mandatory JSDoc on exports, and the module/`modules/cores/` directory structure. Requires researching current Next.js/React/Prisma docs (via Context7/Exa with the current year) before writing any code, and grepping for existing utilities before creating new ones.
 
 Provides a dedicated reference guide per SOLID letter (SRP file-splitting, OCP composition/plugin patterns, LSP contract compliance, ISP role-based interfaces, DIP constructor injection/factories) plus 23 ready-to-copy templates covering components, hooks, services, stores, Server Actions, API routes, validators, Prisma singletons, i18n, and queries. This is a cross-cutting code-quality skill, not a feature skill — for the framework APIs themselves see nextjs-16 and its sibling skills.
 </objective>
@@ -70,13 +70,10 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 
 ## Absolute Rules (MANDATORY)
 
-### 1. Files < 100 lines
+### 1. Source-file size ceiling
 
-- **Split at 90 lines** - Never exceed 100
-- Page components < 50 lines (use composition)
-- Server Components < 80 lines
-- Client Components < 60 lines
-- Server Actions < 30 lines each
+- Source files must not exceed `FUSE_SOLID_MAX_LINES` - the hook's ceiling is the only authority
+- Split by responsibility when cohesion drops (pages delegate to modules, components via composition, one Server Action per concern)
 
 ### 2. Modular Architecture
 
@@ -113,7 +110,7 @@ modules/auth/src/
 Each SOLID principle has a dedicated reference guide:
 
 1. **`references/single-responsibility.md`** - One class/function = one reason to change
-   - File splitting at 90 lines (pages < 50, components < 60, services < 80)
+   - Responsibility-based splitting within `FUSE_SOLID_MAX_LINES`
    - Component composition patterns
    - Next.js page & server action examples
 
@@ -185,7 +182,7 @@ Ready-to-copy code in `references/templates/`:
 
 - ❌ Coding without researching docs first (ALWAYS research)
 - ❌ Using outdated APIs without checking current year docs
-- ❌ Files > 100 lines
+- ❌ Source files exceeding `FUSE_SOLID_MAX_LINES`
 - ❌ Interfaces in component files
 - ❌ Business logic in `app/` pages
 - ❌ Direct DB calls in components

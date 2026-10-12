@@ -103,7 +103,7 @@ brief.md + beats.md (motion-method)
         → reference-board.md → refs/NN-{open,mid,end}.png → board.png + refs.md
         → look.md (templates/look.md) + 3 key frames ← dials, contrast, composition,
           type-as-image, rhythm, bans                 → owner sees key frames, approves
-scene/ — classic scripts after motion-render's lib.js, each < 200 lines
+scene/ — classic scripts after motion-render's lib.js, each within the hook ceiling `FUSE_SOLID_MAX_LINES`
   1 cut-rhythm.md       rhythm.js: STATES (+ gestures) → CUTS → BEATS/DURATION/GESTURES/STILLS, validateRhythm + validateDensity, ground, showState
   2 composition-grid.md grid.js: grid, .plane, #world + camera(t) + MOVES guards, auditFrame()
   3 kinetic-type.md     kinetic.js: letterStagger · slam · scaleJump · splitWord · maskReveal · pushReplace · swap · accentSwitch · safeBezier

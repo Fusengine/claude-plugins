@@ -77,11 +77,11 @@ Stores organized by feature module:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `store.ts` | Store creation with create() | 50 |
-| `store.interface.ts` | TypeScript interfaces | 30 |
-| `use-store.ts` | Custom hook with selector | 20 |
+| File | Purpose |
+|------|---------|
+| `store.ts` | Store creation with create() (max 40 lines, owner rule) |
+| `store.interface.ts` | TypeScript interfaces |
+| `use-store.ts` | Custom hook with selector |
 
 ---
 

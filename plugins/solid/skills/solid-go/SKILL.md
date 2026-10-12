@@ -1,6 +1,6 @@
 ---
 name: solid-go
-description: "Use when writing or refactoring Go code, structuring internal/modules/[feature]/ layers, or defining ports/ interfaces (SOLID, files < 100 lines)."
+description: "Use when writing or refactoring Go code, structuring internal/modules/[feature]/ layers, or defining ports/ interfaces (SOLID, files within FUSE_SOLID_MAX_LINES)."
 versions:
   go: "1.27"
 user-invocable: true
@@ -38,14 +38,14 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 ## Architecture (Modules MANDATORY)
 
-| Layer | Location | Max Lines |
-|-------|----------|-----------|
-| Handlers | `internal/modules/[feature]/handlers/` | 50 |
-| Services | `internal/modules/[feature]/services/` | 100 |
-| Repositories | `internal/modules/[feature]/repositories/` | 100 |
-| Ports (interfaces) | `internal/modules/[feature]/ports/` | 30 |
-| Models | `internal/modules/[feature]/models/` | 50 |
-| Shared | `internal/core/{services,ports,models}/` | - |
+| Layer | Location |
+|-------|----------|
+| Handlers | `internal/modules/[feature]/handlers/` |
+| Services | `internal/modules/[feature]/services/` |
+| Repositories | `internal/modules/[feature]/repositories/` |
+| Ports (interfaces) | `internal/modules/[feature]/ports/` |
+| Models | `internal/modules/[feature]/models/` |
+| Shared | `internal/core/{services,ports,models}/` |
 
 **NEVER use flat `internal/` structure - always `internal/modules/[feature]/`**
 
@@ -55,8 +55,8 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines (split at 90) |
-| Handlers | < 50 lines, delegate to services |
+| File limit | `FUSE_SOLID_MAX_LINES` |
+| Handlers | Thin, delegate to services |
 | Interfaces | `ports/` directory ONLY |
 | Godoc | Every exported function documented |
 | Accept interfaces | Return structs |
@@ -95,7 +95,7 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Anti-Pattern | Fix |
 |--------------|-----|
-| Files > 100 lines | Split at 90 |
+| Files over `FUSE_SOLID_MAX_LINES` | Split by responsibility |
 | Interfaces in impl files | Move to `ports/` directory |
 | Fat interfaces (4+ methods) | Split into small interfaces |
 | Flat `internal/` structure | Use `internal/modules/[feature]/` |

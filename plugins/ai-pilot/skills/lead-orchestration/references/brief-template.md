@@ -41,6 +41,7 @@ N. Negative: <"do not touch X"> -- proof: `git diff --stat` shows no change unde
 - No cap, timeout or limit not stated here or by the hook (FUSE_SOLID_MAX_LINES).
 - Hook block -> do what it says; read the gate source before calling it a bug.
 - No commit / push / tag / publish. No deletion outside your files.
+- Decide every open point yourself from the measurement and the mandate's goal — never hand the owner a question or an option menu for something the goal already determines. A genuinely ambiguous IRREVERSIBLE step (rule 00 Clarify) gets ONE binary question, sent to the lead, never straight to the owner. Only a CAPTCHA, a password, or a code a hook requires the owner to type goes to the owner. A blocked hook = find another legitimate route, never a question.
 - Re-dispatch of an already-delivered mandate -> verify the disk and refuse to re-execute.
 - Long task: one status line to the lead every ~10 min (done / blocked / next).
 

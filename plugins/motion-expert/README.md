@@ -32,7 +32,7 @@ Most generated motion fails the same ways: no single message, text too fast to r
 2b G0             3 text sketches -> challenger locks tone blind -> board
                   -> look.md + 3 key frames -> owner sees -> STOP, G0 (not harness-enforced yet)
 3 Assets          real screenshots only, masked, provenance recorded
-4 Scene           classic scripts lib -> rhythm -> grid -> kinetic -> timeline (each < 200 lines)
+4 Scene           classic scripts lib -> rhythm -> grid -> kinetic -> timeline (each within `FUSE_SOLID_MAX_LINES`)
 5 --stage stills  one still per beat + contact sheet -> STOP, owner gate G1
 6 --stage draft   540p + motion-critic (<=2 fixes)  -> STOP, owner gate G2
 7 --stage master  subframe motion blur; ffprobe, frames = DURATION x FPS, size vs budget, diff vs stills

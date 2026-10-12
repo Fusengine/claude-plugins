@@ -105,11 +105,11 @@ Database code organized in `modules/cores/db/`:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `prisma.ts` | Singleton client | 30 |
-| `schema.prisma` | Models, relations | 100 per section |
-| `seed.ts` | Database seeding | 50 |
+| File | Purpose |
+|------|---------|
+| `prisma.ts` | Singleton client |
+| `schema.prisma` | Models, relations |
+| `seed.ts` | Database seeding |
 
 ---
 

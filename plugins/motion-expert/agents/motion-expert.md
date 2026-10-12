@@ -43,7 +43,7 @@ Then follow the pipeline — each step is owned by one skill; read it, do not re
 | 2 | Beat map | `motion-method` | every beat (0.5-1 s) has t_in/t_out, ONE primary gesture, its details, words, a 3D reason if 3D; DURATION = sum of beats; `beats-check` passes (≤ 0.75 s gesture-free, CTA still ≤ 1.2 s, ≥ 1 beat change/s) |
 | 2b | G0 art direction | `motion-art-direction` | 3 text sketches (tone candidates) → `challenger` locks the tone blind → reference board → `look.md` (dials) + 3 key frames → owner sees the key frames → **STOP — G0**; never self-approve |
 | 3 | Assets → `.motion/assets.json` | `motion-assets` | real screenshots only (`browser_shots_batch`, fixed DPR), masked, "Example data" label, provenance recorded |
-| 4 | Scene | `motion-art-direction` templates FIRST — `cut-rhythm` → `composition-grid` → `kinetic-type` → `objects.md` (actor, animated objects, justified 3D) — then `motion-render` for the seek/capture/encode mechanics only | classic scripts `lib.js` → `rhythm.js` → `grid.js` → `kinetic.js` → `timeline.js`, each < 200 lines; `validateRhythm`, `validateDensity` and `MOVES` guards pass at load; `auditFrame()` meets look.md on every still; HTML exposes `window.seek(t)`, DURATION, FPS, `?t=`, `?capture`. No centered starter skeleton, no fade helper |
+| 4 | Scene | `motion-art-direction` templates FIRST — `cut-rhythm` → `composition-grid` → `kinetic-type` → `objects.md` (actor, animated objects, justified 3D) — then `motion-render` for the seek/capture/encode mechanics only | classic scripts `lib.js` → `rhythm.js` → `grid.js` → `kinetic.js` → `timeline.js`, each within `FUSE_SOLID_MAX_LINES`; `validateRhythm`, `validateDensity` and `MOVES` guards pass at load; `auditFrame()` meets look.md on every still; HTML exposes `window.seek(t)`, DURATION, FPS, `?t=`, `?capture`. No centered starter skeleton, no fade helper |
 | 5 | `--stage stills` (default) | `motion-render` | one still per beat + `.motion/stills/contact.png` → **STOP — gate G1** |
 | 6 | `--stage draft` (540p) + critic | `motion-render` → `motion-critic` | critic verdict; ≤2 fix rounds → **STOP — gate G2** |
 | 7 | `--stage master` | `motion-render` + `motion-review` | the FILE verified (see Verification Gate) |
@@ -150,7 +150,7 @@ sources_verified: [<doc URL / Context7 id / file:line>]
 - Any decorative effect — the list is `motion-craft` → anti-slop-video; `look.md` never re-enables one
 - Any `.motion/scene/*` file before look.md + 3 key frames exist and the owner approved them, self-approving G0, or self-locking an ad brief
 - Ambient or unjustified 3D, a lit WebGL beat without the twice-rendered sha256 proof, three.js from a CDN at render time; crossfades/dissolves, opacity-only reveals, drift or ambient loops, a span over 0.75 s with no gesture, a blank or fading-in frame 0, a centered hero frame
-- A scene file over the hook's 200-line ceiling — split it into another classic script
+- A scene file over the hook ceiling `FUSE_SOLID_MAX_LINES` — split it into another classic script
 - Copying design-motion tokens instead of pointing to them
 - Judging your own film, or giving the critic the brief or source
 - Claiming "done" from an exit code instead of ffprobe + frame count + diff

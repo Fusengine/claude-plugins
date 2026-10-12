@@ -26,7 +26,7 @@ Security guards and SOLID enforcement hooks for Claude Code.
 
 | Guard | Description |
 |-------|-------------|
-| **enforce-file-size** | Blocks files > 100 lines - must split into modules |
+| **enforce-file-size** | Blocks files over `FUSE_SOLID_MAX_LINES` - must split into modules |
 | **track-session-changes** | Tracks cumulative code changes for sniper trigger |
 | **webfetch-cache-store** | Persists WebFetch results (atomic_write, overwrite on store) |
 | **cache-mcp-result** | Persists MCP results to session cache (overwrite atomic — refreshes mtime to avoid stale lockout) |

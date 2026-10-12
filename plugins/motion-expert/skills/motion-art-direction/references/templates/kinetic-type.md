@@ -257,4 +257,4 @@ opening statement — stagger a later line, never the statement itself.
 | Canvas scene | Same progress functions; clip with `ctx.rect(...); ctx.clip()` for the hard mask |
 | A curve from a reference | Pass it through `safeBezier` — it fails loudly past 3 % |
 | "It needs a fade" | It does not: slam, stagger, mask, push, split or swap (bans.md B10–B11) |
-| File near 200 lines | Move unused helpers out; the hook caps each scene file at 200 |
+| File near the hook ceiling | Move unused helpers out; the hook caps each scene file at `FUSE_SOLID_MAX_LINES` |

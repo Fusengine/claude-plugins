@@ -86,7 +86,7 @@ reference. Templates are generalized from the proven `docs/demo/statusline-mod/`
 .motion/
 ├── brief.md, beats.md, facts.md, assets.json   ← motion-method / motion-assets
 ├── scene/index.html + lib.js, beats.js|rhythm.js, grid.js, kinetic.js, timeline.js
-│                                               ← classic scripts in that order (each < 200 lines):
+│                                               ← classic scripts in that order (each within `FUSE_SOLID_MAX_LINES`):
 │                                                 index-skeleton.md shell + timeline-seek.md clock
 ├── capture.js                                  ← capture-cdp.md
 ├── render.js + encode.js                       ← render-cli.md
@@ -145,7 +145,7 @@ reference. Templates are generalized from the proven `docs/demo/statusline-mod/`
 - Add motion blur to stills or the draft — master only, `--subframes` (4 default, ≥ 12 if any move > ~2 % W/frame — encoding.md), cuts on frame boundaries
 - Ship a lit WebGL beat without the twice-rendered sha256 proof, or load three from a CDN at render time
 - Build a crossfade or dissolve, or an opacity-only entrance — banned (`motion-craft` anti-slop-video.md)
-- Write a scene file over the hook's 200-line ceiling — split it into another classic script
+- Write a scene file over the hook ceiling `FUSE_SOLID_MAX_LINES` — split it into another classic script
 - Leave frame 0 blank or fading in — `seek(0)` shows the opening statement at full value
 - Add a "reported" Chrome flag without the twice-rendered hash test
 - Lower the SSIM threshold to make a master pass — investigate the change

@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.39.36] - 12-10-2026
+
+- refactor(skills): the only file-size authority is now the SOLID hook ceiling `FUSE_SOLID_MAX_LINES`, owner-tunable. ~400 invented caps replaced across ~200 skill, agent, command and rule files ("max 30 lines per hook", "files < 100 lines, split at 90", per-layer "Max Lines" tables, tree-diagram line counts); design intent kept (thin controller, one responsibility). The wrong "default 200" removed — the harness default is 100 and the owner's `.env` sets the value; shell snippets use `${FUSE_SOLID_MAX_LINES:-100}`. The owner rule "Zustand store max 40 lines" (rule 07) is kept, including in the solid-react templates.
+- fix(claude-rules, ai-pilot): rule 08 (Mandate Quality, Exit Contract Ask) and `lead-orchestration` (brief-template guardrail, step-3 Check) now agree — agents decide every open point the goal settles; an ambiguous irreversible step gets ONE binary question to the lead, never an option menu; only CAPTCHA, a password or a hook-typed code goes to the owner.
+- fix(core-guards): the Stop prompt's size check can now be judged without knowing the numeric value. (fuse-ai-pilot 1.2.45, fuse-astro 1.0.16, claude-rules 1.0.25, core-guards 1.1.42, fuse-design 2.2.12, fuse-go 1.0.10, fuse-laravel 1.2.11, fuse-motion 1.0.2, fuse-nextjs 1.1.27, fuse-php 1.0.10, fuse-prompt-engineer 1.1.14, fuse-react 1.0.24, fuse-rust 1.0.10, fuse-shadcn-ui 1.0.21, fuse-solid 1.0.21, fuse-swift-apple-expert 1.1.25, fuse-tanstack-start 1.0.9, fuse-typescript 1.0.10)
+
 ## [1.39.35] - 12-10-2026
 
 - feat(ai-pilot): new `lead-orchestration` skill — 9-step lead procedure (intake → route → brief → delegate → follow → verify → report) with a Check per step, brief template and worked examples; CLAUDE.md HARD STOP 0 loads it. Autonomy fixes in sniper, challenger, explore-codebase and verification (self-invented caps replaced by the hook ceiling `FUSE_SOLID_MAX_LINES`).

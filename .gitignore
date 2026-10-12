@@ -47,6 +47,7 @@ docs/plugins/memory.md
 
 # APEX tracking (auto-generated)
 .claude/apex/
+.cursor/apex/
 
 # impeccable plugin cache (auto-generated wherever files are edited)
 .impeccable/

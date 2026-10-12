@@ -73,7 +73,7 @@ Sources/
 
 ## Quick Checklist
 
-- [ ] Files < 100 lines (Views < 80)
+- [ ] One responsibility per file; under the hook ceiling (`FUSE_SOLID_MAX_LINES`)
 - [ ] Protocols in `Features/[Feature]/Protocols/` or `Core/Protocols/`
 - [ ] ViewModels use `@Observable` + `@MainActor`
 - [ ] Dependencies injected via protocols

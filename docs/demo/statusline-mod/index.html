@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fuse-statusline: one mod, two native designs</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--
+  Demo film of the fuse-statusline mod. Static structure only: every moving part is
+  drawn by window.seek(t) (motion-timeline.js). Regenerate the video: see render.sh.
+-->
+<main id="stage" aria-label="fuse-statusline demo">
+
+<section id="title" class="shot">
+	<div class="chip">fuse-statusline</div>
+	<p class="sub">One mod, two native designs</p>
+</section>
+
+<div id="deskshot" class="shot frame">
+	<p class="cap"><span class="dot"></span>Claude Desktop</p>
+	<div id="desk" class="win">
+		<div class="bar"><i></i><i></i><i></i><b>Claude</b></div>
+		<div class="app">
+			<div class="you">Show the prompt cache countdown in the status band</div>
+			<p class="tool"><span class="ok"></span>Edited cards-cache.ts, cache-expiry.ts</p>
+			<p class="said">Done. The cache card now counts down to the cache TTL, amber under two minutes and red under thirty seconds.</p>
+			<div class="gitbar">
+				<span class="repo">agents&nbsp;&nbsp;main</span>
+				<span class="diff"><em class="add">+3 406</em><em class="del">-13</em></span>
+				<span class="pr">Create PR<span class="chev">⌄</span></span>
+				<span class="x">×</span>
+			</div>
+			<div id="band"></div>
+			<div class="composer"><span>Type / for commands</span><span class="ret">⏎</span></div>
+			<div class="foot"><span>+&nbsp;&nbsp;&nbsp;<em class="mode">Manual</em></span><span>Opus 5.5&nbsp;&nbsp;&nbsp;&nbsp;Medium</span></div>
+		</div>
+	</div>
+</div>
+
+<div id="termshot" class="shot frame">
+	<p class="cap"><span class="dot"></span>Claude Code CLI<span id="cols"></span></p>
+	<div id="term" class="win">
+		<div class="bar"><i></i><i></i><i></i><b>my-app · claude</b></div>
+		<div class="tb">
+			<p class="dim">&gt; add a slugify() helper for the blog routes</p>
+			<p><span class="bullet">⏺</span> slugify() added in lib/slug.ts, 3 tests passing.</p>
+			<p class="gap"></p>
+			<div id="sl"></div>
+			<p class="rule"></p>
+			<p class="prompt">❯ <span class="caret"></span></p>
+			<p class="rule"></p>
+			<p class="dim">? for shortcuts</p>
+		</div>
+	</div>
+</div>
+
+<section id="end" class="shot">
+	<h2>Auto-detects Desktop vs CLI</h2>
+	<p class="sub">Rounded cards in the app, the classic colored line in the terminal.</p>
+	<code class="cmd"><span>$</span> claude plugin install fuse-statusline@fusengine-plugins</code>
+</section>
+
+</main>
+<script src="motion-bundle.js"></script>
+<script src="motion-util.js"></script>
+<script src="motion-desktop.js"></script>
+<script src="motion-terminal.js"></script>
+<script src="motion-timeline.js"></script>
+</body>
+</html>

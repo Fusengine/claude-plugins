@@ -25,6 +25,26 @@
   ],
   "plugins": [
     {
+      "name": "fuse-statusline",
+      "source": "./plugins/core-guards/statusline-mod",
+      "description": "Responsive statusline mod for Claude Code (function hooks, no command hooks); figures computed by the core-guards statusline engine",
+      "version": "1.0.14",
+      "author": {
+        "name": "Fusengine",
+        "url": "https://github.com/fusengine"
+      },
+      "homepage": "https://github.com/fusengine/agents",
+      "repository": "https://github.com/fusengine/agents",
+      "license": "MIT",
+      "keywords": [
+        "statusline",
+        "mod",
+        "hooks"
+      ],
+      "category": "development",
+      "strict": true
+    },
+    {
       "name": "fuse-ai-pilot",
       "source": "./plugins/ai-pilot",
       "description": "AI Pilot workflow: APEX methodology (auto-detects Laravel/Next.js/React/Swift), sniper (7-phase code quality + DRY detection), research-expert, explore-codebase",
@@ -611,6 +631,30 @@
         "lessons",
         "hooks",
         "postmortem"
+      ],
+      "category": "development",
+      "strict": true
+    },
+    {
+      "name": "fuse-motion",
+      "source": "./plugins/motion-expert",
+      "description": "Product motion films and demos: brief lock, beat map, deterministic HTML scenes rendered to mp4/GIF, owner gates on stills and draft, independent critic review",
+      "version": "1.0.0",
+      "author": {
+        "name": "Fusengine",
+        "url": "https://github.com/fusengine"
+      },
+      "homepage": "https://github.com/fusengine/agents",
+      "repository": "https://github.com/fusengine/agents",
+      "license": "MIT",
+      "keywords": [
+        "motion",
+        "video",
+        "animation",
+        "demo",
+        "render",
+        "ffmpeg",
+        "gif"
       ],
       "category": "development",
       "strict": true

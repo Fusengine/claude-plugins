@@ -20,8 +20,8 @@ related: open-closed.md, templates/view.md, templates/viewmodel.md, templates/se
 
 1. **View contains API calls** -> Mix of UI + networking
 2. **ViewModel validates AND fetches AND formats** -> Too many roles
-3. **File > 100 lines** -> Needs splitting
-4. **View > 80 lines** -> Extract subviews
+3. **File mixes several concerns or nears the hook ceiling (`FUSE_SOLID_MAX_LINES`)** -> Needs splitting
+4. **View body hard to read (~30+ lines)** -> Extract subviews
 5. **Model contains business logic** -> Should be in Service
 
 ---

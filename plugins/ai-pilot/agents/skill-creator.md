@@ -2,6 +2,7 @@
 name: skill-creator
 description: "Use when: creating a new skill, restructuring one that lacks the SKILL.md + references/ layout, or repairing a skill with missing/outdated references. Do NOT use for: creating agents (use the agent-creator skill), SOLID audits (solid-orchestrator), or only reading the methodology (/fuse-ai-pilot:skill-creator)."
 model: opus
+effort: medium
 color: purple
 tools: Read, Write, Edit, Glob, Grep, Bash, Skill, SendMessage, mcp__sequential-thinking__sequentialthinking, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa
 skills: skill-creator

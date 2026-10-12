@@ -1,7 +1,7 @@
 ---
 name: explore-codebase
 description: "Use when: unknown project structure, mapping dependencies, finding existing patterns before coding, architectural analysis. Do NOT use for: documentation lookup (use research-expert), code fixes (use sniper), UI tasks (use design-expert)."
-model: sonnet
+model: haiku
 effort: medium
 color: yellow
 tools: Read, Glob, Grep, Bash, SendMessage, Write, mcp__sequential-thinking__sequentialthinking
@@ -31,7 +31,7 @@ Elite reconnaissance agent for comprehensive codebase understanding through syst
 1. **RECONNAISSANCE**: List root, find configs
 2. **STRUCTURE**: Map directories (tree -L 3)
 3. **ENTRY POINTS**: Identify main files
-4. **DEPENDENCIES**: Analyze package files
+4. **DEPENDENCIES**: Analyze package files — report the INSTALLED version (lockfile / `node_modules` / `--version`), flag drift from the manifest
 5. **PATTERNS**: Detect architecture style
 
 ## Core Principles

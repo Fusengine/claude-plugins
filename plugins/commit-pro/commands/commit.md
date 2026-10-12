@@ -1,7 +1,7 @@
 ---
 description: Smart conventional commit with security validation, branch flow enforcement, and auto-detection. Use for git commit, commit changes, save work, stage and commit.
 argument-hint: "[message] | [type scope message] | (empty for auto-detection)"
-allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git pull:*), Bash(git describe:*), Bash(git branch:*), Bash(git checkout:*), Bash(git rev-parse:*), Bash(git remote:*), Bash(git merge-base:*), Bash(git fetch:*), Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr merge:*), Bash(gh pr checks:*), Bash(gh pr edit:*), Bash(gh auth:*), Bash(command:*), Read, Edit
+allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git add:*), Bash(git commit:*), Bash(git log:*), Bash(git tag:*), Bash(git push:*), Bash(git pull:*), Bash(git describe:*), Bash(git branch:*), Bash(git checkout:*), Bash(git rev-parse:*), Bash(git remote:*), Bash(git merge-base:*), Bash(git fetch:*), Bash(gh pr create:*), Bash(gh pr view:*), Bash(gh pr merge:*), Bash(gh pr checks:*), Bash(gh pr edit:*), Bash(gh auth:*), Bash(gh run list:*), Bash(gh run watch:*), Bash(gh run view:*), Bash(gh run rerun:*), Bash(git rev-list:*), Bash(npm view:*), Bash(command:*), Read, Edit
 disable-model-invocation: false
 ---
 
@@ -268,3 +268,29 @@ git tag vX.Y.Z
 Do **not** run `git push origin vX.Y.Z` automatically — there is either no remote to push to, or no confirmed merge yet. Print the manual command for the user to run once the remote/`gh` prerequisite is met and the change has actually landed on `main`.
 
 Output tag verification (FULL mode) or the manual push reminder (LOCAL/DEGRADED mode) alongside the PR URL + merge status from Step 7.
+
+### Step 9: Release Workflow — watch it to the end (FULL mode only)
+
+A pushed tag often triggers a release workflow (e.g. `Publish` to npm). The release is **not done** at `git push origin vX.Y.Z` — it is done when that workflow is green and the registry serves the version. Never leave this to the owner's GitHub e-mail.
+
+1. **Find the runs the tag triggered** — they take a few seconds to register; poll (bounded, ~90s) before concluding there are none:
+   ```bash
+   sha=$(git rev-list -n1 vX.Y.Z)
+   attempt=0
+   until [ -n "$(gh run list --commit "$sha" --event push --json databaseId -q '.[].databaseId')" ]; do
+     attempt=$((attempt + 1)); [ "$attempt" -ge 18 ] && break; sleep 5
+   done
+   gh run list --commit "$sha" --event push --json databaseId,name,status,conclusion
+   ```
+   No run after the poll **and** no `on: push: tags` workflow in `.github/workflows/` (verified, not assumed) → `publish: none`, skip the rest of this step.
+2. **Watch every run** — exit code gates, never piped: `gh run watch <id> --exit-status`.
+3. **On failure, read the log at once**: `gh run view <id> --log-failed`. Classify:
+   - **Flaky** — the failing step is not caused by this release's diff: a timing/perf threshold just over its limit (e.g. `expected < 50ms, got 52.7ms`), a network or registry timeout, a runner crash. → `gh run rerun <id> --failed` (failed jobs only), then back to 2 on the same `<id>`. At most **2 reruns**; a 3rd failure → **Escalate**.
+   - **Real defect** — a compile/type/lint error, a deterministic test failure, an auth/permission error, or the same failure twice in a row. → **Stop**, never rerun: report the run URL, the failing job and step, and the log lines that show the cause.
+4. **Verify the published artifact** before announcing anything. For an npm package:
+   ```bash
+   npm view <package-name> version   # must equal X.Y.Z
+   ```
+   Plus every post-publish verification job of the workflow (e.g. `verify bunx serves the published version`) must be green on the final attempt.
+
+**Announce "published" only when 2, 3 and 4 all hold.** Until then the status is `tagged, publish pending` or `publish failed:<job>` — never "released".

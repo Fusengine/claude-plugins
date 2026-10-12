@@ -24,12 +24,26 @@
 Plugin skills paths are injected at SessionStart — use the paths from your context, never hardcode marketplace paths.
 SOLID refs: `skills/solid-*/references/` (inside each agent plugin)
 
+## Rules Injection — Reality Check
+Rules location: dir `claude-rules/`; hook events SessionStart, SubagentStart, UserPromptSubmit — use the paths from your context, not hardcoded values (exception: the template's @ imports, which must be literal paths). Full rule detail → rules `00-08`, injected at SessionStart and SubagentStart — don't restate them in CLAUDE.md.
+**Reality check on that injection**: the payload is re-sent on every prompt, but Claude Code truncates any large `additionalContext` to a ~2 KB preview and persists the rest to a file the model does not read. Treat SessionStart / SubagentStart as the reliable delivery, and the top of CLAUDE.md as the only part actually re-injected per prompt. Do not assume rules `00-08` are in context because they were "auto-loaded" — if a detail matters, open the file. (Hook output over 10,000 characters is replaced by a file path + preview; `@path` imports in CLAUDE.md load the files in full at launch.)
+
+## Memory Hygiene
+- **Memory hygiene**: when `MEMORY/LESSON.md` grows or accumulates near-duplicate lessons → run `/lessons-compact` (it delegates to the `lessons-compactor` agent, which proposes; you approve before anything is written) — never let it bloat.
+
 ## Documentation
 ALL docs in `docs/` folder - NEVER outside except root `README.md`
 
+## Dev Workflow
+- **ALWAYS work in dev/source repo** — NEVER write to deployed/production paths directly
+- **Sync to deployed** after changes validated
+- **Commit from source repo only**
+
+**Only exception:** Git read-only (status, log, diff)
+
 ## Git & GitHub Flow (ZERO TOLERANCE)
 
-**Commit tool**: ALWAYS delegate to the agent `fuse-ai-pilot:commit` (it executes `/fuse-commit-pro:commit` end to end). NEVER `git commit` directly, never hand-roll the flow yourself.
+**Commit tool**: ALWAYS delegate to the agent `fuse-ai-pilot:commit` (it executes `/fuse-commit-pro:commit` end to end; it owns the whole flow: security, PATCH bump + M2 marketplace mirror, CI-wait before merge, post-merge tag). NEVER `git commit` directly, never hand-roll the flow yourself — NEVER hand-roll a commit. External executors (Kimi/Codex/Cursor) never push/PR/merge/tag/publish — release goes through the commit agent only.
 
 **Branch enforcement**:
 - `main`, `master`, `develop`, `production` → **protected**, no direct commits

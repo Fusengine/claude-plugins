@@ -1,0 +1,25 @@
+{
+  "name": "fuse-motion",
+  "version": "1.0.0",
+  "description": "Short product films from real UI: brief lock, beat map, real screenshots, deterministic HTML scene rendered frame by frame with headless Chrome + ffmpeg, owner-approved stills and draft, blind critic review, verified master file.",
+  "author": {
+    "name": "Fusengine",
+    "email": "hello@fusengine.ch",
+    "url": "https://github.com/fusengine"
+  },
+  "homepage": "https://github.com/fusengine/agents",
+  "repository": "https://github.com/fusengine/agents",
+  "license": "MIT",
+  "keywords": [
+    "motion",
+    "video",
+    "animation",
+    "product-film",
+    "ffmpeg",
+    "headless-chrome",
+    "gif",
+    "vhs"
+  ],
+  "category": "development",
+  "strict": true
+}

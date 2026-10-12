@@ -118,6 +118,16 @@ Merge is always `--merge` (real merge commit) — **never `--squash`**, it would
 
 **Tagging timing**: never push the tag before the merge is validated — CI could still fail or branch protection could still block the merge, and a tag pushed early would point at a commit that never lands on `main`. Tag `vX.Y.Z` on `main` AFTER the merge completes, then push the tag (`fuse-commit-pro:commit` does this automatically in Step 8 — see also `commands/commit.md` Step 8 and `post-commit/references/tag-timing.md`).
 
+## After the Tag — Release Workflow
+
+Pushing the tag is not the end of a release: a tag-triggered workflow (e.g. `Publish` to npm) must be watched to the end, reruns included. Full procedure: `commands/commit.md` **Step 9**. In short:
+
+- Find the runs: `gh run list --commit "$(git rev-list -n1 vX.Y.Z)" --event push` (poll ~90s, they register late).
+- Watch each: `gh run watch <id> --exit-status` — never piped.
+- Failure → read `gh run view <id> --log-failed` at once and classify. **Flaky** (timing/perf threshold just over, network/registry timeout, runner crash) → `gh run rerun <id> --failed`, watch again, max 2 reruns then escalate. **Real defect** (compile/type/lint, deterministic test, auth, same failure twice) → stop and report the cause.
+- Say **"published" only** when the final attempt is fully green (post-publish verification jobs included) **and** the registry serves the version (`npm view <pkg> version` == X.Y.Z).
+- The release runs through the `fuse-ai-pilot:commit` agent launched by the lead — never through a code delegate (Kimi, Codex, Cursor): they write code, not releases.
+
 ## After Merge
 
 - Delete branch automatically (`--delete-branch` flag or GitHub auto-delete setting)

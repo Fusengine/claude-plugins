@@ -1,6 +1,6 @@
 {
   "name": "fuse-motion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Short product films from real UI: brief lock, beat map, real screenshots, deterministic HTML scene rendered frame by frame with headless Chrome + ffmpeg, owner-approved stills and draft, blind critic review, verified master file.",
   "author": {
     "name": "Fusengine",

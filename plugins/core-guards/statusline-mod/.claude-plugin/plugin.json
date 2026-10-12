@@ -1,6 +1,6 @@
 {
 	"name": "fuse-statusline",
-	"version": "1.0.14",
+	"version": "1.0.15",
 	"description": "Responsive statusline mod for Claude Code (function hooks, no command hooks); figures computed by the core-guards statusline engine",
 	"author": {
 		"name": "Fusengine",

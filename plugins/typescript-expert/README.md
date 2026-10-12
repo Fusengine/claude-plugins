@@ -20,7 +20,7 @@ Expert **pure TypeScript** development — CLI tools, libraries, scripts, and ba
 | ts-testing | Testing — `node:test`, `bun test`, Vitest, coverage |
 | ts-packaging | Packaging and publishing — `exports` map, dual ESM/CJS, npm publish |
 
-SOLID principles are provided by the shared **`fuse-solid:solid-generic`** skill (files < 100 lines, interfaces in `src/interfaces/`, JSDoc mandatory) — no local duplicate.
+SOLID principles are provided by the shared **`fuse-solid:solid-generic`** skill (files within `FUSE_SOLID_MAX_LINES`, interfaces in `src/interfaces/`, JSDoc mandatory) — no local duplicate.
 
 ## Architecture
 

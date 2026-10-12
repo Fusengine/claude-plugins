@@ -20,7 +20,7 @@ Expert **safe, idiomatic Rust** development — libraries, CLI tools, async serv
 | rust-tooling-cicd | cargo, workspaces, features, `rustfmt`, `cargo clippy`, release profiles, CI pipelines |
 | rust-ecosystem-crates | Crate selection, `serde`, common libraries, dependency boundaries |
 
-SOLID principles are provided by the shared **`fuse-solid:solid-rust`** skill (files < 100 lines, traits separated, modular architecture) — no local duplicate.
+SOLID principles are provided by the shared **`fuse-solid:solid-rust`** skill (files within `FUSE_SOLID_MAX_LINES`, traits separated, modular architecture) — no local duplicate.
 
 ## Architecture
 

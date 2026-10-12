@@ -8,7 +8,7 @@ keywords: grid, 6 columns, margins, rows, safe zone, bleed, crop, word-object, p
 
 Second block of the scene step: **rhythm.js → grid.js (this) → kinetic.js → timeline.js**,
 each a classic script after `motion-render`'s `lib.js` (top-level names are shared, each
-file < 200 lines). It needs `CUTS`, `BEAT`, `FPS` and `ground()` from
+file within `FUSE_SOLID_MAX_LINES`). It needs `CUTS`, `BEAT`, `FPS` and `ground()` from
 [cut-rhythm.md](cut-rhythm.md), plus `prog`, `lerp`, `inOut` and `$` from `lib.js`
 (timeline-seek.md, mechanics only). A camera move is a primary gesture: list it in the
 state's gestures so `validateDensity` counts it.

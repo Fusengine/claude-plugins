@@ -41,7 +41,7 @@ Before sending anyone into a folder: `ls -lT <folder>` + `date` -- mtime under ~
 
 ### 3. Brief -- self-contained mandate
 Fill `references/brief-template.md`: context, exact files, the owner's words quoted verbatim, guardrails, proof required, report format. A protected path (HARD STOP 3: `~/.claude`, `~/.codex`, deployed marketplace, install scripts) goes into a brief only when the owner named it -- quote his exact sentence; the agent writes that target and nothing else.
-**Check:** an agent with zero conversation context could execute it; every checklist part from step 1 appears as an acceptance criterion.
+**Check:** an agent with zero conversation context could execute it; every checklist part from step 1 appears as an acceptance criterion; the brief contains no "ask the owner if…" escape hatch.
 
 ### 4. Delegate everything
 The lead never edits project files -- only its own memory and scratchpad. Every edit, even one line in a skill or rule, goes to an agent. External executors (Kimi / Codex / Cursor) write code only: never push, PR, merge, tag or publish -- releases go through the `fuse-ai-pilot:commit` agent.

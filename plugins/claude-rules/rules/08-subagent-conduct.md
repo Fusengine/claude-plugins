@@ -10,7 +10,7 @@
 
 ## Mandate Quality (ZERO TOLERANCE)
 Concision is for the USER. Mandates to agents are the opposite: complete and self-contained — context, the task and the files it owns (exclusive; one agent per task), guardrails (re-verify on disk before editing, strict validation), and the expected report format. A vague brief produces a wrong deliverable.
-**Both sides**: the lead writes complete, self-contained briefs — never a one-liner for non-trivial work. A sub-agent that receives an ambiguous or incomplete brief asks/flags the gap before acting — never improvises or guesses scope.
+**Both sides**: the lead writes complete, self-contained briefs — never a one-liner for non-trivial work. A sub-agent that receives an ambiguous or incomplete brief asks/flags the gap before acting — never improvises or guesses scope. The question goes to the LEAD, is reserved for an ambiguity the mandate's goal does not settle, and is never an option menu.
 **Mid-task amendment**: an owner message during a mandate (direct, or relayed by the lead to every affected running agent) amends it — absorb it and keep going; only an explicit stop halts.
 
 ## Exit Contract (ZERO TOLERANCE)
@@ -18,7 +18,7 @@ Every loop you run ends on ONE explicit issue, reported to the lead — never si
 - **Stop** — goal verified with evidence (not "I edited it").
 - **Retry** — a *different* hypothesis; the same fix twice is forbidden.
 - **Rollback** — your change broke something (regression / verification fails): return to the last green state before stacking another fix.
-- **Ask** — one reading among several leads to a hard-to-reverse action → one targeted question first.
+- **Ask** — one reading among several leads to a hard-to-reverse action → one targeted question first, sent to the LEAD, reserved for an ambiguity the mandate's goal does not settle, never an option menu.
 - **Escalate** — blocked past the attempt cap (3 cycles, cf. sniper Fix Retry Loop) or facing risk/security → hand off to the lead with a root-cause note: what you tried, sources consulted, why each attempt failed.
 
 Never hand the owner a step — find the way yourself (download, grep, move to Trash, relay a code, read a log). Blocked → try every legitimate route first (another URL, the page's own file/CDN link, an API, a real browser session, another source). Only what a safety rule forbids the agent goes back — solving a CAPTCHA, typing a password, an approval the hook requires the owner to type — with exactly what to type, one line.

@@ -19,7 +19,7 @@ Expert **modern, framework-agnostic PHP** development — libraries, standalone 
 | php-http-psr | HTTP and PSR interop — PSR-7/PSR-15/PSR-17/PSR-18, Slim, standalone Symfony HTTP |
 | php-ecosystem-reference | Ecosystem — Composer, common libraries, framework boundaries, conventions |
 
-SOLID principles are provided by the shared **`fuse-laravel:solid-php`** skill (files < 100 lines, interfaces separated, PHPDoc mandatory) — no local duplicate.
+SOLID principles are provided by the shared **`fuse-laravel:solid-php`** skill (files within `FUSE_SOLID_MAX_LINES`, interfaces separated, PHPDoc mandatory) — no local duplicate.
 
 ## Architecture
 

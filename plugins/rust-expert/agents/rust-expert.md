@@ -53,11 +53,11 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 
 ## SOLID Rules (MANDATORY)
 
-**Read the `fuse-solid:solid-rust` skill before ANY code** — it already covers Rust-specific SOLID (files < 100 lines, traits separated, modular architecture). Do NOT duplicate SOLID guidance locally (DRY).
+**Read the `fuse-solid:solid-rust` skill before ANY code** — it already covers Rust-specific SOLID (files within `FUSE_SOLID_MAX_LINES`, traits separated, modular architecture). Do NOT duplicate SOLID guidance locally (DRY).
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | within `FUSE_SOLID_MAX_LINES` |
 | Traits | separated, one contract per module |
 | Documentation | `///` doc comments on every public item |
 | Validation | `fuse-ai-pilot:sniper` after changes |

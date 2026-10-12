@@ -100,7 +100,7 @@ still() { # still <name> <frame> [outfile]
 	ffmpeg "${Q[@]}" -i "$VIDEO" -vf "select='eq(n\,$2)'" -frames:v 1 "${3:-$OUT/still-$1.png}"
 	echo "$1 frame $2 t=$(ts "$2")s" >>"$OUT/frames.txt"
 }
-# planes() and mixes() live next to this script (split under the 200-line hook ceiling).
+# planes() and mixes() live next to this script (split to stay within the hook ceiling `FUSE_SOLID_MAX_LINES`).
 # shellcheck source=review-pack-lib.sh
 . "$(dirname "${BASH_SOURCE[0]}")/review-pack-lib.sh"
 
@@ -251,8 +251,8 @@ echo "review pack → $OUT  (frames=$FRAMES fps=$FPS range=$RANGE peak=$PEAK t=$
 
 ```bash
 #!/usr/bin/env bash
-# Functions of .motion/review-pack.sh, split out to keep each file under the hook's
-# 200-line ceiling. Sourced, never run: reads the caller's globals (Q, VIDEO, W, H, RANGE,
+# Functions of .motion/review-pack.sh, split out to keep each file within the hook
+# ceiling FUSE_SOLID_MAX_LINES. Sourced, never run: reads the caller's globals (Q, VIDEO, W, H, RANGE,
 # FPS, PLANE_MIN, CENTER_TOL, MIX_STEP).
 # shellcheck disable=SC2154  # globals are set by review-pack.sh before sourcing
 
@@ -346,7 +346,7 @@ ffmpeg build has no `drawtext`. Each 6-8 s clip took 5-8 s to process.
 | `xfade` dissolve / wipe / push between ink and paper states | Dissolve: `M1?` 1.43-1.97 s (resid 0.001), plus `F9?` on the mid-dissolve frame (43 % mid-grey). Wipe: none. Push: none. |
 
 Split (2026-10-11): `planes()` and `mixes()` moved to `review-pack-lib.sh` so each file stays
-under the hook's 200-line ceiling (198 + 78 lines); both `shellcheck -S warning` clean; on
+within the hook ceiling `FUSE_SOLID_MAX_LINES` (198 + 78 lines); both `shellcheck -S warning` clean; on
 both test clips `planes.txt`, `mix.txt`, `flags.txt`, `gestures.txt`, `freeze.txt` are
 byte-identical to the single-file run.
 

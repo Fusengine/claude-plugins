@@ -79,12 +79,12 @@ Stores organized by feature module:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `store.ts` | Store creation with create() | 50 |
-| `store.interface.ts` | TypeScript interfaces | 30 |
-| `store-provider.tsx` | Context provider (App Router) | 40 |
-| `use-store.ts` | Custom hook with selector | 20 |
+| File | Purpose |
+|------|---------|
+| `store.ts` | Store creation with create() (max 40 lines, owner rule) |
+| `store.interface.ts` | TypeScript interfaces |
+| `store-provider.tsx` | Context provider (App Router) |
+| `use-store.ts` | Custom hook with selector |
 
 ---
 

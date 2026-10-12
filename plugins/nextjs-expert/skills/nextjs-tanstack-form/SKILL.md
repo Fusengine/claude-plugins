@@ -80,12 +80,12 @@ Forms organized by feature module:
 
 ### File Organization
 
-| File | Purpose | Max Lines |
-|------|---------|-----------|
-| `form-options.ts` | Shared formOptions + Zod schema | 50 |
-| `FormComponent.tsx` | Client form UI with fields | 80 |
-| `form.action.ts` | Server Action with validation | 30 |
-| `form.interface.ts` | Types for form values | 30 |
+| File | Purpose |
+|------|---------|
+| `form-options.ts` | Shared formOptions + Zod schema |
+| `FormComponent.tsx` | Client form UI with fields |
+| `form.action.ts` | Server Action with validation |
+| `form.interface.ts` | Types for form values |
 
 ---
 

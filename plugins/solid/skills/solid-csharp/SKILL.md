@@ -1,6 +1,6 @@
 ---
 name: solid-csharp
-description: "Use when writing or refactoring C#/.NET code, structuring Modules/[Feature]/ layers, or defining Contracts/ interfaces (SOLID, files < 100 lines)."
+description: "Use when writing or refactoring C#/.NET code, structuring Modules/[Feature]/ layers, or defining Contracts/ interfaces (SOLID, files within FUSE_SOLID_MAX_LINES)."
 versions:
   csharp: "14"
   dotnet: "10"
@@ -10,7 +10,7 @@ related-skills: solid-detection
 ---
 
 <objective>
-SOLID C# enforces a modular architecture for C# 14/.NET 10 projects: every feature lives under `Modules/[Feature]/` (Controllers, Services, Repositories, Contracts, Models) with shared code centralized in `Core/`, contracts are mandatory and live only in `Contracts/` directories, and interfaces stay small (1-3 members). File limits are strict (100 lines, split at 90; controllers under 50).
+SOLID C# enforces a modular architecture for C# 14/.NET 10 projects: every feature lives under `Modules/[Feature]/` (Controllers, Services, Repositories, Contracts, Models) with shared code centralized in `Core/`, contracts are mandatory and live only in `Contracts/` directories, and interfaces stay small (1-3 members). File size is governed by the hook ceiling `FUSE_SOLID_MAX_LINES`; controllers stay thin.
 
 Before writing any new code it requires a DRY check -- grep the codebase and `Core/Services`/`Core/Contracts` for existing logic to reuse before creating something new. See `principles.md` for the 5 SOLID principles and `patterns.md` for directory layout, testing, and record usage.
 </objective>
@@ -39,14 +39,14 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 ## Architecture (Modules MANDATORY)
 
-| Layer | Location | Max Lines |
-|-------|----------|-----------|
-| Controllers | `Modules/[Feature]/Controllers/` | 50 |
-| Services | `Modules/[Feature]/Services/` | 100 |
-| Repositories | `Modules/[Feature]/Repositories/` | 100 |
-| Contracts | `Modules/[Feature]/Contracts/` | 30 |
-| Models | `Modules/[Feature]/Models/` | 50 |
-| Shared | `Core/{Services,Contracts,Models}/` | - |
+| Layer | Location |
+|-------|----------|
+| Controllers | `Modules/[Feature]/Controllers/` |
+| Services | `Modules/[Feature]/Services/` |
+| Repositories | `Modules/[Feature]/Repositories/` |
+| Contracts | `Modules/[Feature]/Contracts/` |
+| Models | `Modules/[Feature]/Models/` |
+| Shared | `Core/{Services,Contracts,Models}/` |
 
 **NEVER use flat structure - always `Modules/[Feature]/`**
 
@@ -56,8 +56,8 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines (split at 90) |
-| Controllers | < 50 lines, delegate to services |
+| File limit | `FUSE_SOLID_MAX_LINES` |
+| Controllers | Thin, delegate to services |
 | Interfaces | `Contracts/` directory ONLY |
 | XML docs | Every public member documented |
 | DI | Use `Microsoft.Extensions.DependencyInjection` |
@@ -79,7 +79,7 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Anti-Pattern | Fix |
 |--------------|-----|
-| Files > 100 lines | Split at 90 |
+| Files over `FUSE_SOLID_MAX_LINES` | Split by responsibility |
 | Interfaces in impl files | Move to `Contracts/` directory |
 | Fat interfaces (4+ members) | Split into focused interfaces |
 | Flat project structure | Use `Modules/[Feature]/` |

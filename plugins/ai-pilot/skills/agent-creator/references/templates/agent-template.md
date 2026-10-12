@@ -71,7 +71,7 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | Within `FUSE_SOLID_MAX_LINES` |
 | Interfaces | `<location>` ONLY |
 | Documentation | <DocType> on every function |
 | Research | Always before coding |

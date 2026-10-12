@@ -33,7 +33,7 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 → See `../solid-react/SKILL.md` for complete rules
 
 **Key Rules:**
-- Files < 100 lines (split at 90)
+- Source files stay within `FUSE_SOLID_MAX_LINES` and split by responsibility when cohesion drops
 - Interfaces in `modules/[feature]/src/interfaces/`
 - JSDoc mandatory on all exports
 - No business logic in components

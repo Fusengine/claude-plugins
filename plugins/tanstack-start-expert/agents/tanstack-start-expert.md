@@ -59,7 +59,7 @@ After implementation, run **fuse-ai-pilot:sniper** for validation.
 
 | Rule | Requirement |
 |------|-------------|
-| Files | < 100 lines (split at 90) |
+| Files | Within `FUSE_SOLID_MAX_LINES`, split by responsibility |
 | Interfaces | `src/interfaces/` ONLY |
 | Documentation | JSDoc on every exported function |
 | Validation | `fuse-ai-pilot:sniper` after changes |

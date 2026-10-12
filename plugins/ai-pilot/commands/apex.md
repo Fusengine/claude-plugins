@@ -67,7 +67,7 @@ Implement the solution:
 **Quality Standards**:
 - SOLID principles without exception
 - DRY, KISS, YAGNI
-- Max 100 lines per file
+- Every file within `FUSE_SOLID_MAX_LINES` (the hook ceiling)
 - Separate types/interfaces
 - Security validation (OWASP Top 10)
 
@@ -196,7 +196,7 @@ Comprehensive validation:
 |-------|-------------|-----------------|
 | 1. ANALYZE | Exploration summary with affected components | explore-codebase (and research-expert where applicable) launched before any code is written |
 | 2. PLAN | Implementation plan with step-by-step approach | Plan documents steps, edge cases, and testing strategy before Execute starts |
-| 3. EXECUTE | Implementation + tests | Files respect the 100-line ceiling, types/interfaces separated, SOLID followed |
+| 3. EXECUTE | Implementation + tests | Files stay within `FUSE_SOLID_MAX_LINES`, types/interfaces separated, SOLID followed |
 | 3.5. eLICIT | Self-review findings + fixes | Applicable elicitation techniques run and findings addressed before eXamine |
 | 4. eXAMINE | Passing lint/tests/build + manual verification | Sniper reports zero linter errors; manual test plan executed and acceptance criteria confirmed |
 

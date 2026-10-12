@@ -10,8 +10,8 @@ Scene step order (contract): **rhythm.js (this) → grid.js (composition-grid) �
 (kinetic-type) → timeline.js**, each its own classic script after `lib.js` (`motion-render`
 [timeline-seek.md](../../../motion-render/references/templates/timeline-seek.md) — mechanics:
 `prog`, `lerp`, `bezier`, `inOut`, `expoOut`, springs, `stagger`, `validateDensity`, `$`).
-Classic scripts share their top-level names, and each file stays under the hook's 200-line
-ceiling.
+Classic scripts share their top-level names, and each file stays within the hook ceiling
+`FUSE_SOLID_MAX_LINES`.
 
 This file **replaces** timeline-seek's `beats.js`, which defines `FPS`, `onFrame`, `BEATS`,
 `DURATION`, `GESTURES` and `STILLS`; nothing is declared twice. States and gestures are

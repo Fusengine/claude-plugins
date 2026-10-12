@@ -14,7 +14,7 @@ Covers SwiftUI fundamentals shared across all Apple platforms: composable views 
 
 References cover views/modifiers, navigation, SwiftData, state management, Liquid Glass across platforms, and App Intents in depth, plus Apple Human Interface Guidelines (HIG) rules with source URLs: accessibility (Dynamic Type to AX5, VoiceOver, contrast, hit targets, Reduce Motion/Transparency), right-to-left, modality/sheets/alerts/onboarding, system surfaces (widgets, Live Activities, notifications, App Shortcuts/Siri/snippets), and iPhone Duo.
 
-Visual specs come from the design-ios handoff when one exists; this skill implements and verifies them. Best practices: extract subviews once a view body exceeds ~30 lines, compose with ViewBuilder and modifiers, always include #Preview, use system colors (custom colors need light, dark and increased-contrast variants), label every icon-only control, and adapt layout by size class.
+Visual specs come from the design-ios handoff when one exists; this skill implements and verifies them. Best practices: extract subviews once a view body mixes responsibilities or stops reading at a glance, compose with ViewBuilder and modifiers, always include #Preview, use system colors (custom colors need light, dark and increased-contrast variants), label every icon-only control, and adapt layout by size class.
 </objective>
 
 # SwiftUI Core

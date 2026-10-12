@@ -18,7 +18,7 @@ Expert **simple, idiomatic Go** development — CLI tools, libraries, concurrent
 | go-testing-quality | Table-driven tests, `testing`, `go test -race`, fuzzing, benchmarks, coverage |
 | go-tooling-security | `go vet`, `golangci-lint` v2, `govulncheck`, `go mod`, build/release, supply-chain hygiene |
 
-SOLID principles are provided by the shared **`fuse-solid:solid-go`** skill (files < 100 lines, interfaces separated, modular architecture) — no local duplicate.
+SOLID principles are provided by the shared **`fuse-solid:solid-go`** skill (files within `FUSE_SOLID_MAX_LINES`, interfaces separated, modular architecture) — no local duplicate.
 
 ## Architecture
 

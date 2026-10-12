@@ -1,6 +1,6 @@
 ---
 name: solid-ruby
-description: "Use when writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules (SOLID, files < 100 lines)."
+description: "Use when writing or refactoring Ruby/Rails code, structuring app/modules/[feature]/ layers, or defining contracts/ modules (SOLID, files within FUSE_SOLID_MAX_LINES)."
 versions:
   ruby: "4.0"
   rails: "8"
@@ -39,14 +39,14 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 ## Architecture (Modules MANDATORY)
 
-| Layer | Location | Max Lines |
-|-------|----------|-----------|
-| Controllers | `app/modules/[feature]/controllers/` | 50 |
-| Services | `app/modules/[feature]/services/` | 100 |
-| Repositories | `app/modules/[feature]/repositories/` | 100 |
-| Contracts | `app/modules/[feature]/contracts/` | 30 |
-| Models | `app/modules/[feature]/models/` | 50 |
-| Shared | `app/modules/core/{services,contracts,concerns}/` | - |
+| Layer | Location |
+|-------|----------|
+| Controllers | `app/modules/[feature]/controllers/` |
+| Services | `app/modules/[feature]/services/` |
+| Repositories | `app/modules/[feature]/repositories/` |
+| Contracts | `app/modules/[feature]/contracts/` |
+| Models | `app/modules/[feature]/models/` |
+| Shared | `app/modules/core/{services,contracts,concerns}/` |
 
 **NEVER use flat `app/` structure - always `app/modules/[feature]/`**
 
@@ -56,8 +56,8 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Rule | Value |
 |------|-------|
-| File limit | 100 lines (split at 90) |
-| Controllers | < 50 lines, delegate to services |
+| File limit | `FUSE_SOLID_MAX_LINES` |
+| Controllers | Thin, delegate to services |
 | Contracts | `contracts/` directory ONLY (duck typing modules) |
 | YARD doc | Every public method documented |
 | Frozen string | `# frozen_string_literal: true` in every file |
@@ -96,7 +96,7 @@ Before ANY implementation, spawn 3 agents in parallel, one `Agent` call each wit
 
 | Anti-Pattern | Fix |
 |--------------|-----|
-| Files > 100 lines | Split at 90 |
+| Files over `FUSE_SOLID_MAX_LINES` | Split by responsibility |
 | Business logic in models | Extract to service |
 | Fat controllers | Delegate to services |
 | Flat `app/` structure | Use `app/modules/[feature]/` |

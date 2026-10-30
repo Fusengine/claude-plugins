@@ -10,7 +10,7 @@ related: exit-contract.md, brief-lock.md
 
 # Stage Gates
 
-> **Status: enforced.** The `@fusengine/harness` `motion` scope (>= 0.1.103) is wired by this plugin's `hooks/hooks.json`. A skipped gate is denied by the hook, not by agent discipline. Agents still STOP at G1 and G2 — the deny is the backstop, not the plan.
+> **Status: enforced.** The `@fusengine/harness` `motion` scope (>= 0.1.113) is wired by this plugin's `hooks/hooks.json`. A skipped gate is denied by the hook, not by agent discipline. Agents still STOP at G1 and G2 — the deny is the backstop, not the plan.
 
 ## Overview
 
@@ -93,8 +93,8 @@ Deny messages, verbatim:
 
 ## Protected State
 
-- Harness state lives under `~/.fuse-harness/motion/` (approvals, budget) and `~/.fuse-harness/motion-keys`. Agents never read, write, or forge it.
-- Banned-term list: `~/.fuse-harness/motion/banned.txt` (user-level, one term per line, case-insensitive, never in git).
+- Harness state lives under `~/.fuse-harness/video-motion/` (approvals, budget, and `keys/`). Agents never read, write, or forge it.
+- Banned-term list: `~/.fuse-harness/video-motion/banned.txt` (user-level, one term per line, case-insensitive, never in git).
 - Sensitive-data scan: any write under the motion source dir (`sourceDir`) whose content matches a banned term or a currency amount (`12 €`, `$1,299.00`, `1 299,50 EUR`, `£ 40`) is denied; the hit is reported redacted, never echoed back.
 - Commands touching `.fuse-harness` or `.motion` paths are protected: the harness denies what it cannot verify.
 

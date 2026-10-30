@@ -27,7 +27,7 @@ The "data-safety" check as part of an independent final review follows video-sho
 | Money | Spend, revenue, invoices, prices tied to a real account |
 | Internal | Private repo names, internal hostnames, ticket titles |
 
-Source of truth: the brief's sensitive-data list (categories) + the user-level banned list `~/.fuse-harness/motion/banned.txt` (literal values, never in git). The harness `motion` scope denies any write under the motion source dir (`sourceDir` in `.motion/project.json`) whose content matches that list or a currency amount (`12 €`, `1 299,50 EUR`, `$1,299.00`, `£ 40`); the hit is reported redacted (`motion-method` → stage-gates).
+Source of truth: the brief's sensitive-data list (categories) + the user-level banned list `~/.fuse-harness/video-motion/banned.txt` (literal values, never in git). The harness `motion` scope denies any write under the motion source dir (`sourceDir` in `.motion/project.json`) whose content matches that list or a currency amount (`12 €`, `1 299,50 EUR`, `$1,299.00`, `£ 40`); the hit is reported redacted (`motion-method` → stage-gates).
 
 ---
 

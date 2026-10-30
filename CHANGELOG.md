@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.39.38] - 30-10-2026
+
+- fix(motion-expert): target `~/.fuse-harness/video-motion` and require `@fusengine/harness` >= 0.1.113. Docs, agent, skills and templates now point to `~/.fuse-harness/video-motion` (keys in `video-motion/keys`, banned list at `video-motion/banned.txt`); the assets-check template falls back to the legacy `~/.fuse-harness/motion/banned.txt` only when the new file does not exist.
+- chore(deps): `@fusengine/harness` ^0.1.108 → ^0.1.113 (bun.lock regenerated). (fuse-motion 1.0.3)
+
 ## [1.39.37] - 12-10-2026
 
 - fix(claude-rules, ai-pilot): the lead always delegates, even a one-line edit. Scope Ladder row 1 is now "1 agent (the domain expert) + sniper — the lead never edits, even a one-line change". One canonical exception, worded identically in `CLAUDE.md.template`, rule 03 (×3) and `lead-orchestration`: after 2 failed delegations on a localised, already-measured defect, the lead reads and fixes it itself — the only case where the lead edits; any other blocked mandate past the 3-cycle cap escalates. `/apex-quick` now spawns one domain-expert agent (the main session never edits inline); rule 02: a trivial fix is still made by one delegated agent.

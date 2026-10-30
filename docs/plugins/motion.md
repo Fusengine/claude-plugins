@@ -48,7 +48,7 @@ Motion tokens and easing for UI work live in `fuse-design` (`design-motion`); th
 
 ## Gates — G1/G2 enforced, G0 prose-only
 
-The plugin's `hooks/hooks.json` runs the `@fusengine/harness` `motion` scope (>= 0.1.103). A skipped G1 or G2 is denied by the hook.
+The plugin's `hooks/hooks.json` runs the `@fusengine/harness` `motion` scope (>= 0.1.113). A skipped G1 or G2 is denied by the hook.
 
 G0 (art direction) is not enforced by the harness yet. The agent stops after building `look.md` and the 3 key frames, shows you the key frames, and writes no `.motion/scene/*` file until you approve in your own message. That is a prose rule the agent follows; no hook denies an early scene file.
 
@@ -83,7 +83,7 @@ Each render prints `Motion budget: renders stills N · draft N · master N — w
 
 ### Protected state
 
-Approvals and budget live harness-side in `~/.fuse-harness/motion/` (plus `~/.fuse-harness/motion-keys`); the banned-term list is `~/.fuse-harness/motion/banned.txt`. Agents never read or write them, and commands touching `.fuse-harness` or `.motion` paths are denied when the harness cannot verify them. Full spec: `motion-method/references/stage-gates.md`.
+Approvals and budget live harness-side in `~/.fuse-harness/video-motion/` (plus `~/.fuse-harness/video-motion/keys/`); the banned-term list is `~/.fuse-harness/video-motion/banned.txt`. Agents never read or write them, and commands touching `.fuse-harness` or `.motion` paths are denied when the harness cannot verify them. Full spec: `motion-method/references/stage-gates.md`.
 
 ## Requirements
 

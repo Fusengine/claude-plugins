@@ -102,7 +102,8 @@ Copy into `<project>/.motion/assets.json` at stage 3 and run the check script be
  * Usage:
  *   node .motion/scripts/assets-check.mjs          # check only, exit 1 on any error
  *   node .motion/scripts/assets-check.mjs --write  # (re)compute sha256 for every entry, then check
- * Banned literals are read from ~/.fuse-harness/motion/banned.txt (one per line, never in git).
+ * Banned literals are read from ~/.fuse-harness/video-motion/banned.txt (one per line, never in git);
+ * the legacy ~/.fuse-harness/motion/banned.txt is used only if the new file does not exist.
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
@@ -112,7 +113,10 @@ import { join, relative } from "node:path";
 const MANIFEST = ".motion/assets.json";
 const ASSET_DIR = ".motion/assets";
 const RAW_DIR = join(ASSET_DIR, "raw"); // pre-mask captures: never listed, never committed
-const BANNED = join(homedir(), ".fuse-harness/motion/banned.txt");
+const BANNED_NEW = join(homedir(), ".fuse-harness/video-motion/banned.txt");
+const BANNED_LEGACY = join(homedir(), ".fuse-harness/motion/banned.txt"); // pre-0.1.112 location
+// Prefer the new path; fall back to the legacy file only when the new one does not exist yet.
+const BANNED = existsSync(BANNED_NEW) || !existsSync(BANNED_LEGACY) ? BANNED_NEW : BANNED_LEGACY;
 
 const sha256 = (file) => createHash("sha256").update(readFileSync(file)).digest("hex");
 

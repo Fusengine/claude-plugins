@@ -43,7 +43,7 @@ Ask the owner, ONE question at a time. If skipped, use the default and mark it.
 | Surfaces + byte budgets | <...> | README GIF only, <MB> cap |
 | Sensitive-data categories | <...> | names, ids, emails, amounts → mask |
 Facts file: .motion/facts.md (only source for on-screen claims)
-Banned literals: ~/.fuse-harness/motion/banned.txt (user-level, never in git)
+Banned literals: ~/.fuse-harness/video-motion/banned.txt (user-level, never in git)
 </inputs>
 
 <direction>

@@ -43,14 +43,14 @@ Command: `/motion <brief>` spawns `motion-expert`.
 
 ## Gates — status: G1/G2 enforced, G0 prose-only
 
-`hooks/hooks.json` runs the `@fusengine/harness` `motion` scope (>= 0.1.103) on PreToolUse, PostToolUse, PostToolUseFailure, UserPromptSubmit, SubagentStart, SubagentStop and Stop. It fails closed.
+`hooks/hooks.json` runs the `@fusengine/harness` `motion` scope (>= 0.1.113) on PreToolUse, PostToolUse, PostToolUseFailure, UserPromptSubmit, SubagentStart, SubagentStop and Stop. It fails closed.
 
 - **G1**: `--stage draft` denied until the owner approves `.motion/stills/contact.png`. **G2**: `--stage master` denied until the owner approves the draft mp4. A non-literal `--stage` counts as master; `--stage stills` is always allowed.
 - **Approve**: the deny shows a code; the owner types, as the whole prompt, `MOTION-APPROVE stills|draft <4-hex>`. Only a human-typed prompt counts. Keyed on the artifact sha256 — a re-render voids it.
 - **Contract**: `.motion/project.json` (`render`, `draft`, `masters`, `sourceDir`, `reviewDir`) is owner-managed — agent writes are denied. Missing → defaults, and gates fail closed on artifacts they cannot locate.
 - **Critic**: `motion-critic` is write-sandboxed to review-pack outputs under the review dir.
 - **Budget**: every render prints per-stage counts and wall time; optional `FUSE_MOTION_MAX_MASTER_RENDERS` in `~/.claude/.env` caps master renders.
-- **State**: `~/.fuse-harness/motion/` and `~/.fuse-harness/motion-keys` are harness-only; `.fuse-harness` / `.motion` paths are protected.
+- **State**: `~/.fuse-harness/video-motion/` (store, `keys/`, `banned.txt`) is harness-only; `.fuse-harness` / `.motion` paths are protected.
 
 Full spec: `motion-method` → `references/stage-gates.md`.
 

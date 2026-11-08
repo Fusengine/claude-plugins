@@ -1,7 +1,7 @@
 import { bar, makeCard, muted, strong, text } from "./card";
 import type { BarRow, Card, Facts, Item, RateWindow, Span } from "./interfaces/card.interface";
 import { formatLeft, money } from "./labels";
-import { THEME } from "./theme";
+import { limitColor, THEME } from "./theme";
 
 /** Cells of the limits bar at each level; 0 drops it (30% narrower since 1.0.14, owner request). */
 const BAR_AT = [8, 6, 4, 0, 0] as const;
@@ -54,12 +54,12 @@ export function limitsCard(f: Facts, level: number, now: number): Card | null {
 	if (five.show && f.fiveHour) {
 		const left = leftOf(f.fiveHour, five.reset, level, now);
 		items.push(text(...windowSpans("5h", f.fiveHour, left, THEME.reset5)));
-		rows.push({ ratio: f.fiveHour.percent / 100, fill: THEME.fiveFill });
+		rows.push({ ratio: f.fiveHour.percent / 100, fill: limitColor(f.fiveHour.percent) });
 	}
 	if (seven.show && f.sevenDay) {
 		const left = leftOf(f.sevenDay, seven.reset, level, now);
 		items.push(text(...windowSpans("7d", f.sevenDay, left, THEME.reset7)));
-		rows.push({ ratio: f.sevenDay.percent / 100, fill: THEME.sevenFill });
+		rows.push({ ratio: f.sevenDay.percent / 100, fill: limitColor(f.sevenDay.percent) });
 	}
 	const width = BAR_AT[level] ?? 0;
 	if (showBar && rows.length > 0 && width > 0) {

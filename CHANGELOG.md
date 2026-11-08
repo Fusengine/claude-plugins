@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.39.39] - 08-11-2026
+
+- fix(statusline): the 5h usage limit is now optional. The OAuth usage API returns `"five_hour": null` for accounts without a 5-hour window; the formatter dereferenced `usage.five_hour.resets_at`, crashing the emitter (exit 1) and blanking the band. Shows 5h + weekly when present, weekly only otherwise; regression test `oauth-formatter.test.ts`. (core-guards 1.1.43)
+- feat(statusline-mod): desktop limit pills rendered as SVG cards (rounded rect, black fill, 1px border, text flowed via tspans sized from per-glyph widths); progressive limit color blue → green → orange → red. Terminal branch unchanged. (fuse-statusline 1.0.16)
+
 ## [1.39.38] - 30-10-2026
 
 - fix(motion-expert): target `~/.fuse-harness/video-motion` and require `@fusengine/harness` >= 0.1.113. Docs, agent, skills and templates now point to `~/.fuse-harness/video-motion` (keys in `video-motion/keys`, banned list at `video-motion/banned.txt`); the assets-check template falls back to the legacy `~/.fuse-harness/motion/banned.txt` only when the new file does not exist.

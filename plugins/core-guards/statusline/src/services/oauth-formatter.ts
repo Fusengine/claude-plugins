@@ -24,15 +24,18 @@ function parseReset(iso: string | null): { date: Date | null; timeLeft: number }
  * @returns Formatted usage with percentages and time left
  */
 export function formatUsage(usage: OAuthUsageResponse): FormattedUsage {
-	const fiveHour = parseReset(usage.five_hour.resets_at);
+	const fiveHour = usage.five_hour ? parseReset(usage.five_hour.resets_at) : null;
 	const sevenDay = parseReset(usage.seven_day.resets_at);
 	const opus = parseReset(usage.seven_day_opus?.resets_at ?? null);
 	return {
-		fiveHour: {
-			percentage: usage.five_hour.utilization,
-			resetsAt: fiveHour.date,
-			timeLeft: fiveHour.timeLeft,
-		},
+		fiveHour:
+			usage.five_hour && fiveHour
+				? {
+						percentage: usage.five_hour.utilization,
+						resetsAt: fiveHour.date,
+						timeLeft: fiveHour.timeLeft,
+					}
+				: undefined,
 		sevenDay: {
 			percentage: usage.seven_day.utilization,
 			resetsAt: sevenDay.date,

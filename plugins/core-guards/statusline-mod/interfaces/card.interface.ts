@@ -58,5 +58,15 @@ export interface Card {
 	width: number;
 }
 
+/** A card drawn as one SVG on the desktop. */
+export interface CardSvg {
+	source: string;
+	/** The card's plain text, for a reader that cannot see the drawing. */
+	alt: string;
+	/** CSS pixels. */
+	width: number;
+	height: number;
+}
+
 /** One drawn row of cards. */
 export type Row = Card[];

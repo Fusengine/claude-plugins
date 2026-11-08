@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins with APEX workflow, SOLID principles, and expert development agents for Next.js, Laravel, Swift, Tailwind CSS, and more",
-    "version": "1.39.38"
+    "version": "1.39.39"
   },
   "core": [
     {
@@ -28,7 +28,7 @@
       "name": "fuse-statusline",
       "source": "./plugins/core-guards/statusline-mod",
       "description": "Responsive statusline mod for Claude Code (function hooks, no command hooks); figures computed by the core-guards statusline engine",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"

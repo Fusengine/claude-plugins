@@ -40,11 +40,11 @@ describe("desktop: the validated tree, byte for byte (1.0.6 but for the model ca
 });
 
 describe("one data set, two designs", () => {
-	test("desktop: round borders and Svg bars, no end caps", async ($, on) => {
+	test("desktop: every card is one Svg rounded rectangle, no cell border, no end caps", async ($, on) => {
 		world(on, WITH_TERMINAL);
 		const nodes = walk(await drawn($, "desktop", 200));
 		expect(nodes.some((n) => n.type === "Svg")).toBe(true);
-		expect(nodes.some((n) => n.props?.borderStyle === "round")).toBe(true);
+		expect(nodes.some((n) => n.props?.borderStyle !== undefined)).toBe(false);
 		expect(JSON.stringify(nodes)).not.toMatch(/[◖◗]/);
 	});
 

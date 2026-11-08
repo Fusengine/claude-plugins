@@ -40,8 +40,8 @@ export interface ExtraUsageLimits {
  * OAuth /usage API response
  */
 export interface OAuthUsageResponse {
-	/** Rolling 5-hour limit */
-	five_hour: UsageLimit;
+	/** Rolling 5-hour limit (null when the account has no 5-hour window) */
+	five_hour: UsageLimit | null;
 	/** Weekly limit, all models */
 	seven_day: UsageLimit;
 	/** Weekly limit, Opus only */
@@ -56,7 +56,8 @@ export interface OAuthUsageResponse {
  * Usage formatted for display
  */
 export interface FormattedUsage {
-	fiveHour: {
+	/** Absent when the account has no 5-hour window */
+	fiveHour?: {
 		percentage: number;
 		resetsAt: Date | null;
 		timeLeft: number;

@@ -1,7 +1,7 @@
 {
   "name": "fuse-typescript",
   "version": "1.0.10",
-  "description": "Expert TypeScript 7.0 for pure TS projects — CLI tools, libraries, scripts, and backends on Node 24 LTS (26 LTS from 2026-10-28) or Bun 1.4, with SOLID principles",
+  "description": "Expert TypeScript 7.0 for pure TS projects — CLI tools, libraries, scripts, and backends on Node 26 LTS (24 in Maintenance LTS) or Bun 1.4, with SOLID principles",
   "author": {
     "name": "Fusengine",
     "email": "hello@fusengine.ch",
@@ -14,7 +14,7 @@
     "typescript",
     "typescript-7",
     "node",
-    "node-24-lts",
+    "node-26-lts",
     "bun",
     "cli",
     "library",

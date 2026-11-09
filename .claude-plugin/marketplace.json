@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins with APEX workflow, SOLID principles, and expert development agents for Next.js, Laravel, Swift, Tailwind CSS, and more",
-    "version": "1.39.41"
+    "version": "1.39.42"
   },
   "core": [
     {
@@ -75,7 +75,7 @@
       "name": "fuse-seo",
       "source": "./plugins/seo",
       "description": "SEO/GEO 2026 plugin: technical SEO, schema markup, E-E-A-T, AI Overviews/ChatGPT/Perplexity optimization, local SEO, sitemaps, hreflang, internal linking, semantic clustering, search experience. Local-first, zero third-party APIs.",
-      "version": "1.0.15",
+      "version": "1.0.16",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -126,7 +126,7 @@
       "name": "fuse-laravel",
       "source": "./plugins/laravel-expert",
       "description": "Expert Laravel 13 + PHP 8.3+ with SOLID principles, first-class PHP Attributes, Laravel AI SDK, JSON:API Resources, native vector search (pgvector), Eloquent, Livewire, queues with routing, and comprehensive documentation",
-      "version": "1.2.12",
+      "version": "1.2.13",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -156,7 +156,7 @@
       "name": "fuse-nextjs",
       "source": "./plugins/nextjs-expert",
       "description": "Expert Next.js 16 + React 19 with App Router, Server Components, Prisma 7, Better Auth, TanStack Form, Zustand, shadcn/ui",
-      "version": "1.1.28",
+      "version": "1.1.29",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -182,7 +182,7 @@
       "name": "fuse-swift-apple-expert",
       "source": "./plugins/swift-apple-expert",
       "description": "Expert Swift 6.4 + SwiftUI for iOS 27, macOS 27, iPadOS 27, watchOS 27, visionOS 27, tvOS 27 with Liquid Glass, @Observable, actors, SwiftData inheritance",
-      "version": "1.1.25",
+      "version": "1.1.26",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -210,7 +210,7 @@
       "name": "fuse-solid",
       "source": "./plugins/solid",
       "description": "SOLID principles enforcement with automatic project detection and validation for all languages",
-      "version": "1.0.21",
+      "version": "1.0.22",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -232,7 +232,7 @@
       "name": "fuse-tailwindcss",
       "source": "./plugins/tailwindcss",
       "description": "Expert Tailwind CSS v4.3 with CSS-first config, @theme, @utility, @variant, Oxide engine, OKLCH colors, container queries",
-      "version": "1.1.13",
+      "version": "1.1.14",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -257,7 +257,7 @@
       "name": "fuse-react",
       "source": "./plugins/react-expert",
       "description": "Expert React 19 with hooks, TanStack Router, TanStack Form, Zustand, Testing Library, shadcn/ui, and SOLID principles",
-      "version": "1.0.25",
+      "version": "1.0.26",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -283,7 +283,7 @@
       "name": "fuse-tanstack-start",
       "source": "./plugins/tanstack-start-expert",
       "description": "Expert TanStack Start full-stack React framework: server functions, selective SSR, execution model, middleware, server routes, file-based routing with data loaders, authentication, and deployment, with SOLID principles",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -311,7 +311,7 @@
       "name": "fuse-typescript",
       "source": "./plugins/typescript-expert",
       "description": "Expert TypeScript 7.0 for pure TS projects — CLI tools, libraries, scripts, and backends on Node 24 LTS (26 LTS from 2026-10-28) or Bun 1.4, with SOLID principles",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -340,7 +340,7 @@
       "name": "fuse-php",
       "source": "./plugins/php-expert",
       "description": "Expert modern PHP 8.5/8.4 for non-Laravel projects — libraries, standalone Symfony components, Slim, API-first apps, and CLI tools, with PER Coding Style 3.1, PHPStan, and SOLID principles",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -370,7 +370,7 @@
       "name": "fuse-rust",
       "source": "./plugins/rust-expert",
       "description": "Expert Rust 1.98+ (2024 edition) — ownership, error handling, async/tokio, axum backends, cargo tooling, with SOLID principles",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -513,7 +513,7 @@
       "name": "fuse-shadcn-ui",
       "source": "./plugins/shadcn-expert",
       "description": "Expert shadcn/ui with Radix UI and Base UI detection, component patterns, registries, theming, and migration",
-      "version": "1.0.21",
+      "version": "1.0.22",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -538,7 +538,7 @@
       "name": "fuse-security",
       "source": "./plugins/security-expert",
       "description": "Security vulnerability detection and remediation: OWASP Top 10 2025, SAST scanning, CVE research (NVD, OSV.dev), dependency audit, secrets detection, security headers, auth patterns audit",
-      "version": "1.0.20",
+      "version": "1.0.21",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -564,7 +564,7 @@
       "name": "fuse-astro",
       "source": "./plugins/astro-expert",
       "description": "Expert Astro 7 with Islands Architecture, Content Layer API, Server Actions, Server Islands, UI framework integrations (React/Vue/Svelte/Solid), SEO, Starlight docs, i18n, and deployment",
-      "version": "1.0.17",
+      "version": "1.0.18",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"

@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.45] - 09-11-2026
+
+- chore(agents): move the six Haiku agents to Sonnet with `effort: low` — `explore-codebase`, `websearch` (ai-pilot), `cartographer`, `commit-detector` (commit-pro), `seo-images`, `seo-sitemap` (seo); the `sniper-check` skill now lists `explore-codebase` as Sonnet. Basis: on the same changelog-watcher task, Sonnet low fact-checked more reliably than Haiku medium, with fewer tokens. Adds `docs/decisions.md` (dated owner decisions journal). (fuse-ai-pilot 1.2.48, fuse-cartographer 1.0.17, fuse-commit-pro 1.2.31, fuse-seo 1.0.17)
+
 ## [1.39.44] - 09-11-2026
 
 - docs(workflow): list `fuse-hermes` (agent `hermes-expert` + 13 skills) in the workflow docs and complete the tables to every agent and skill on disk — `docs/workflow/agents.md` now lists all 41 agents and `docs/workflow/skills.md` all 217 skills (row sets equal to `plugins/*/agents/*.md` and `plugins/*/skills/*/SKILL.md`), 27 stale rows that were not skills removed, counters updated (20 → 41 agents, 76 → 217 skills) in `docs/README.md`.

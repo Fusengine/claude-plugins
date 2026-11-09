@@ -1,6 +1,6 @@
 # Fusengine Claude Code Plugins
 
-![version](https://img.shields.io/badge/version-v1.39.40-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-26-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-40-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-204-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
+![version](https://img.shields.io/badge/version-v1.39.41-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-27-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-41-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-217-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
 
 > A plugin ecosystem that turns Claude Code into a supervised, multi-agent development environment. Expert agents write code, hooks enforce quality in real-time, skills inject framework-specific knowledge, and **intelligent cartography auto-maps plugins and projects** — so Claude never guesses, never duplicates, and always follows your architecture.
 
@@ -29,7 +29,7 @@
 /plugin marketplace add fusengine/agents
 
 # Install all plugins
-/plugin install fuse-ai-pilot fuse-commit-pro fuse-laravel fuse-nextjs fuse-react fuse-astro fuse-swift-apple-expert fuse-solid fuse-tailwindcss fuse-design fuse-prompt-engineer fuse-shadcn-ui fuse-security fuse-changelog fuse-lessons fuse-tanstack-start fuse-typescript fuse-php fuse-rust fuse-go fuse-motion fuse-statusline   # fuse-statusline: responsive status line mod, replaces the classic one (the installer can also set it up)
+/plugin install fuse-ai-pilot fuse-commit-pro fuse-laravel fuse-nextjs fuse-react fuse-astro fuse-swift-apple-expert fuse-solid fuse-tailwindcss fuse-design fuse-prompt-engineer fuse-shadcn-ui fuse-security fuse-changelog fuse-lessons fuse-tanstack-start fuse-typescript fuse-php fuse-rust fuse-go fuse-motion fuse-hermes fuse-statusline   # fuse-statusline: responsive status line mod, replaces the classic one (the installer can also set it up)
 
 # Setup (hooks + API keys + MCP servers)
 ~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh        # macOS / Linux
@@ -93,6 +93,7 @@ Each plugin provides an **expert agent** that auto-activates when it detects the
 | [fuse-changelog](docs/plugins/changelog.md) | Monitors Claude Code updates, detects breaking changes in plugins, gathers community feedback via Exa |
 | [fuse-lessons](docs/plugins/lessons.md) | Per-project "never reproduce" memory — writes compact timestamped lessons to `MEMORY/LESSON.md` after code edits and force-reads them at session/subagent start so mistakes don't recur across sessions |
 | [fuse-motion](docs/plugins/motion.md) | Product motion films and demos — brief lock, beat map, deterministic HTML scenes rendered to mp4/GIF; owner gates on stills and draft, independent critic review |
+| [fuse-hermes](docs/plugins/hermes.md) | Nous Research Hermes Agent deployments — from a free-form description of your organisation to a verified chief-of-staff install over SSH: profile, delegation, cron, gateways, security, mail triage, dry run, one go, rollback |
 | [fuse-statusline](docs/plugins/statusline.md) | Responsive statusline mod above the prompt — pill cards on the desktop app, classic segments on the terminal; cache hit/expiry timer, 5h/7d usage, effort — replaces the classic status line |
 
 ### Core (auto-installed, always active)

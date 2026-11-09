@@ -44,7 +44,7 @@ Quick code quality validation using the sniper agent in an isolated forked conte
 Execute the mandatory 6-phase `code-quality` workflow:
 
 1. **PHASE 1+2 (PARALLEL)**: Launch both in parallel:
-   - `explore-codebase` (Haiku) → Architecture discovery
+   - `explore-codebase` (Sonnet) → Architecture discovery
    - `research-expert` (Sonnet) → Documentation verification
 2. **PHASE 3**: Grep all usages → Impact analysis
 3. **PHASE 4**: Run linters → Detect errors

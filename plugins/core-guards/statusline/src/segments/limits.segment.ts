@@ -44,7 +44,7 @@ export class LimitsSegment implements ISegment {
 
 		const barCfg = limitsConfig.progressBar ?? { enabled: true, style: "filled", length: 4 };
 
-		if (limitsConfig.show5h !== false) {
+		if (limitsConfig.show5h !== false && formatted.fiveHour) {
 			const pct = Math.round(formatted.fiveHour.percentage);
 			const seg = [`${colors.cyan("5h:")} ${progressiveColor(pct, `${pct}%`)}`];
 			if (barCfg.enabled) {

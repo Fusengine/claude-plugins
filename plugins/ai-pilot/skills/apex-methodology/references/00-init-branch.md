@@ -87,19 +87,19 @@ git status
 ### Sync Frequently
 
 ```bash
-# Keep branch updated with main
+# Check how far the branch is behind main (read-only)
 git fetch origin main
-git rebase origin/main
-# OR
-git merge origin/main
+git log --oneline HEAD..origin/main
 ```
+
+Branch out of date with main → the commit agent's flow handles it (`fuse-ai-pilot:commit`, full mode, end of mandate); never rebase and force-push a shared branch yourself (force-push needs the owner).
 
 ### Clean Commits
 
 ```text
 ✅ Atomic commits (one logical change)
 ✅ Conventional commit messages
-✅ No WIP commits in final PR
+✅ One conventional WIP commit per verified task, made by agent `fuse-ai-pilot:commit` — they stay in history (merge is `--merge`, never squash)
 ```
 
 ---
@@ -116,17 +116,9 @@ git merge origin/main
 
 ---
 
-## Update Task Phase
+## Task Phase (harness-managed)
 
-At the **start** of this phase, record it (and the resolved task subject) in `.claude/apex/task.json` — the harness reads `tasks[current_task].phase` to brief sub-agents, so a stale/missing value shows them the wrong step:
-
-```bash
-jq --arg p "init-branch" --arg s "$TASK_SUBJECT" \
-  '.tasks[.current_task].phase = $p | .tasks[.current_task].subject = $s' \
-  .claude/apex/task.json > .claude/apex/task.json.tmp && mv .claude/apex/task.json.tmp .claude/apex/task.json
-```
-
-Replace `$TASK_SUBJECT` with the real task description (the branch name or the user's request), quoted for the shell.
+Phase: `init-branch`. `.claude/apex/task.json` is read-only for agents and the lead: the harness maintains it (TaskCreate/TaskUpdate PostToolUse sync) and protects `.claude/apex/`, so never create or write anything there. When task tools are loaded, move the task with `TaskUpdate`; otherwise state the phase in your REPORT and keep tracking in the agents' REPORTs and `docs/decisions.md`.
 
 ---
 

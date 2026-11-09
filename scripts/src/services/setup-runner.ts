@@ -10,6 +10,7 @@ import { installBrowserBinary } from "./browser-binary";
 import { setHarnessRefs } from "./harness-env";
 import { resolveHomeInHooks } from "./harness-path-resolver";
 import { promptHarnessGates } from "./harness-gates";
+import { migrateRemovedHookTypes } from "./hook-migration";
 import { promptSubagentModel } from "./subagent-model-gate";
 import { promptHarnessTuning } from "./harness-tuning";
 import { promptEnforceTtl } from "./enforce-ttl";
@@ -47,6 +48,7 @@ export async function runSetup(
 	let settings = await loadSettings(paths.settings);
 	settings = purgeFuseEnvVars(settings);
 	settings = configureDefaults(settings, selectedLanguage);
+	settings = migrateRemovedHookTypes(settings, paths.settings);
 	settings = configureHooks(settings, loaderDest);
 	s.stop("Hooks loader configured");
 

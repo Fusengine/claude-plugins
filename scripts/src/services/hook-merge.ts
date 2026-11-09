@@ -6,7 +6,7 @@
 import type { HookType } from "../interfaces/hook-types";
 
 /** A single settings.hooks entry (matcher + command list, plus unknown extras). */
-interface HookEntry {
+export interface HookEntry {
 	matcher?: string;
 	hooks?: { type?: string; command?: string }[];
 	[key: string]: unknown;
@@ -30,7 +30,7 @@ const LOADER_MARKER = "/hooks-loader.ts";
  * @param entry - A settings.hooks[event] entry.
  * @returns Whether the entry belongs to the fusengine loader.
  */
-function isLoaderEntry(entry: HookEntry): boolean {
+export function isLoaderEntry(entry: HookEntry): boolean {
 	return (entry.hooks ?? []).some(
 		(h) => typeof h.command === "string" && h.command.includes(LOADER_MARKER),
 	);

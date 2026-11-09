@@ -1,5 +1,17 @@
 # Release Notes
 
+## [1.39.40] - 09-11-2026
+
+- refactor(ai-pilot, claude-rules, commit-pro): the workflow now routes through the `lead-orchestration` coordinator (max 6 concurrent agents). ai-pilot commands, APEX methodology references (all stacks), elicitation, verification and the commit agent (WIP vs full mode) aligned on that path; rules 00-08 and `CLAUDE.md.template` updated accordingly.
+- feat(ai-pilot): new consultative `web-performance` skill (`references/front.md`, `backend-db.md`, `infra.md`), wired into the `skills:` of the nextjs, react, astro, tanstack-start and laravel expert agents.
+- fix(ai-pilot, claude-rules): fuse-browser `browser_metrics` returns server counters, not Core Web Vitals — false claim removed from rule 06, `fuse-browser-usage` SKILL.md and `visual-design.md`.
+- chore(design-expert): design-expert agent `effort: medium`. (fuse-ai-pilot 1.2.47, claude-rules 1.0.27, fuse-commit-pro 1.2.30, fuse-design 2.2.13, fuse-astro 1.0.17, fuse-laravel 1.2.12, fuse-nextjs 1.1.28, fuse-react 1.0.25, fuse-tanstack-start 1.0.10)
+
+## [1.39.39] - 08-11-2026
+
+- fix(statusline): the 5h usage limit is now optional. The OAuth usage API returns `"five_hour": null` for accounts without a 5-hour window; the formatter dereferenced `usage.five_hour.resets_at`, crashing the emitter (exit 1) and blanking the band. Shows 5h + weekly when present, weekly only otherwise; regression test `oauth-formatter.test.ts`. (core-guards 1.1.43)
+- feat(statusline-mod): desktop limit pills rendered as SVG cards (rounded rect, black fill, 1px border, text flowed via tspans sized from per-glyph widths); progressive limit color blue → green → orange → red. Terminal branch unchanged. (fuse-statusline 1.0.16)
+
 ## [1.39.38] - 30-10-2026
 
 - fix(motion-expert): target `~/.fuse-harness/video-motion` and require `@fusengine/harness` >= 0.1.113. Docs, agent, skills and templates now point to `~/.fuse-harness/video-motion` (keys in `video-motion/keys`, banned list at `video-motion/banned.txt`); the assets-check template falls back to the legacy `~/.fuse-harness/motion/banned.txt` only when the new file does not exist.

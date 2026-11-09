@@ -284,14 +284,9 @@ Coverage:
 
 ---
 
-## Update Task Phase
+## Task Phase (harness-managed)
 
-At the **start** of this phase, record it in `.claude/apex/task.json`:
-
-```bash
-jq --arg p "add-test" '.tasks[.current_task].phase = $p' .claude/apex/task.json \
-  > .claude/apex/task.json.tmp && mv .claude/apex/task.json.tmp .claude/apex/task.json
-```
+Phase: `add-test`. `.claude/apex/task.json` is read-only for agents and the lead: the harness maintains it (TaskCreate/TaskUpdate PostToolUse sync) and protects `.claude/apex/`, so never create or write anything there. When task tools are loaded, move the task with `TaskUpdate`; otherwise state the phase in your REPORT and keep tracking in the agents' REPORTs and `docs/decisions.md`.
 
 ---
 

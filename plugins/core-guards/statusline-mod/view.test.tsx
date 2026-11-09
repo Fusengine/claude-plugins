@@ -1,4 +1,5 @@
 import { describe, expect, test } from "claude-code/testing";
+import { CARD_PX } from "./card-svg";
 import { CARD_GAP } from "./layout";
 import { ENGINE, NOW, USAGE } from "./test-data";
 import { THEME } from "./theme";
@@ -42,7 +43,9 @@ describe("statusline band", () => {
 					props: { ...BAND, bodyColumns: columns },
 				});
 				const nodes = walk(await ui.drawn());
-				const cards = nodes.filter((n) => n.props?.backgroundColor === THEME.card);
+				const cards = nodes.filter(
+					(n) => n.props?.backgroundColor === THEME.card || (surface === "desktop" && n.type === "Svg"),
+				);
 				expect(cards.length).toBeGreaterThan(0);
 				for (const row of nodes.filter((n) => n.props?.columnGap === CARD_GAP && n.props?.flexWrap === "nowrap")) {
 					expect(drawnRowWidth(row, CARD_GAP)).toBeLessThanOrEqual(columns);
@@ -80,11 +83,10 @@ describe("statusline band", () => {
 		const nodes = walk(await ui.drawn());
 		const rows = nodes.filter((n) => n.props?.flexWrap === "wrap");
 		expect(rows).toHaveLength(1);
-		const cards = nodes.filter((n) => n.props?.backgroundColor === THEME.card);
+		const cards = nodes.filter((n) => n.type === "Svg" && n.props?.height === CARD_PX);
 		expect(cards).toHaveLength(3);
 		// Wrapped cards keep the same light gap between lines as between cards.
 		expect(rows[0]?.props).toMatchObject({ columnGap: 1, rowGap: 1 });
-		for (const card of cards) expect(card.props).toMatchObject({ flexShrink: 0, paddingX: 1 });
 		await ui.unmount();
 	});
 

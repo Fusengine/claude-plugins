@@ -16,6 +16,8 @@ describe("model card: thick pill with the tokens centered over it (desktop)", ()
 		expect(svg).toContain(`fill="${THEME.track}"`);
 		expect(svg).toContain(`fill="${THEME.ctxFill}"`);
 		expect(svg).toContain('text-anchor="middle"');
+		// Centered past the dot (the pill's height), so the label never sits under it.
+		expect(svg).toContain('<text x="42"');
 		expect(svg).toContain('dominant-baseline="central"');
 		expect(svg).toContain('font-weight="700"');
 		expect(svg).toContain(">0.0K/1M</text>");
@@ -24,8 +26,8 @@ describe("model card: thick pill with the tokens centered over it (desktop)", ()
 	});
 
 	test("the pill hugs its text: longer tokens, wider pill, never the old fixed 30 cells", () => {
-		expect(pillCells("0.0K/1M")).toBe(19);
-		expect(pillCells("492.8K/1M")).toBe(23);
+		expect(pillCells("0.0K/1M")).toBe(21);
+		expect(pillCells("492.8K/1M")).toBe(25);
 		const model = cardsAt(FACTS, 0, NOW, true).find((c) => c.id === "model");
 		const drawn = model?.items.find((i) => i.kind === "bar");
 		expect(drawn?.kind === "bar" && drawn.width).toBe(

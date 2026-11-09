@@ -171,15 +171,19 @@ function UserProfile({ id }: Props) {
 
 ## Commit Fixes
 
-```bash
-# For validation fixes
-git commit -m "fix(UserCard): resolve missing dependency warning"
+This phase never runs `git commit` itself. Once the fix is verified, the lead hands it to agent `fuse-ai-pilot:commit` in **WIP mode** (`mode: wip`: one conventional commit on the working branch — no bump, no push, no PR, no merge, no tag); an APEX sub-agent never launches it. Push/PR/merge/tag happen only at the end of the mandate, in full mode (`09-create-pr.md`). Never squash or rebase: a follow-up fix is its own commit.
 
-# For review fixes
-git commit -m "refactor(auth): extract useAuth hook per review"
+Suggested messages, passed to the commit agent:
 
-# For test fixes
-git commit -m "test(Button): fix async assertion"
+```text
+# Validation fix
+fix(UserCard): resolve missing dependency warning
+
+# Review fix
+refactor(auth): extract useAuth hook per review
+
+# Test fix
+test(Button): fix async assertion
 ```
 
 ---
@@ -205,14 +209,9 @@ git commit -m "test(Button): fix async assertion"
 
 ---
 
-## Update Task Phase
+## Task Phase (harness-managed)
 
-At the **start** of this phase, record it in `.claude/apex/task.json`:
-
-```bash
-jq --arg p "fix-issue" '.tasks[.current_task].phase = $p' .claude/apex/task.json \
-  > .claude/apex/task.json.tmp && mv .claude/apex/task.json.tmp .claude/apex/task.json
-```
+Phase: `fix-issue`. `.claude/apex/task.json` is read-only for agents and the lead: the harness maintains it (TaskCreate/TaskUpdate PostToolUse sync) and protects `.claude/apex/`, so never create or write anything there. When task tools are loaded, move the task with `TaskUpdate`; otherwise state the phase in your REPORT and keep tracking in the agents' REPORTs and `docs/decisions.md`.
 
 ---
 

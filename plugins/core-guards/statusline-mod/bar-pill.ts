@@ -7,12 +7,12 @@ const CELL_PX = 4;
 /** Height of the pill: about a line of text. */
 const PILL_PX = 20;
 /** Font size of the text centered over the pill, in CSS pixels. */
-const FONT_PX = 12;
-const FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
+export const FONT_PX = 12;
+export const FONT ="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
 /** Average advance of one bold character at `FONT_PX` (SF Pro Bold, digits ~0.63em), in CSS pixels. */
-const CHAR_PX = 7.3;
-/** Room left and right of the text inside the pill, in CSS pixels. */
-const PAD_PX = 12;
+export const CHAR_PX = 7.3;
+/** Room left and right of the text, beside the dot's own width, inside the pill, in CSS pixels. */
+const PAD_PX = 6;
 
 /**
  * Cells a pill needs to hold its text with a little room on each side: the pill
@@ -22,10 +22,10 @@ const PAD_PX = 12;
  * @returns The pill's width in cells
  */
 export const pillCells = (overlay: string): number =>
-	Math.ceil((overlay.length * CHAR_PX + 2 * PAD_PX) / CELL_PX);
+	Math.ceil((overlay.length * CHAR_PX + PILL_PX + 2 * PAD_PX) / CELL_PX);
 
 /** The text safe inside markup. */
-const escapeXml = (s: string): string =>
+export const escapeXml =(s: string): string =>
 	s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 /** Pixel size of a pill bar. */
@@ -50,6 +50,6 @@ export function pillSource(item: BarItem): string {
 		: height;
 	const rect = (w: number, color: string): string =>
 		`<rect x="0" y="0" width="${w}" height="${height}" rx="${height / 2}" fill="${color}"/>`;
-	const label = `<text x="${width / 2}" y="${height / 2}" text-anchor="middle" dominant-baseline="central" font-family="${FONT}" font-size="${FONT_PX}" font-weight="700" fill="${THEME.text}">${escapeXml(item.overlay ?? "")}</text>`;
+	const label = `<text x="${(width + height) / 2}" y="${height / 2}" text-anchor="middle" dominant-baseline="central" font-family="${FONT}" font-size="${FONT_PX}" font-weight="700" fill="${THEME.text}">${escapeXml(item.overlay ?? "")}</text>`;
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${rect(width, THEME.track)}${rect(fill, row?.fill ?? THEME.track)}${label}</svg>`;
 }

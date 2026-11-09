@@ -1,5 +1,6 @@
 import { barRuns } from "./bar-cells";
 import { svgSize, svgSource } from "./bar-svg";
+import { cardSvg } from "./card-svg";
 import type { BarItem, Item, Row, Span } from "./interfaces/card.interface";
 import type { StatuslineElements, SvgElement } from "./interfaces/statusline-elements.interface";
 import { CARD_GAP } from "./layout";
@@ -7,9 +8,6 @@ import { THEME } from "./theme";
 
 /** Cells between two cards where the surface flows them (the desktop): wider than the terminal's. */
 const FLOW_GAP = 1;
-
-/** Inner padding and item gap of a card on the desktop, whose cells are wider than the text. */
-const FLOW_PAD = 1;
 
 /** One Text per span, in the color the card gave it. */
 const spanText = (ui: StatuslineElements, spans: Span[], key: string) => {
@@ -46,12 +44,12 @@ const itemElement = (ui: StatuslineElements, item: Item, key: string, Svg?: SvgE
 /**
  * Draws the laid-out cards: one row Box per row, one background-colored padded Box per
  * card, never shrunk, so a card is cut by nothing but the layout that sized it. Where the
- * surface flows the cards (desktop), each card gets a `round` border in its own background
- * color, so it reads as a rounded chip; the terminal keeps borderless cells.
+ * surface flows the cards (desktop), each card is instead ONE `Svg` rounded rectangle
+ * (`card-svg.ts`), lower than a bordered cell box; the terminal keeps borderless cells.
  *
  * @param ui - The surface's element table, from `$.ui.resolve(e)`
  * @param rows - The rows from `layout`
- * @param Svg - The surface's `Svg`, when it has one (desktop): bars become rounded stripes
+ * @param Svg - The surface's `Svg`, when it has one (desktop): each card is drawn as one SVG
  * @returns The band's tree
  */
 export function StatuslineView(ui: StatuslineElements, rows: Row[], Svg?: SvgElement) {
@@ -66,20 +64,22 @@ export function StatuslineView(ui: StatuslineElements, rows: Row[], Svg?: SvgEle
 					columnGap={Svg ? FLOW_GAP : CARD_GAP}
 					rowGap={Svg ? FLOW_GAP : 0}
 				>
-					{row.map((card) => (
-						<Box
-							key={`${r}-${card.id}`}
-							flexShrink={0}
-							alignItems="center"
-							backgroundColor={THEME.card}
-							borderStyle={Svg ? "round" : undefined}
-							borderColor={Svg ? THEME.card : undefined}
-							paddingX={Svg ? FLOW_PAD : card.pad}
-							columnGap={Svg ? FLOW_PAD : card.gap}
-						>
-							{card.items.map((item, i) => itemElement(ui, item, `${card.id}-${i}`, Svg))}
-						</Box>
-					))}
+					{row.map((card) =>
+						Svg ? (
+							<Svg key={`${r}-${card.id}`} {...cardSvg(card)} />
+						) : (
+							<Box
+								key={`${r}-${card.id}`}
+								flexShrink={0}
+								alignItems="center"
+								backgroundColor={THEME.card}
+								paddingX={card.pad}
+								columnGap={card.gap}
+							>
+								{card.items.map((item, i) => itemElement(ui, item, `${card.id}-${i}`))}
+							</Box>
+						),
+					)}
 				</Box>
 			))}
 		</Box>

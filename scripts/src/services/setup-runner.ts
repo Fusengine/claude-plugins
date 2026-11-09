@@ -2,7 +2,7 @@
  * Setup runner service
  * Single Responsibility: Orchestrate plugin setup steps
  */
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import * as p from "@clack/prompts";
 import type { SetupPaths } from "../interfaces/setup";
 import { copyExecutable } from "../utils/fs-helpers";
@@ -17,6 +17,7 @@ import { promptSolidMaxLines } from "./solid-lines";
 import { configureShell } from "./env-manager";
 import { configureMcpServers } from "./mcp-setup";
 import { promptPerfEnv } from "./perf-env";
+import { repairMissingPlugins } from "./plugin-repair";
 import { isStatuslineModActive, promptStatuslineMod } from "./statusline-mod";
 import { purgeFuseEnvVars } from "./settings-env-purge";
 import {
@@ -57,8 +58,10 @@ export async function runSetup(
 	const resolved = await resolveHomeInHooks(pluginsDir);
 	homeSpinner.stop(`${resolved} hooks.json paths resolved`);
 
-	settings = await promptStatuslineMod(settings, skipEnv);
-	settings = await setupStatusline(pluginsDir, settings, isStatuslineModActive(settings));
+	const installedJson = join(dirname(paths.settings), "plugins", "installed_plugins.json");
+	await repairMissingPlugins(settings, installedJson);
+	settings = await promptStatuslineMod(settings, skipEnv, undefined, installedJson);
+	settings = await setupStatusline(pluginsDir, settings, isStatuslineModActive(settings, installedJson));
 	settings = setHarnessRefs(settings, paths.marketplace);
 
 	if (!isAgentTeamsEnabled(settings)) {

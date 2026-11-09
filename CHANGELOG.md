@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.43] - 09-11-2026
+
+- fix(setup): `setup.sh` now reinstalls every enabled `@fusengine-plugins` plugin whose `installed_plugins.json` `installPath` is missing on disk (`claude plugin install <id>`, non-blocking), in a repair step that runs before the statusline step. Previously it trusted `enabledPlugins` alone, so after Claude Code's cache sweep deleted `~/.claude/plugins/cache` nothing was reinstalled and the statusline mod and fuse-* agents disappeared. The statusline mod now counts as active only if it is enabled AND its files exist (otherwise the classic `statusLine` is kept); its installer reuses `installPlugin`. Tests: `scripts/src/__tests__/plugin-repair.test.ts`.
+
 ## [1.39.42] - 09-11-2026
 
 - chore(experts): refresh expert skills and agents to current stable versions — swift-apple (new `swift-6-4.md`, `sdk-27-changes.md`), seo, tanstack-start (RC → 1.0 stable, plugin description "1.x stable"), nextjs, typescript, laravel, rust, security, react, shadcn, astro, php, solid (python, ruby) and tailwindcss. (fuse-astro 1.0.18, fuse-laravel 1.2.13, fuse-nextjs 1.1.29, fuse-php 1.0.11, fuse-react 1.0.26, fuse-rust 1.0.11, fuse-security 1.0.21, fuse-seo 1.0.16, fuse-shadcn-ui 1.0.22, fuse-solid 1.0.22, fuse-swift-apple-expert 1.1.26, fuse-tailwindcss 1.1.14, fuse-tanstack-start 1.0.11, fuse-typescript 1.0.11)

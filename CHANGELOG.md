@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.41] - 09-11-2026
+
+- feat(hermes-expert): new `fuse-hermes` plugin for Nous Research Hermes Agent 0.23+, aligned on the owner's live deployment — `hermes-expert` agent and 13 skills (core, delegation, cron, gateways, extend, security, chief-of-staff, rhythm, outbound, mail-triage, workspace, migration, deploy): `company/` deploy tree, `distribution.yaml`, profiles, kanban, delegation, security config, workspace filing rules; document → profile → read-only SSH discovery → dry run → one go → verify/rollback. Docs page `docs/plugins/hermes.md`, README badges and plugin table updated. (fuse-hermes 1.0.1)
+
 ## [1.39.40] - 09-11-2026
 
 - refactor(ai-pilot, claude-rules, commit-pro): the workflow now routes through the `lead-orchestration` coordinator (max 6 concurrent agents). ai-pilot commands, APEX methodology references (all stacks), elicitation, verification and the commit agent (WIP vs full mode) aligned on that path; rules 00-08 and `CLAUDE.md.template` updated accordingly.

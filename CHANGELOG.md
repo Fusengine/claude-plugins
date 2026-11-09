@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.42] - 09-11-2026
+
+- chore(experts): refresh expert skills and agents to current stable versions — swift-apple (new `swift-6-4.md`, `sdk-27-changes.md`), seo, tanstack-start (RC → 1.0 stable, plugin description "1.x stable"), nextjs, typescript, laravel, rust, security, react, shadcn, astro, php, solid (python, ruby) and tailwindcss. (fuse-astro 1.0.18, fuse-laravel 1.2.13, fuse-nextjs 1.1.29, fuse-php 1.0.11, fuse-react 1.0.26, fuse-rust 1.0.11, fuse-security 1.0.21, fuse-seo 1.0.16, fuse-shadcn-ui 1.0.22, fuse-solid 1.0.22, fuse-swift-apple-expert 1.1.26, fuse-tailwindcss 1.1.14, fuse-tanstack-start 1.0.11, fuse-typescript 1.0.11)
+
 ## [1.39.41] - 09-11-2026
 
 - feat(hermes-expert): new `fuse-hermes` plugin for Nous Research Hermes Agent 0.23+, aligned on the owner's live deployment — `hermes-expert` agent and 13 skills (core, delegation, cron, gateways, extend, security, chief-of-staff, rhythm, outbound, mail-triage, workspace, migration, deploy): `company/` deploy tree, `distribution.yaml`, profiles, kanban, delegation, security config, workspace filing rules; document → profile → read-only SSH discovery → dry run → one go → verify/rollback. Docs page `docs/plugins/hermes.md`, README badges and plugin table updated. (fuse-hermes 1.0.1)

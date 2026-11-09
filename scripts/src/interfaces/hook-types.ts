@@ -5,7 +5,12 @@
  * @see https://code.claude.com/docs/en/hooks
  */
 
-/** Supported hook types (Claude Code v2.1.70 + custom Setup) */
+/**
+ * Hook types routed through the fusengine hooks-loader. Only events that a
+ * plugin hooks.json actually handles belong here: registering the loader for an
+ * unhandled event is harmful (a WorktreeCreate command hook REPLACES git's
+ * worktree creation and must print the path, so an empty-output loader breaks it).
+ */
 export type HookType =
 	| "UserPromptSubmit"
 	| "PreToolUse"
@@ -20,12 +25,8 @@ export type HookType =
 	| "PreCompact"
 	| "SessionEnd"
 	| "InstructionsLoaded"
-	| "ConfigChange"
 	| "TeammateIdle"
-	| "TaskCompleted"
-	| "WorktreeCreate"
-	| "WorktreeRemove"
-	| "Setup";
+	| "TaskCompleted";
 
 /** Registry of all hook types for settings generation */
 export const HOOK_TYPES: HookType[] = [
@@ -42,10 +43,14 @@ export const HOOK_TYPES: HookType[] = [
 	"PreCompact",
 	"SessionEnd",
 	"InstructionsLoaded",
-	"ConfigChange",
 	"TeammateIdle",
 	"TaskCompleted",
+];
+
+/** Events the loader used to be registered for; migrated away on setup. */
+export const REMOVED_HOOK_TYPES = [
 	"WorktreeCreate",
 	"WorktreeRemove",
+	"ConfigChange",
 	"Setup",
-];
+] as const;

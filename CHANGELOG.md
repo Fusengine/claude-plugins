@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.39.46] - 09-11-2026
+
+- fix(scripts): stop routing the hooks-loader for hook events no plugin handles (`WorktreeCreate`, `WorktreeRemove`, `ConfigChange`, `Setup`) — a `WorktreeCreate` command hook replaces git's worktree creation and must print the path, so the empty-output loader made worktree creation fail. New `hook-migration.ts` removes only fusengine-loader entries for those events from an existing settings file, keeps user entries, backs the file up first. Tests: `scripts/src/__tests__/settings-manager.migrate.test.ts`; `docs/reference/hooks.md` updated.
+- docs(ai-pilot): lead, verification and sniper rules from the 2026-11-06 lead-corrections audit — `lead-orchestration` SKILL.md and `references/brief-template.md`, `verification` SKILL.md, `sniper` agent; decisions recorded in `docs/decisions.md`. (fuse-ai-pilot 1.2.49)
+
 ## [1.39.45] - 09-11-2026
 
 - chore(agents): move the six Haiku agents to Sonnet with `effort: low` — `explore-codebase`, `websearch` (ai-pilot), `cartographer`, `commit-detector` (commit-pro), `seo-images`, `seo-sitemap` (seo); the `sniper-check` skill now lists `explore-codebase` as Sonnet. Basis: on the same changelog-watcher task, Sonnet low fact-checked more reliably than Haiku medium, with fewer tokens. Adds `docs/decisions.md` (dated owner decisions journal). (fuse-ai-pilot 1.2.48, fuse-cartographer 1.0.17, fuse-commit-pro 1.2.31, fuse-seo 1.0.17)

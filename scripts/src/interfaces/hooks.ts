@@ -5,7 +5,7 @@
  */
 
 export type { HookType } from "./hook-types";
-export { HOOK_TYPES } from "./hook-types";
+export { HOOK_TYPES, REMOVED_HOOK_TYPES } from "./hook-types";
 
 /** Configuration of a single hook */
 export interface HookCommand {

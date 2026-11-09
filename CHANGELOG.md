@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.44] - 09-11-2026
+
+- docs(workflow): list `fuse-hermes` (agent `hermes-expert` + 13 skills) in the workflow docs and complete the tables to every agent and skill on disk — `docs/workflow/agents.md` now lists all 41 agents and `docs/workflow/skills.md` all 217 skills (row sets equal to `plugins/*/agents/*.md` and `plugins/*/skills/*/SKILL.md`), 27 stale rows that were not skills removed, counters updated (20 → 41 agents, 76 → 217 skills) in `docs/README.md`.
+
 ## [1.39.43] - 09-11-2026
 
 - fix(setup): `setup.sh` now reinstalls every enabled `@fusengine-plugins` plugin whose `installed_plugins.json` `installPath` is missing on disk (`claude plugin install <id>`, non-blocking), in a repair step that runs before the statusline step. Previously it trusted `enabledPlugins` alone, so after Claude Code's cache sweep deleted `~/.claude/plugins/cache` nothing was reinstalled and the statusline mod and fuse-* agents disappeared. The statusline mod now counts as active only if it is enabled AND its files exist (otherwise the classic `statusLine` is kept); its installer reuses `installPlugin`. Tests: `scripts/src/__tests__/plugin-repair.test.ts`.

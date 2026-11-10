@@ -22,6 +22,7 @@ export function getManagedDepsTargets(scriptsDir: string, pluginsDir: string): D
 		{
 			dir: pluginsDir,
 			marker: join(pluginsDir, "node_modules/@fusengine/harness/dist/cli/bin.mjs"),
+			lockedPackage: "@fusengine/harness",
 			label: "plugins (shared harness)",
 		},
 		{

@@ -30,6 +30,13 @@ describe("getManagedDepsTargets", () => {
 		);
 	});
 
+	test("only the plugins target declares the harness as its lockfile-checked package", () => {
+		const [scripts, plugins, statusline] = getManagedDepsTargets(SCRIPTS_DIR, PLUGINS_DIR);
+		expect(plugins.lockedPackage).toBe("@fusengine/harness");
+		expect(scripts.lockedPackage).toBeUndefined();
+		expect(statusline.lockedPackage).toBeUndefined();
+	});
+
 	test("statusline target points at core-guards/statusline/node_modules", () => {
 		const [, , statusline] = getManagedDepsTargets(SCRIPTS_DIR, PLUGINS_DIR);
 		const statuslineDir = join(PLUGINS_DIR, "core-guards/statusline");

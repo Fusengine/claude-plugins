@@ -8,12 +8,20 @@ import { closeSync, mkdirSync, openSync, readFileSync, rmSync, writeSync } from 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const LOCK_DIR = join(tmpdir(), "fusengine-ensure-deps");
 const DEFAULT_STALE_MS = 120_000;
 
+/** Directory holding locks and back-off stamps; resolved per call so `TMPDIR` is honoured (tests isolate it). */
+export function lockDir(): string {
+	return join(tmpdir(), "fusengine-ensure-deps");
+}
+
+/** Filesystem-safe slug of a lock key (shared with the back-off stamp). */
+export function lockSlug(key: string): string {
+	return key.replace(/[^a-zA-Z0-9]+/g, "_");
+}
+
 function lockPathFor(key: string): string {
-	const slug = key.replace(/[^a-zA-Z0-9]+/g, "_");
-	return join(LOCK_DIR, `${slug}.lock`);
+	return join(lockDir(), `${lockSlug(key)}.lock`);
 }
 
 /** Age of an existing lock file in ms; a corrupt/unreadable lock is maximally stale. */
@@ -46,19 +54,28 @@ function createLockFile(lockPath: string): boolean {
  * @param key - Unique identifier for the resource being locked (e.g. a dir path)
  * @param staleMs - Age after which an abandoned lock is force-reclaimed
  * @returns a release function if acquired, or `null` if another process holds it
+ *   OR the lock cannot be taken at all (unusable temp dir): fail-open, never throws —
+ *   callers treat "not acquired" as "skip this repair".
  */
 export function tryAcquireLock(key: string, staleMs = DEFAULT_STALE_MS): (() => void) | null {
-	mkdirSync(LOCK_DIR, { recursive: true });
-	const lockPath = lockPathFor(key);
+	try {
+		mkdirSync(lockDir(), { recursive: true });
+		const lockPath = lockPathFor(key);
+		const release = () => {
+			try {
+				rmSync(lockPath, { force: true });
+			} catch {
+				// a leftover lock goes stale and is reclaimed
+			}
+		};
 
-	if (createLockFile(lockPath)) {
-		return () => rmSync(lockPath, { force: true });
-	}
-	if (readLockAgeMs(lockPath) > staleMs) {
-		rmSync(lockPath, { force: true });
-		if (createLockFile(lockPath)) {
-			return () => rmSync(lockPath, { force: true });
+		if (createLockFile(lockPath)) return release;
+		if (readLockAgeMs(lockPath) > staleMs) {
+			rmSync(lockPath, { force: true });
+			if (createLockFile(lockPath)) return release;
 		}
+		return null;
+	} catch {
+		return null;
 	}
-	return null;
 }

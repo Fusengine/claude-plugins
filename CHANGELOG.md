@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.52] - 11-11-2026
+
+- chore(license): name « Fusengine Sàrl » as copyright holder in the root `LICENSE` (MIT, year 2025 kept); record the owner decision in `docs/decisions.md`. `plugins/commit-pro/LICENSE` names a different holder and is left untouched. No plugin version change.
+
 ## [1.39.51] - 11-11-2026
 
 - chore(deps): bump `@fusengine/harness` to 0.1.116 in `plugins/package.json` and `plugins/bun.lock` — fixes the 0.1.115 regression where `( … 2>&1) || true` raised a false "[CONFIRM] Bash file write". The SessionStart auto-upgrade follows `bun.lock`, so installs pick up 0.1.116 on next session start. No plugin version change.

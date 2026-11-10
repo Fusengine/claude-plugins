@@ -4,7 +4,7 @@ description: "Use when: creating a new skill, restructuring one that lacks the S
 model: opus
 effort: medium
 color: purple
-tools: Read, Write, Edit, Glob, Grep, Bash, Skill, SendMessage, mcp__sequential-thinking__sequentialthinking, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa
+tools: Read, Write, Edit, Glob, Grep, Bash, Skill, SendMessage, mcp__sequential-thinking__sequentialthinking, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, mcp__fuse-browser__browser_crawl, mcp__fuse-browser__browser_serp_batch
 skills: skill-creator
 ---
 
@@ -25,7 +25,7 @@ Execute the 4 skill-creator flows — New, Restructure, Improve, Adapt — produ
 **Adaptation from the base methodology**: this agent has no `Agent` tool and never spawns sub-agents. Where the skill says "spawn `explore-codebase` + `research-expert` in parallel," this agent instead does that research itself — `Glob`/`Grep`/`Read` for existing skill structure and patterns, `mcp__context7__*` and `mcp__exa__*` for official docs and code examples. The **lead** runs `fuse-ai-pilot:sniper` after this agent reports — never this agent.
 
 1. **Identify the flow**: New (no matching skill exists) / Restructure (skill exists but not `SKILL.md` + `references/` pattern) / Improve (pattern present, references missing or stale) / Adapt (copy an existing skill to a new framework — see `references/adaptation.md`).
-2. **Research** (self-performed, no delegation): `Glob`/`Grep` sibling skills under the target plugin for structure and conventions; `Read` the closest match; `mcp__context7__resolve-library-id` + `query-docs` and `mcp__exa__*` for current library/framework facts. Never invent version numbers or APIs — verify or omit.
+2. **Research** (self-performed, no delegation): `Glob`/`Grep` sibling skills under the target plugin for structure and conventions; `Read` the closest match; verify current library/framework facts through the chain, in order: ① fuse-browser fast-path (`mcp__fuse-browser__browser_fetch` / `browser_fetch_batch` on official doc URLs, `browser_serp_batch` for discovery — no browser launch) → ② Context7 (`mcp__context7__resolve-library-id` + `query-docs`) → ③ Exa (`mcp__exa__*`). Never invent version numbers or APIs — verify or omit.
 3. **Structure**: create `skills/<name>/references/templates/` under the owning plugin only.
 4. **Write `SKILL.md`** from `references/templates/SKILL-template.md` — frontmatter (`name`, `description` starting with "Use when...", `versions`, `user-invocable`, `references`, `related-skills`), Agent Workflow, Overview, Critical Rules, Architecture, Reference Guide, Best Practices.
 5. **Write references** (conceptual, WHY + WHEN) and **templates** (complete, copy-paste-ready code). Every file stays within `FUSE_SOLID_MAX_LINES` — split rather than truncate.

@@ -49,7 +49,7 @@
 | Command | Plugin | Description |
 |---------|--------|-------------|
 | `/design` | fuse-design | UI/UX workflow |
-| `/audit-design` (also `/design-audit`) | fuse-design | Audit an existing HTML/CSS design |
+| `/audit-design` | fuse-design | Audit an existing HTML/CSS design |
 | `/design-component` | fuse-design | Generate a single component using existing design-system.md tokens |
 | `/design-mobile` | fuse-design | iOS or Android mockup + handoff spec |
 | `/design-page` | fuse-design | New page or screen in an existing project |
@@ -79,7 +79,7 @@
 
 ## Skills invocable as slash commands
 
-These are skills with `user-invocable: true`, not command files: they do not count in the 35 slash commands above.
+Three examples of skills invocable as `/name`. They are skills, not command files, so they do not count in the 35 slash commands above. Most skills are invocable: 148 of 236 (120 with `user-invocable: true`, 28 without the field, which defaults to true). See [Skills](skills.md) for the list.
 
 | Command | Plugin | Description |
 |---------|--------|-------------|

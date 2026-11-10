@@ -1,12 +1,12 @@
 # fuse-rust
 
-Expert safe, idiomatic Rust — libraries, CLI tools, async services, and web backends on Rust 1.96+ (2024 edition) with an ownership-first mindset and clippy-clean code.
+Expert safe, idiomatic Rust — libraries, CLI tools, async services, and web backends on Rust 1.99+ (2024 edition) with an ownership-first mindset and clippy-clean code.
 
 ## Agents
 
 | Agent | Description |
 |-------|-------------|
-| `rust-expert` | Rust development (Rust 1.96+, 2024 edition, tokio / axum) |
+| `rust-expert` | Rust development (Rust 1.99+, 2024 edition, tokio / axum) |
 
 ## Skills
 

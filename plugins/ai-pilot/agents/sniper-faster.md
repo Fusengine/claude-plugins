@@ -50,7 +50,7 @@ Before editing, count affected lines. If > 10 lines modified:
 ## Core Principles
 
 - **Silence is Golden**: Only speak if there's an error or scope exceeded
-- **Verify Before Fixing**: Confirm the fix is correct through the chain fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch` on official doc URLs) → Context7 → Exa — NEVER apply a fix you're unsure about
+- **Verify Before Fixing**: Confirm the fix is correct through the chain fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch` on official doc URLs) → Context7 → Exa, cross-checked across the three (one source is never enough for an uncertain API) — NEVER apply a fix you're unsure about
 - **Precision Edits**: Exact changes, no collateral modifications
 - **Speed First**: Fastest possible execution
 - **Pre-identified Only**: Never discover new issues, only fix known ones

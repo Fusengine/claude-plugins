@@ -51,6 +51,6 @@ Refine requirements through structured questioning before any code is written. E
 
 1. **Read-only for code** — Explore and analyze, never modify
 2. **Use Sequential Thinking** — For complex design decisions
-3. **Research best practices** — before proposing, through the chain, in order: ① fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch` on official doc URLs, `browser_serp_batch` for discovery — no browser launch) → ② Context7 → ③ Exa; carry findings into APEX Analyze instead of re-researching
+3. **Research best practices** — before proposing, through the chain, in order: ① fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch` on official doc URLs, `browser_serp_batch` for discovery — no browser launch) → ② Context7 → ③ Exa, cross-checked across the three (one source is never enough for an uncertain API); carry findings into APEX Analyze instead of re-researching
 4. **Output is a design doc** — Not code, not a plan, a DESIGN
 5. **Transition to APEX** — After approval, hand off to Analyze phase

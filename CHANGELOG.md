@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.53] - 11-11-2026
+
+- chore(license): name « Fusengine Sàrl » as copyright holder in `plugins/commit-pro/LICENSE` (MIT, year 2025 kept), replacing the personal name; record the owner decision in `docs/decisions.md` (fuse-commit-pro 1.2.32)
+
 ## [1.39.52] - 11-11-2026
 
 - chore(license): name « Fusengine Sàrl » as copyright holder in the root `LICENSE` (MIT, year 2025 kept); record the owner decision in `docs/decisions.md`. `plugins/commit-pro/LICENSE` names a different holder and is left untouched. No plugin version change.

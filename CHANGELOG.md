@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.50] - 10-11-2026
+
+- docs: record owner decision in `docs/decisions.md` (test residue cleanup after sessions stop).
+
 ## [1.39.49] - 10-11-2026
 
 - feat(scripts): auto-upgrade `@fusengine/harness` at SessionStart — the installed version is compared with the one pinned in `bun.lock`; a mismatch stages a verified install under `node_modules/.fuse-versions`, then switches the unchanged path to it atomically (versioned symlink, `renamex_np` / `renameat2` via Bun FFI). Where the atomic swap is unavailable or fails, the upgrade is skipped with a warning pointing to `/update-harness`, never done in place. A back-off stamp (30 min, `FUSE_ENSURE_DEPS_BACKOFF_MIN`) prevents retry storms; superseded versions are pruned after 7 days under the single-flight lock. No `hooks.json` change, no plugin version change.

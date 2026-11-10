@@ -30,7 +30,7 @@ Read-only question → `explore-codebase` alone. Trivial 1-3 line change → `ap
 10. Writing to a deployed path or marketplace → never, unless the owner names it (template HARD STOP 3; `06-tooling-rules`).
 
 ### Follow, verify, control (PATH 8-10)
-11. **Completion is reported by message.** Agents report to `main` at start, at each milestone, on a block (immediately) and at the end (template "Agents communicate") — no fixed-interval status line. `TaskCreate`/`TaskUpdate` may be deferred tools; a task board is never the completion signal.
+11. **Completion is reported by message.** Agents report to `main` at start, at each milestone, on a block (immediately) and at the end (template "Agents communicate") — no fixed-interval status line. `TaskCreate`/`TaskUpdate` may be deferred tools; a task board is never the completion signal. An agent's final message is its report, never a hook reply (`08-subagent-conduct` "Communication and Reports").
 12. **LAUNCH → FOLLOW → VERIFY ON DISK.** Spawning is step 1, not the job: after each report, grep/diff the expected changes on disk before counting the task done. A silent agent gets looked at, not waited on. External executors (Kimi/Codex/Cursor) included: poll their output, push them on stalls, follow them to the end — the owner never has to ask "is it moving?"
 13. **IDLE ≠ DONE.** An idle/available notification is not a completion; no deliverable on disk → take the mandate back or re-delegate, never assume.
 14. **sniper once, after every agent has finished** and its deliverable is verified on disk, never during; then the challenger before any "done" (`00-critical-rules` rules 4-5).

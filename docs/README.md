@@ -9,7 +9,7 @@
 - [Agents](workflow/agents.md) - 42 specialized agents
 - [Agent Teams](workflow/agent-teams.md) - Delegation, parallel execution, coordination
 - [Skills](workflow/skills.md) - 236 specialized skills
-- [Commands](workflow/commands.md) - 26 slash commands
+- [Commands](workflow/commands.md) - 35 slash commands
 
 ## Plugins
 - [ai-pilot](plugins/ai-pilot.md) - APEX orchestrator, sniper, research
@@ -17,6 +17,10 @@
 - [laravel](plugins/laravel.md) - Laravel 12+ expert
 - [nextjs](plugins/nextjs.md) - Next.js 16+ expert
 - [react](plugins/react.md) - React 19 expert
+- [tanstack-start](plugins/tanstack-start.md) - TanStack Start expert (file-based routing, server functions, Nitro)
+- [astro](plugins/astro.md) - Astro 7 expert (Islands, Content Layer, Server Actions)
+- [typescript](plugins/typescript.md) - Pure TypeScript 6.0 expert (Node 24 / Bun 1.3)
+- [php](plugins/php.md) - Framework-agnostic PHP 8.5 expert
 - [swift](plugins/swift.md) - Swift/SwiftUI expert
 - [tailwindcss](plugins/tailwindcss.md) - Tailwind CSS v4.1
 - [design](plugins/design.md) - UI/UX with shadcn/ui
@@ -27,6 +31,12 @@
 - [prompt-engineer](plugins/prompt-engineer.md) - Prompt optimization
 - [motion](plugins/motion.md) - Product motion films and demos (HTML scenes to mp4/GIF, owner gates, critic review)
 - [devops](plugins/devops.md) - Self-hosted IT/DevOps expert (Docker, Kubernetes, Linux, Proxmox, OpenStack, IaC, observability)
+- [go](plugins/go.md) - Go 1.27+ expert (idioms, concurrency, golangci-lint v2 / govulncheck)
+- [rust](plugins/rust.md) - Rust 1.96+ expert (2024 edition, tokio / axum)
+- [hermes](plugins/hermes.md) - Hermes Agent chief-of-staff deployment and configuration
+- [cartographer](plugins/cartographer.md) - Ecosystem and project maps generated at SessionStart
+- [lessons](plugins/lessons.md) - Per-project "never reproduce" lessons in MEMORY/LESSON.md
+- [memory](plugins/memory.md) - Neural Memory, persistent memory with Graphiti + Qdrant
 - [statusline](plugins/statusline.md) - Responsive statusline mod (replaces the classic status line)
 
 ## Reference

@@ -1,12 +1,12 @@
 # fuse-go
 
-Expert simple, idiomatic Go — CLI tools, libraries, concurrent systems, and backend services on Go 1.26+ with a small-interfaces mindset and golangci-lint-clean code.
+Expert simple, idiomatic Go — CLI tools, libraries, concurrent systems, and backend services on Go 1.27+ with a small-interfaces mindset and golangci-lint-clean code.
 
 ## Agents
 
 | Agent | Description |
 |-------|-------------|
-| `go-expert` | Go development (Go 1.26+, concurrency, golangci-lint v2 / govulncheck) |
+| `go-expert` | Go development (Go 1.27+, concurrency, golangci-lint v2 / govulncheck) |
 
 ## Skills
 

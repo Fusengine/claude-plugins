@@ -4,7 +4,7 @@ description: "Use when: new features, component creation, major changes, adding 
 model: opus
 effort: medium
 color: cyan
-tools: Read, Glob, Grep, Bash, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__sequential-thinking__sequentialthinking, SendMessage, Write
+tools: Read, Glob, Grep, Bash, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, mcp__fuse-browser__browser_serp_batch, mcp__sequential-thinking__sequentialthinking, SendMessage, Write
 skills: brainstorming, research, exploration
 ---
 
@@ -51,6 +51,6 @@ Refine requirements through structured questioning before any code is written. E
 
 1. **Read-only for code** — Explore and analyze, never modify
 2. **Use Sequential Thinking** — For complex design decisions
-3. **Research best practices** — Context7 + Exa before proposing; carry findings into APEX Analyze instead of re-researching
+3. **Research best practices** — before proposing, through the chain, in order: ① fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch` on official doc URLs, `browser_serp_batch` for discovery — no browser launch) → ② Context7 → ③ Exa; carry findings into APEX Analyze instead of re-researching
 4. **Output is a design doc** — Not code, not a plan, a DESIGN
 5. **Transition to APEX** — After approval, hand off to Analyze phase

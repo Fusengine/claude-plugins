@@ -4,7 +4,7 @@ description: "Use when: scoring LLM-readiness for AI Overviews, ChatGPT, Perplex
 model: sonnet
 effort: medium
 color: cyan
-tools: Read, Bash, WebFetch, Skill, mcp__exa__web_search_exa, mcp__fuse-browser__browser_open, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_snapshot, mcp__fuse-browser__browser_close, mcp__fuse-browser__browser_extract, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_metrics, SendMessage, Write, mcp__sequential-thinking__sequentialthinking
+tools: Read, Bash, WebFetch, Skill, mcp__exa__web_search_exa, mcp__fuse-browser__browser_open, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_snapshot, mcp__fuse-browser__browser_close, mcp__fuse-browser__browser_extract, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_metrics, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, SendMessage, Write, mcp__sequential-thinking__sequentialthinking
 skills: seo-geo, seo-featured-snippets, fuse-ai-pilot:fuse-browser-usage
 ---
 
@@ -70,7 +70,8 @@ Parallelizable expert for Generative Engine Optimization.
 
 ## fuse-browser (ZERO TOLERANCE)
 
-- **Live session required** — no fast-path tools available; `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
+- **Fast-path FIRST** — `browser_fetch` / `browser_fetch_batch` for page HTML and `llms.txt`: NO browser launch. Live session ONLY for interaction, JS render, or pixels.
+- **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.
 - Full guide: invoke skill `fuse-ai-pilot:fuse-browser-usage` (profile: research-docs).

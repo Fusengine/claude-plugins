@@ -6,9 +6,9 @@
 
 ## Workflow
 - [APEX Methodology](workflow/apex.md) - Analyze → Plan → Execute → eLicit → eXamine
-- [Agents](workflow/agents.md) - 41 specialized agents
+- [Agents](workflow/agents.md) - 42 specialized agents
 - [Agent Teams](workflow/agent-teams.md) - Delegation, parallel execution, coordination
-- [Skills](workflow/skills.md) - 105 framework skills
+- [Skills](workflow/skills.md) - 236 specialized skills
 - [Commands](workflow/commands.md) - 26 slash commands
 
 ## Plugins
@@ -26,6 +26,7 @@
 - [solid](plugins/solid.md) - SOLID principles
 - [prompt-engineer](plugins/prompt-engineer.md) - Prompt optimization
 - [motion](plugins/motion.md) - Product motion films and demos (HTML scenes to mp4/GIF, owner gates, critic review)
+- [devops](plugins/devops.md) - Self-hosted IT/DevOps expert (Docker, Kubernetes, Linux, Proxmox, OpenStack, IaC, observability)
 - [statusline](plugins/statusline.md) - Responsive statusline mod (replaces the classic status line)
 
 ## Reference

@@ -1,6 +1,6 @@
 # Fusengine Claude Code Plugins
 
-![version](https://img.shields.io/badge/version-v1.39.47-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-27-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-41-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-218-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
+![version](https://img.shields.io/badge/version-v1.39.47-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-28-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-42-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-236-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
 
 > A plugin ecosystem that turns Claude Code into a supervised, multi-agent development environment. Expert agents write code, hooks enforce quality in real-time, skills inject framework-specific knowledge, and **intelligent cartography auto-maps plugins and projects** — so Claude never guesses, never duplicates, and always follows your architecture.
 
@@ -18,7 +18,7 @@
 
 - **Expert agents** detect your project type (Next.js, Laravel, React, Astro, Swift...) and load framework-specific documentation via MCP servers before writing a single line
 - **60+ hook checks** intercept Write/Edit/Bash **and** agent/session lifecycle events to enforce file-size limits (<100 lines), block code duplication (DRY), require SOLID reference reads, gate documentation lookup, and block destructive shell commands
-- **196 skills** inject copy-paste-ready templates, architecture patterns, and best practices directly into agent context — no hallucination needed
+- **236 skills** inject copy-paste-ready templates, architecture patterns, and best practices directly into agent context — no hallucination needed
 - **APEX workflow** structures every task through Analyze → Plan → Execute (TDD) → Review → Validate — preventing the "just write code and hope" approach
 - **Sniper agent** — a 7-phase post-edit quality check (explore → research → grep usages → lint → fix → zero errors) the APEX workflow invokes after every modification
 
@@ -29,7 +29,7 @@
 /plugin marketplace add fusengine/agents
 
 # Install all plugins
-/plugin install fuse-ai-pilot fuse-commit-pro fuse-laravel fuse-nextjs fuse-react fuse-astro fuse-swift-apple-expert fuse-solid fuse-tailwindcss fuse-design fuse-prompt-engineer fuse-shadcn-ui fuse-security fuse-changelog fuse-lessons fuse-tanstack-start fuse-typescript fuse-php fuse-rust fuse-go fuse-motion fuse-hermes fuse-statusline   # fuse-statusline: responsive status line mod, replaces the classic one (the installer can also set it up)
+/plugin install fuse-ai-pilot fuse-commit-pro fuse-laravel fuse-nextjs fuse-react fuse-astro fuse-swift-apple-expert fuse-solid fuse-tailwindcss fuse-design fuse-prompt-engineer fuse-shadcn-ui fuse-security fuse-changelog fuse-lessons fuse-tanstack-start fuse-typescript fuse-php fuse-rust fuse-go fuse-motion fuse-hermes fuse-devops fuse-statusline   # fuse-statusline: responsive status line mod, replaces the classic one (the installer can also set it up)
 
 # Setup (hooks + API keys + MCP servers)
 ~/.claude/plugins/marketplaces/fusengine-plugins/setup.sh        # macOS / Linux
@@ -95,6 +95,12 @@ Each plugin provides an **expert agent** that auto-activates when it detects the
 | [fuse-motion](docs/plugins/motion.md) | Product motion films and demos — brief lock, beat map, deterministic HTML scenes rendered to mp4/GIF; owner gates on stills and draft, independent critic review |
 | [fuse-hermes](docs/plugins/hermes.md) | Nous Research Hermes Agent deployments — from a free-form description of your organisation to a verified chief-of-staff install over SSH: profile, delegation, cron, gateways, security, mail triage, dry run, one go, rollback |
 | [fuse-statusline](docs/plugins/statusline.md) | Responsive statusline mod above the prompt — pill cards on the desktop app, classic segments on the terminal; cache hit/expiry timer, 5h/7d usage, effort — replaces the classic status line |
+
+### Infrastructure & Operations — Self-Hosted Expert
+
+| Plugin | Detects | What the agent does |
+|--------|---------|---------------------|
+| [fuse-devops](docs/plugins/devops.md) | Infrastructure repos only: `*.tf` / `*.tofu`, `ansible.cfg`, `Chart.yaml`, `kustomization.yaml`, `*.pkr.hcl`, `.sops.yaml` (a lone `Dockerfile` or `docker-compose.yml` in an application repo does not route here) | Docker/Compose, Kubernetes workloads and clusters, Linux, networking, OPNsense, Proxmox VE, KVM/Incus, OpenStack, Terraform/OpenTofu, Ansible, CI/CD, observability, storage and backup, secrets, databases — discovery, dry-run, one go, verify, rollback; no public clouds |
 
 ### Core (auto-installed, always active)
 

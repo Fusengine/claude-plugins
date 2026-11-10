@@ -41,7 +41,7 @@ State what was actually scanned; never imply coverage that did not happen.
 ```
 ### Automated pass
 - Harness scanner: ran | not available — command: `bun .../bin.mjs scan <dir>`
-- Coverage printed by the scanner: {languages and file counts as printed} | "no coverage summary printed"
+- Coverage printed by the scanner (`coverage` block): {`totals.files` (0 = nothing scanned); `filesScanned` per language as printed; root `language`; non-zero `skipped` reasons; `unsupported`; `capped`} | "no coverage block printed (harness older than 0.1.115)"
 - Present in the repo but NOT reported as scanned: {languages / extensions} → covered manually with {reference files}
 
 ### Optional tools (presence-checked, never installed)

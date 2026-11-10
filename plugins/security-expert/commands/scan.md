@@ -30,7 +30,7 @@ Severity scale, confidence threshold, noise policy and report format: [`../rules
 - CVEs and advisories for the detected stack (skill `cve-research`)
 
 ### Phase 3: SCAN (candidates)
-- Run `bun ${CLAUDE_PLUGIN_ROOT}/../node_modules/@fusengine/harness/dist/cli/bin.mjs scan <dir>` — a first-pass pattern scanner whose coverage is narrower than the skill's patterns; an empty result is NOT a clean result
+- Run `bun ${CLAUDE_PLUGIN_ROOT}/../node_modules/@fusengine/harness/dist/cli/bin.mjs scan <dir>` — a first-pass pattern scanner; its `coverage` block (harness ≥ 0.1.115) lists what was scanned, skipped and unsupported; a language absent from `coverage.languages` was not scanned, and an empty result is NOT a clean result
 - Always complete it with the manual patterns of skill `security-scan` for every language and file type in scope (secrets: `references/secrets-patterns.md`)
 - Dependency audit (skill `dependency-audit`); optional CLIs checked with `command -v`, never installed, missing = "not run"
 - Headers/cookies (skill `security-headers`), auth (skill `auth-audit`)

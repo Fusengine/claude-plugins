@@ -7,16 +7,16 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import type { DepsTarget } from "../interfaces/ensure-deps";
 import { getManagedDepsTargets } from "../services/deps-targets";
 import { ensureDeps } from "../services/ensure-deps";
+import { isolateTmp } from "./tmp-isolation";
 
 const FAKE_MARKETPLACE = "/tmp/fusengine-test-loader-self-heal";
 const FAKE_SCRIPTS_DIR = join(FAKE_MARKETPLACE, "scripts");
 const FAKE_PLUGINS_DIR = join(FAKE_MARKETPLACE, "plugins");
-const LOCK_DIR = join(tmpdir(), "fusengine-ensure-deps");
+let restoreTmp = () => {};
 
 /** Create a target's marker (directory marker for statusline, file marker otherwise). */
 function createMarker(target: DepsTarget): void {
@@ -30,7 +30,7 @@ function createMarker(target: DepsTarget): void {
 
 beforeEach(() => {
 	rmSync(FAKE_MARKETPLACE, { recursive: true, force: true });
-	rmSync(LOCK_DIR, { recursive: true, force: true });
+	restoreTmp = isolateTmp("loader-self-heal");
 	mkdirSync(FAKE_SCRIPTS_DIR, { recursive: true });
 	mkdirSync(FAKE_PLUGINS_DIR, { recursive: true });
 	mkdirSync(join(FAKE_PLUGINS_DIR, "core-guards/statusline"), { recursive: true });
@@ -42,7 +42,7 @@ beforeEach(() => {
 
 afterEach(() => {
 	rmSync(FAKE_MARKETPLACE, { recursive: true, force: true });
-	rmSync(LOCK_DIR, { recursive: true, force: true });
+	restoreTmp();
 });
 
 describe("hooks-loader self-heal (wipe simulation)", () => {

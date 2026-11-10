@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.39.49] - 10-11-2026
+
+- feat(scripts): auto-upgrade `@fusengine/harness` at SessionStart — the installed version is compared with the one pinned in `bun.lock`; a mismatch stages a verified install under `node_modules/.fuse-versions`, then switches the unchanged path to it atomically (versioned symlink, `renamex_np` / `renameat2` via Bun FFI). Where the atomic swap is unavailable or fails, the upgrade is skipped with a warning pointing to `/update-harness`, never done in place. A back-off stamp (30 min, `FUSE_ENSURE_DEPS_BACKOFF_MIN`) prevents retry storms; superseded versions are pruned after 7 days under the single-flight lock. No `hooks.json` change, no plugin version change.
+- docs(plugins): the Swift page's skills table lists the 11 skills present on disk (`swift-build` and 10 other non-existent names removed); the PHP page cites PER Coding Style 3.1 (was 3.0).
+- docs: record owner decisions in `docs/decisions.md` (Linux proof, residue cleanup).
+
 ## [1.39.48] - 10-11-2026
 
 - feat(devops): new `fuse-devops` plugin — `devops-expert` agent and 18 skills for self-hosted IT/DevOps (Docker/Compose, Kubernetes workloads and clusters, Linux, networking, OPNsense, Proxmox VE, KVM/Incus, OpenStack, Terraform/OpenTofu, Ansible, CI/CD, observability, storage and backup, secrets, databases) with a discovery, dry-run, one-go, verify, rollback safety model; no hooks. Docs page `docs/plugins/devops.md`, README badges and plugin table updated (28 plugins, 42 agents, 236 skills). (fuse-devops 1.0.1)

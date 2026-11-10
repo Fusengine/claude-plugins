@@ -3,20 +3,21 @@
  */
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { tryAcquireLock } from "../utils/single-flight-lock";
+import { lockDir, tryAcquireLock } from "../utils/single-flight-lock";
+import { isolateTmp } from "./tmp-isolation";
 
-const LOCK_DIR = join(tmpdir(), "fusengine-ensure-deps");
 const KEY = "/tmp/fusengine-test-lock-target";
 
 describe("tryAcquireLock", () => {
+	let restoreTmp = () => {};
 	beforeEach(() => {
-		mkdirSync(LOCK_DIR, { recursive: true });
+		restoreTmp = isolateTmp("single-flight");
+		mkdirSync(lockDir(), { recursive: true });
 	});
 
 	afterEach(() => {
-		rmSync(LOCK_DIR, { recursive: true, force: true });
+		restoreTmp();
 	});
 
 	test("acquires a free lock and returns a release function", () => {
@@ -47,7 +48,7 @@ describe("tryAcquireLock", () => {
 
 	test("reclaims a stale lock (older than staleMs) exactly once", () => {
 		const slug = KEY.replace(/[^a-zA-Z0-9]+/g, "_");
-		const lockPath = join(LOCK_DIR, `${slug}.lock`);
+		const lockPath = join(lockDir(), `${slug}.lock`);
 		writeFileSync(lockPath, JSON.stringify({ pid: 999999, ts: Date.now() - 1000 }));
 
 		const release = tryAcquireLock(KEY, 500); // staleMs=500, lock is 1000ms old

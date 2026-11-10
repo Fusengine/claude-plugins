@@ -25,7 +25,13 @@ async function main(): Promise<void> {
 	// Every import above is builtins/relative-source-only (verified: hook-executor
 	// and plugin-scanner pull zero third-party packages), so this is safe to run
 	// before any hook-scanning logic — no third-party import can crash first.
-	await ensureDeps(getManagedDepsTargets(import.meta.dir, PLUGINS_DIR));
+	// The version-driven repair (installed harness vs bun.lock) is staged and
+	// switched atomically (symlink exchange, hooks.json path unchanged),
+	// so no reader sees a missing file. It runs on SessionStart only (start, resume,
+	// clear, compact); every other event keeps the marker-only check.
+	await ensureDeps(getManagedDepsTargets(import.meta.dir, PLUGINS_DIR), undefined, {
+		checkVersion: hookType === "SessionStart",
+	});
 
 	// Read input (may be empty for SessionStart, Stop, etc.)
 	const rawInput = await Bun.stdin.text();

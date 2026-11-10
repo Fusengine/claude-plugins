@@ -12,17 +12,15 @@ Expert Swift 6 and SwiftUI for all Apple platforms.
 
 | Skill | Description |
 |-------|-------------|
-| `swiftui-components` | Views, modifiers, layouts |
-| `swiftui-navigation` | NavigationStack, deep linking |
-| `swiftui-data` | SwiftData, Core Data, CloudKit |
-| `swiftui-testing` | XCTest, UI tests |
-| `swift-concurrency` | async/await, actors, Sendable |
-| `swift-architecture` | MVVM, Clean Architecture |
-| `swift-performance` | Instruments, optimization |
-| `swift-build` | Archive, code signing |
-| `swift-i18n` | Localization |
-| `swift-app-icons` | Icons, SF Symbols |
-| `apple-platforms` | macOS, watchOS, visionOS |
+| `swiftui-core` | Views, navigation, persistence, state, HIG |
+| `swift-core` | Concurrency, architecture, testing, i18n, performance |
+| `build-distribution` | Code signing, TestFlight, App Store, app icons, CI |
+| `ios` | iPhone apps, simulator/device testing |
+| `ipados` | iPad apps, split views, multitasking |
+| `macos` | Mac apps, menu bar, notarized distribution |
+| `watchos` | Apple Watch apps, complications, HealthKit |
+| `tvos` | Apple TV apps, focus navigation |
+| `visionos` | Vision Pro apps, spatial computing |
 | `mcp-tools` | Xcode automation |
 | `solid-swift` | SOLID principles |
 

@@ -1,6 +1,6 @@
 # Skills
 
-217 specialized skills across all plugins.
+218 specialized skills across all plugins.
 
 ## fuse-ai-pilot (19 skills)
 
@@ -249,7 +249,7 @@
 | `rust-testing-quality` | Unit, integration, doc-tests, proptest, criterion |
 | `rust-tooling-cicd` | Cargo workspace, fmt, clippy, cargo-deny, nextest, MSRV |
 
-## fuse-security (5 skills)
+## fuse-security (6 skills)
 
 | Skill | Description |
 |-------|-------------|
@@ -258,6 +258,7 @@
 | `cve-research` | Known CVEs for a dependency version |
 | `dependency-audit` | Ecosystem vulnerability scans with optional auto-fix |
 | `security-headers` | CSP, HSTS, CORS, X-Frame-Options |
+| `agentic-security` | Security audit of an AI-coding-agent setup: project settings, hooks, MCP servers, permission rules, secrets, CI agents |
 
 ## fuse-seo (21 skills)
 

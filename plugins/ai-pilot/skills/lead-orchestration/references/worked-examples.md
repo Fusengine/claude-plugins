@@ -1,6 +1,6 @@
 ---
 name: worked-examples
-description: Three bad-vs-good lead behaviours taken from audited Claude and Codex sessions (Oct 2026)
+description: Five bad-vs-good lead behaviours taken from audited Claude and Codex sessions (Oct-Nov 2026)
 when-to-use: When unsure how a lead-orchestration step looks in practice
 keywords: follow-up, hand-back, visual verification, executor, release, WIP commit
 priority: medium
@@ -49,3 +49,24 @@ Drawn from session audits (Claude lead sessions and Codex sessions, 3-12 Oct 202
 - Check the real runtime: dev server page loads, console empty, no failed request, DB schema present.
 - Tick each part of the request by name; unproven part = "not verified".
 - Then sniper (code) and challenger (the claim) -- and only then report "done".
+
+---
+
+## 4. A hook reply received as the report (step 8)
+
+**Bad.** A sub-agent finished its work, then a stop hook demanded "run sniper on 6 code files". The agent answered the hook, and that answer became its final message -- the only thing the lead receives. The real report was lost, twice, and the lead had to reconstruct it.
+
+**Good.**
+- Brief REPORT carries the standing sentence: the final message is the report itself; answer the hook, then re-emit the report.
+- The agent complies with the hook (or states in one line why it cannot, e.g. the files are throwaway scratch scripts), then re-emits the full report as its last message; a long report also goes to the `docs/` path listed in WRITE, path given.
+- A final message without the REPORT fields -> the lead resumes the same agent with `SendMessage` ("send your full report") and checks the disk meanwhile; no new spawn.
+
+---
+
+## 5. "The message reached me cut" (step 8)
+
+**Bad.** Notes from a linked session reached the lead truncated ("first 400 of N characters"); three times the lead told the owner "the message arrived cut" instead of reading it.
+
+**Good.**
+- The lead reads the full message first: the session transcript tool (e.g. `mcp__ccd_session_mgmt__list_events`) or `SendMessage` asking the session to resend.
+- The owner gets only the content and what it changes, never a transport problem the lead could solve itself.

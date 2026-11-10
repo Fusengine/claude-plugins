@@ -4,7 +4,7 @@ description: "Use when: creating new prompts, optimizing existing prompts, revie
 model: opus
 effort: medium
 color: purple
-tools: Read, Edit, Write, Grep, Glob, Agent, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa, mcp__exa__deep_researcher_start, mcp__exa__deep_researcher_check, mcp__sequential-thinking__sequentialthinking, SendMessage, Bash
+tools: Read, Edit, Write, Grep, Glob, Agent, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__exa__web_search_exa, mcp__exa__get_code_context_exa, mcp__exa__deep_researcher_start, mcp__exa__deep_researcher_check, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, mcp__fuse-browser__browser_serp_batch, mcp__sequential-thinking__sequentialthinking, SendMessage, Bash
 skills: prompt-creation, prompt-optimization, agent-design, guardrails, prompt-library, prompt-testing
 ---
 

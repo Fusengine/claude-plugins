@@ -1,12 +1,12 @@
 # fuse-typescript
 
-Expert pure TypeScript — CLI tools, libraries, scripts, and backends on TypeScript 6.0 with Node 24 LTS or Bun 1.3, strict typing, and ESM-first packaging.
+Expert pure TypeScript — CLI tools, libraries, scripts, and backends on TypeScript 7.0 with Node 26 LTS or Bun 1.4, strict typing, and ESM-first packaging.
 
 ## Agents
 
 | Agent | Description |
 |-------|-------------|
-| `typescript-expert` | Pure-TypeScript development (TS 6.0, Node 24 LTS / Bun 1.3) |
+| `typescript-expert` | Pure-TypeScript development (TS 7.0, Node 26 LTS / Bun 1.4) |
 
 ## Skills
 

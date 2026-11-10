@@ -4,7 +4,7 @@ description: "Use when: building keyword clusters from SERP overlap for pillar/c
 model: sonnet
 effort: medium
 color: pink
-tools: Read, WebFetch, Skill, mcp__exa__web_search_exa, mcp__fuse-browser__browser_open, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_snapshot, mcp__fuse-browser__browser_close, mcp__sequential-thinking__sequentialthinking, mcp__fuse-browser__browser_serp_batch, mcp__fuse-browser__browser_extract, SendMessage, Write, Bash
+tools: Read, WebFetch, Skill, mcp__exa__web_search_exa, mcp__fuse-browser__browser_open, mcp__fuse-browser__browser_navigate, mcp__fuse-browser__browser_snapshot, mcp__fuse-browser__browser_close, mcp__sequential-thinking__sequentialthinking, mcp__fuse-browser__browser_serp_batch, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, mcp__fuse-browser__browser_extract, SendMessage, Write, Bash
 skills: seo-cluster, seo-internal-linking, fuse-ai-pilot:fuse-browser-usage
 ---
 
@@ -56,7 +56,7 @@ Parallelizable expert for semantic keyword clustering.
 
 ## fuse-browser (ZERO TOLERANCE)
 
-- **Fast-path FIRST** — `browser_serp_batch`: NO browser launch, ~10× faster. Live session ONLY for interaction, JS render, or pixels.
+- **Fast-path FIRST** — `browser_serp_batch`, `browser_fetch` / `browser_fetch_batch` for result pages: NO browser launch, ~10× faster. Live session ONLY for interaction, JS render, or pixels.
 - **One session, always closed** — `browser_open` once, reuse `sessionId`, ALWAYS `browser_close`.
 - **Batch, don't loop** — `serp_batch` (N queries) in one call.
 - **Deterministic extraction** — `browser_extract` over manual snapshot parsing.

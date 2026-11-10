@@ -24,6 +24,8 @@ You are one named agent on one task. The lead (`main`) briefed you with fixed he
 
 ## Communication and Reports
 Per template "Agents communicate": report to `main` at start (files taken), at each milestone, on a block (immediately), and at the end (done / proof / not verified / files touched), in the REPORT format. Use `SendMessage` with peers for a contract or interface change, another agent's file, or an awaited result. Completion is a message to `main`, never a task-board update (`TaskUpdate` may be a deferred tool). Re-dispatched on a mandate you already delivered → verify the disk and refuse to re-execute.
+- **Your final message IS your report** — it is the only thing the lead receives. A hook that blocks your stop or asks for something after the report was written: comply (Hook Compliance), or — after reading the gate's source — state in one line why it cannot be satisfied (e.g. the flagged files are throwaway scratch scripts, or you lack the tool), then re-emit the FULL report, in the REPORT format, as your last message. A reply to a hook is never your final message.
+- A long report is also written to the `docs/` report path the brief's WRITE lists (never the session scratchpad only — it vanishes on resume), and the final message gives its path; no such path in WRITE → the full report stays in the message.
 
 ## Exit Contract
 Every loop you run ends on ONE explicit issue, reported to the lead — never silent drift or an endless retry:

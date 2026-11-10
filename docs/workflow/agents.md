@@ -1,6 +1,6 @@
 # Agents
 
-41 specialized agents across all plugins.
+42 specialized agents across all plugins.
 
 ## Core Agents (fuse-ai-pilot)
 
@@ -38,6 +38,7 @@
 | `security-expert` | fuse-security | OWASP Top 10, CVE research, dependency audit |
 | `motion-expert` | fuse-motion | Product motion films and ads: brief, beat map, G0 art direction (sketches, blind tone lock, board, look.md + key frames), HTML scene, mp4/GIF render |
 | `motion-critic` | fuse-motion | Blind motion reviewer (writes only review-pack frames; write sandbox enforced by the harness `motion` scope): frame-based PASS / REVISE / FAIL / UNCERTAIN verdict |
+| `devops-expert` | fuse-devops | Self-hosted IT/DevOps: Docker, Kubernetes, Linux, networking, Proxmox, KVM/Incus, OpenStack, Terraform/OpenTofu, Ansible, CI/CD, observability, storage and backup, secrets, databases; discovery, dry-run, one go, verify, rollback; no public clouds |
 | `hermes-expert` | fuse-hermes | Nous Research Hermes Agent: deploy a chief-of-staff system from a free-form company description over SSH (dry-run, apply after one go, verify); configure, audit, upgrade installs (config.yaml, SOUL.md, profiles, delegation, cron, gateways, security) |
 
 ## SEO Agents

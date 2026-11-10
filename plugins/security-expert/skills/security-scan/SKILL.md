@@ -31,13 +31,60 @@ It reports; it never fixes. Verified findings, each with a re-test check, go bac
    (`git ls-files | rg -o '\.[A-Za-z0-9]+$' | sort | uniq -c`).
 3. **Automated first pass:**
    `bun ${CLAUDE_PLUGIN_ROOT}/../node_modules/@fusengine/harness/dist/cli/bin.mjs scan <dir>`
-   This is a first-pass pattern scanner, not a complete audit. Read what its output says it
-   scanned. If it prints a coverage summary, compare it with step 2: every language or file type
-   present in the repository but not reported as scanned is covered with the manual patterns
-   below. The scanner prints a coverage summary only in releases that include it; if it prints none,
-   treat every detected language as not covered and apply the manual patterns to all of them. A single `language` field is not a
-   coverage summary: a coverage summary lists the languages and the number of files scanned for
-   each.
+   This is a first-pass pattern scanner (one regex per line), not a complete audit. It prints one
+   JSON report and always exits 0. Since `@fusengine/harness` 0.1.115 the report ends with a
+   `coverage` block: that block is the coverage summary. The top-level `language` field is the
+   first root marker found, in this order: `package.json`, `composer.json`, `requirements.txt` or
+   `pyproject.toml`, `Package.swift`, `go.mod`, `Cargo.toml`, else `unknown`. It is not the list of
+   scanned languages, but it decides which files get that language's legacy rules (18 in all) and
+   are exempt from the skip rules and caps: only files with that marker's extension (`.js` for
+   `package.json`, `.php`, `.py`, `.swift`; none for Go, Rust or `unknown`). Every other file gets
+   only the precise rules (a bare `child_process` import is flagged in such a `.js` file, not in a
+   `.ts` file). Each finding carries `id`, `cwe`, `owasp` (Top 10:2025, omitted when not verified)
+   and `language`.
+   - **Scanned with rules** (each also gets the secret rules): JS/TS family (`.js .jsx .mjs .cjs
+     .ts .tsx .mts .cts .vue .svelte .astro`), PHP (`.php .phtml .inc`), Python (`.py .pyw`), Swift
+     (`.swift`), Go (`.go`), Rust (`.rs`), Ruby (`.rb .rake .erb`), Java (`.java`), Kotlin
+     (`.kt .kts`), C# (`.cs`).
+   - **Scanned for secrets only** (reported as language `text`): `.env` and `.env.*` (not
+     `*example`/`*sample`/`*template`, counted as `generated`), `.npmrc`, `.pypirc`,
+     `.netrc`, and `.json .yaml .yml .toml .ini .cfg .conf .properties .xml .plist .gradle .sh
+     .bash .zsh .tf .tfvars .pem .key`.
+   - **Rule families per language** (pattern set `2026.11.2`; secrets and keys apply to every
+     scanned file): JS/TS family — code execution, command injection, XSS, SQL injection,
+     deserialization, weak crypto/randomness, TLS; PHP — code execution, command injection,
+     deserialization, SQL injection, `include` of `$_GET`/`$_POST`/`$_REQUEST`/`$_COOKIE`, weak
+     password hash, weak randomness; Python — code execution, command injection, deserialization,
+     SQL injection, weak hash/randomness, TLS; Go — command injection, SQL injection, XSS
+     (`template.HTML` & co.), weak crypto/randomness, TLS; Rust — `unsafe`, command injection, SQL
+     injection, weak hash, TLS; Ruby — code execution, command injection, deserialization, SQL
+     injection, weak hash, TLS; Java/Kotlin and C# — command injection, deserialization, SQL
+     injection, weak crypto/randomness, TLS; Swift — `NSKeyedUnarchiver` deserialization,
+     `UserDefaults` secret keys, weak hash. Swift `"http://` literals and `kSecAttrAccessibleAlways`
+     are legacy-only rules: they run only when the root marker is `Package.swift` (never for an
+     `*.xcodeproj`-only app). XSS has rules only for JS/TS and Go (none for PHP `echo`, Python,
+     Ruby, Java, Kotlin, C# templates). Not covered by any rule: SSRF, open redirect, path traversal
+     other than that PHP `include`, and anything outside these families (auth, access control,
+     CSRF, GraphQL, ...).
+   - **Reading `coverage`**: `languages`, `filesScanned` and `patternsApplied` (the largest rule
+     count applied to one file of that language) list what was scanned. `totals.files: 0` or an
+     empty `languages` means nothing was scanned (also the output for a wrong or missing path), never
+     "clean". "Scanned" with no finding means no pattern matched, not "clean": the manual pass still
+     applies. A language or extension found in step 2 but absent from `languages`
+     was NOT scanned: other extensions (`.md`, `.html`, `.sql`, `.css`, ...) are ignored without
+     being counted; `unsupported` lists only known code extensions with no rules (`.c .cpp .m
+     .dart .lua .scala ...`, at most 10). `skipped` counts what was not scanned, by reason:
+     excluded directories (`excludedDirs`), files (`binary`, `minified`, `oversize`, `unreadable`,
+     `lockfiles`, `generated`), lines longer than the line limit whose tail was not matched by the
+     non-legacy rules (`longLines`), and `capped: true`
+     when the file or byte budget stopped the scan. `node_modules vendor .git dist build` are never
+     scanned; framework and tool caches (`.next .venv Pods coverage`, `target` beside `Cargo.toml`,
+     ...) are skipped except for files with the root marker language's extension (`.js` with
+     `package.json`, `.php`, `.py`, `.swift`).
+   Every language or file type present but not scanned, and every vulnerability class outside the
+   rule families, is covered with the manual patterns below. An older harness prints no `coverage`
+   block: then treat every detected language as not covered and apply the manual patterns to all
+   of them.
 4. **Manual patterns** for the languages not covered (or to complete the first pass):
    - JS/TS family (`.js .jsx .mjs .cjs .ts .tsx .mts .cts .vue .svelte .astro`), Next.js, TanStack
      Start, React, Astro → [scan-patterns.md](references/scan-patterns.md)

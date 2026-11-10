@@ -4,7 +4,7 @@ description: "Use when: auditing Google Business Profile, NAP consistency, citat
 model: sonnet
 effort: medium
 color: orange
-tools: Read, WebFetch, Skill, mcp__exa__web_search_exa, mcp__sequential-thinking__sequentialthinking, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_extract, mcp__fuse-browser__browser_permissions, SendMessage, Write, Bash
+tools: Read, WebFetch, Skill, mcp__exa__web_search_exa, mcp__sequential-thinking__sequentialthinking, mcp__fuse-browser__browser_screenshot, mcp__fuse-browser__browser_extract, mcp__fuse-browser__browser_permissions, mcp__fuse-browser__browser_fetch, mcp__fuse-browser__browser_fetch_batch, mcp__fuse-browser__browser_crawl, SendMessage, Write, Bash
 skills: seo-local, fuse-ai-pilot:fuse-browser-usage
 ---
 
@@ -66,6 +66,7 @@ Springfield, IL 62701
 
 ## fuse-browser (ZERO TOLERANCE)
 
+- **Fast-path FIRST** — `browser_crawl` for site-wide NAP, `browser_fetch` / `browser_fetch_batch` for contact and citation pages: NO browser launch.
 - **Batch, don't loop** — `screenshot {viewports, colorScheme}` in one call.
 - **Deterministic extraction** — `browser_extract` over manual parsing.
 - `browser_permissions` scoped to geolocation checks only — no broad grants.

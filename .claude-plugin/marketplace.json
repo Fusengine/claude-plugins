@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins with APEX workflow, SOLID principles, and expert development agents for Next.js, Laravel, Swift, Tailwind CSS, and more",
-    "version": "1.39.47"
+    "version": "1.39.48"
   },
   "core": [
     {
@@ -48,7 +48,7 @@
       "name": "fuse-ai-pilot",
       "source": "./plugins/ai-pilot",
       "description": "AI Pilot workflow: APEX methodology (auto-detects Laravel/Next.js/React/Swift), sniper (7-phase code quality + DRY detection), research-expert, explore-codebase",
-      "version": "1.2.49",
+      "version": "1.2.50",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -75,7 +75,7 @@
       "name": "fuse-seo",
       "source": "./plugins/seo",
       "description": "SEO/GEO 2026 plugin: technical SEO, schema markup, E-E-A-T, AI Overviews/ChatGPT/Perplexity optimization, local SEO, sitemaps, hreflang, internal linking, semantic clustering, search experience. Local-first, zero third-party APIs.",
-      "version": "1.0.17",
+      "version": "1.0.18",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -449,6 +449,33 @@
       "strict": true
     },
     {
+      "name": "fuse-devops",
+      "source": "./plugins/devops-expert",
+      "description": "Expert self-hosted IT/DevOps — Docker, Kubernetes, Linux, Proxmox VE, OpenStack, Terraform/OpenTofu, Ansible, CI/CD, observability, storage and backup, secrets, databases — with a discovery, dry-run, one-go, verify, rollback safety model",
+      "version": "1.0.1",
+      "author": {
+        "name": "Fusengine",
+        "url": "https://github.com/fusengine"
+      },
+      "homepage": "https://github.com/fusengine/agents",
+      "repository": "https://github.com/fusengine/agents",
+      "license": "MIT",
+      "keywords": [
+        "devops",
+        "docker",
+        "kubernetes",
+        "linux",
+        "proxmox",
+        "openstack",
+        "terraform",
+        "ansible",
+        "observability",
+        "infrastructure"
+      ],
+      "category": "development",
+      "strict": true
+    },
+    {
       "name": "fuse-design",
       "source": "./plugins/design-expert",
       "description": "UI Designer. Generates HTML/CSS via Gemini Design MCP. 7-phase pipeline with state tracking. Identity System, UX copy, page layouts, motion system, design audit. Anti-AI-Slop, WCAG 2.2.",
@@ -486,7 +513,7 @@
       "name": "fuse-prompt-engineer",
       "source": "./plugins/prompt-engineer",
       "description": "Expert Prompt Engineer with Context Engineering, Meta-Prompting, Chain-of-Thought, Few-Shot, Agent Design, 50+ Template Library, and A/B Testing for creating optimal prompts and AI agents",
-      "version": "1.1.14",
+      "version": "1.1.15",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -538,7 +565,7 @@
       "name": "fuse-security",
       "source": "./plugins/security-expert",
       "description": "Security vulnerability detection and remediation: OWASP Top 10 2025, SAST scanning, CVE research (NVD, OSV.dev), dependency audit, secrets detection, security headers, auth patterns audit",
-      "version": "1.0.22",
+      "version": "1.0.23",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"

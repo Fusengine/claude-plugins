@@ -1,5 +1,15 @@
 # Release Notes
 
+## [1.39.48] - 10-11-2026
+
+- feat(devops): new `fuse-devops` plugin — `devops-expert` agent and 18 skills for self-hosted IT/DevOps (Docker/Compose, Kubernetes workloads and clusters, Linux, networking, OPNsense, Proxmox VE, KVM/Incus, OpenStack, Terraform/OpenTofu, Ansible, CI/CD, observability, storage and backup, secrets, databases) with a discovery, dry-run, one-go, verify, rollback safety model; no hooks. Docs page `docs/plugins/devops.md`, README badges and plugin table updated (28 plugins, 42 agents, 236 skills). (fuse-devops 1.0.1)
+- chore(deps): bump `@fusengine/harness` to 0.1.115.
+- docs(security): align the `security-scan` skill, the `security-expert` agent and the `/scan` command on the harness 0.1.115 `coverage` block — a language absent from `coverage.languages` was not scanned, an empty result is not a clean result; manual patterns complete every language, file type and vulnerability class the scanner does not cover. (fuse-security 1.0.23)
+- feat(agents): give doc-verifying agents the fuse-browser fast-path (`browser_fetch` / `browser_fetch_batch`, `browser_serp_batch`) ahead of Context7 and Exa, cross-checked across the three — `brainstorming`, `sniper-faster`, `prompt-engineer`, `seo-cluster`, `seo-geo`, `seo-local`, and the `skill-creator` verification chain. (fuse-ai-pilot 1.2.50, fuse-prompt-engineer 1.1.15, fuse-seo 1.0.18)
+- docs(rules): an agent's final message is its report, even after a hook reply; `lead-orchestration` brief template and worked examples aligned. (fuse-rules 1.0.28, fuse-ai-pilot 1.2.50)
+- docs: fix stale versions (Go 1.27, TypeScript 7.0 with Node 26 LTS / Bun 1.4, Rust 1.99), complete the plugin index in `docs/README.md`, list the 35 slash commands in `docs/workflow/commands.md`, list `agentic-security` in the skills index.
+- docs: record owner decisions in `docs/decisions.md`; add research, structure and challenge reports for the devops plugin and the 2026-11-10 batch challenge report.
+
 ## [1.39.47] - 10-11-2026
 
 - feat(security-expert): refresh agent, rules and `/scan` command — the `security-expert` agent no longer has `Edit` (audit-only, hands findings back to its caller; `Write` kept for the report) and adds verify (confidence >= 8) and hand-off phases; the rules define a single severity scale plus "Hardening notes" and "Not Reported" sections; `/scan` gains `--diff [base]` and `--full`. (fuse-security 1.0.22)

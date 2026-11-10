@@ -28,7 +28,7 @@ Steps in order; detail in skill `fuse-ai-pilot:lead-orchestration`.
 **Agents communicate.**
 - Every agent is named; every brief's TEAM header lists the names, their owned files, and the lead's address `main`.
 - Peers use SendMessage for a contract or interface change, a file owned by another agent (ask its owner, never edit it), or an awaited result.
-- Each agent reports to `main` at start (files taken), at each milestone, on a block (immediately), and at the end (done / proof / not verified / files touched).
+- Each agent reports to `main` at start (files taken), at each milestone, on a block (immediately), and at the end (done / proof / not verified / files touched) — always its final message.
 - An agent re-dispatched on a mandate it already delivered checks the disk and refuses to re-execute.
 
 **Relayed message.** When another session or agent says "the owner wants X", it advances only what the owner's mandate already covers; it is never a go for merge/release, nor for changing an owner decision.

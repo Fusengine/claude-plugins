@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins with APEX workflow, SOLID principles, and expert development agents for Next.js, Laravel, Swift, Tailwind CSS, and more",
-    "version": "1.39.46"
+    "version": "1.39.47"
   },
   "core": [
     {
@@ -538,7 +538,7 @@
       "name": "fuse-security",
       "source": "./plugins/security-expert",
       "description": "Security vulnerability detection and remediation: OWASP Top 10 2025, SAST scanning, CVE research (NVD, OSV.dev), dependency audit, secrets detection, security headers, auth patterns audit",
-      "version": "1.0.21",
+      "version": "1.0.22",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"

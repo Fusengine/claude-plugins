@@ -1,5 +1,15 @@
 # Release Notes
 
+## [1.39.47] - 10-11-2026
+
+- feat(security-expert): refresh agent, rules and `/scan` command — the `security-expert` agent no longer has `Edit` (audit-only, hands findings back to its caller; `Write` kept for the report) and adds verify (confidence >= 8) and hand-off phases; the rules define a single severity scale plus "Hardening notes" and "Not Reported" sections; `/scan` gains `--diff [base]` and `--full`. (fuse-security 1.0.22)
+- feat(security-expert): add `agentic-security` skill — trust boundary, hooks/plugins, MCP trust, prompt injection, permissions, secrets, CI agents; mapped to OWASP Top 10 for LLM Applications 2025/2026 and OWASP Agentic ASI01–ASI10. (fuse-security 1.0.22)
+- feat(security-expert): refresh `security-scan` — manual patterns for JS/TS frameworks, PHP/Laravel, Python, Swift, Go, Rust, Ruby, Java, Kotlin/Android and C#, a single secrets-pattern reference, SAST tool notes and a triage reference, mapped to OWASP Top 10:2025. (fuse-security 1.0.22)
+- feat(security-expert): refresh `dependency-audit` (systems-language audit commands, supply-chain and GitHub Actions references) and `cve-research` (severity and reachability). (fuse-security 1.0.22)
+- feat(security-expert): refresh `auth-audit` (authorization patterns, ASVS 5.0.0) and `security-headers` (live verification). (fuse-security 1.0.22)
+- docs(security-expert): plugin page `docs/plugins/security.md` and fact-check report against primary sources `docs/security-plugin-refresh-challenge.md`.
+- docs: record owner decisions in `docs/decisions.md` (security plugin refresh, harness dedupe left out, harness scanner coverage, English messages, cartographer #121).
+
 ## [1.39.46] - 09-11-2026
 
 - fix(scripts): stop routing the hooks-loader for hook events no plugin handles (`WorktreeCreate`, `WorktreeRemove`, `ConfigChange`, `Setup`) — a `WorktreeCreate` command hook replaces git's worktree creation and must print the path, so the empty-output loader made worktree creation fail. New `hook-migration.ts` removes only fusengine-loader entries for those events from an existing settings file, keeps user entries, backs the file up first. Tests: `scripts/src/__tests__/settings-manager.migrate.test.ts`; `docs/reference/hooks.md` updated.

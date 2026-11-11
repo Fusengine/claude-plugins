@@ -63,6 +63,6 @@ OWASP Top 10:2025, OWASP ASVS 5.0.0, OWASP API Security Top 10 2023, OWASP MASVS
 
 ## Hooks
 
-- **PreToolUse** (Write/Edit) - Verify security skill read
+- **PreToolUse** (Write/Edit/NotebookEdit) - Verify security skill read
 - **PostToolUse** (Read) - Track skill reads
 - **PostToolUse** (MCP) - Track research consultations

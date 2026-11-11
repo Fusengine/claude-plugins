@@ -1,5 +1,5 @@
 {
-  "description": "Go Expert — SOLID/skill/DRY/file-size/interface enforcement via @fusengine/harness (framework-routed by applies-to) | PreToolUse[0]: Harness: framework-routed SOLID/skill/DRY/file-size/interface enforcement before Write/Edit | PostToolUse[0]: Harness: record doc/ref/agent activity feeding the APEX gates",
+  "description": "Go Expert — SOLID/skill/DRY/file-size/interface enforcement via @fusengine/harness (framework-routed by applies-to) | PreToolUse[0]: Harness: framework-routed SOLID/skill/DRY/file-size/interface enforcement before Write/Edit/NotebookEdit | PostToolUse[0]: Harness: record doc/ref/agent activity feeding the APEX gates",
   "hooks": {
     "PreToolUse": [
       {

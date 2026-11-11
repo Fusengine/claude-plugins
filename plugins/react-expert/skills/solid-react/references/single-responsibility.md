@@ -25,7 +25,7 @@ related: architecture-patterns.md, templates/service.md, templates/hook.md
 
 ### Size Ceiling
 
-All source-file types (component, hook, service, store, other) use `FUSE_SOLID_MAX_LINES` as the only size ceiling. Split by responsibility when cohesion drops. Exception: Zustand stores keep the owner rule of max 40 lines (`07-state-management.md`).
+All source-file types (component, hook, service, store, other) use `FUSE_SOLID_MAX_LINES` as the only size ceiling. Split by responsibility when cohesion drops. Exception: Zustand stores use the store budget 0.4 × `FUSE_SOLID_MAX_LINES` (40 lines at the default 100, `07-state-management.md`).
 
 ---
 
@@ -119,7 +119,7 @@ modules/users/components/UserDashboard.tsx        → UI only
 → `templates/component.md` - Component template
 → `templates/service.md` - Service template
 → `templates/hook.md` - Hook template
-→ `templates/store.md` - Store < 40 lines
+→ `templates/store.md` - Store (budget 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at default)
 → `templates/interface.md` - Interface definitions
 
 ---

@@ -124,7 +124,7 @@ Ready-to-copy code in `references/templates/`:
 | `component.md` | React functional component |
 | `hook.md` | Custom hook with TanStack Query |
 | `service.md` | Service with dependency injection |
-| `store.md` | Zustand store with persistence (max 40 lines, owner rule) |
+| `store.md` | Zustand store with persistence (store budget 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at default) |
 | `interface.md` | TypeScript interfaces |
 | `validator.md` | Zod validation schemas |
 | `factory.md` | Factory pattern |

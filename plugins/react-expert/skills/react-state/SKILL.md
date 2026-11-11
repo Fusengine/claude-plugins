@@ -79,7 +79,7 @@ Stores organized by feature module:
 
 | File | Purpose |
 |------|---------|
-| `store.ts` | Store creation with create() (max 40 lines, owner rule) |
+| `store.ts` | Store creation with create() (store budget 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at default) |
 | `store.interface.ts` | TypeScript interfaces |
 | `use-store.ts` | Custom hook with selector |
 

@@ -33,7 +33,7 @@ related: single-responsibility.md, open-closed.md, liskov-substitution.md, inter
 
 **File Limits:**
 - All source-file types use `FUSE_SOLID_MAX_LINES` as the only size ceiling.
-- Exception: Zustand stores keep the owner rule of max 40 lines (`07-state-management.md`).
+- Exception: Zustand stores use the store budget 0.4 × `FUSE_SOLID_MAX_LINES` (40 lines at the default 100, `07-state-management.md`).
 
 → See `single-responsibility.md` for detailed guide
 → See `templates/` for code examples

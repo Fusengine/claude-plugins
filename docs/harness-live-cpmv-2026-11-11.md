@@ -87,4 +87,39 @@ Cleanup: probe dir moved to `~/.Trash/live-cpmv-probe-2026-11-11`. `git status -
 ```
 (`docs/decisions.md` was already modified before this task.)
 
-Side note: a heredoc append of this section to the report was itself blocked by the hook ("heredoc redirected into a file — Use Edit/Write tools instead"); complied and used Edit.
+Side note (pass 2): a heredoc append of this section to the report was itself blocked by the hook ("heredoc redirected into a file — Use Edit/Write tools instead"); complied and used Edit.
+
+## Third pass — build a3d4855
+
+- Measured sha256 of the installed bin.mjs: `17a4c2567e8c92b54fa0ee513921963ce8fb23f808b06a51bebc9ed4d14e6125` (matches the announced a3d4855 build). Run 21:49 - 21:52, same session, `claude` 2.1.322.
+- P = the pass-1 scratchpad project (reused; `src/` already held a.ts, a11.ts, b.ts, c.ts). Q = `claude-plugins/live-cpmv-probe/src/` (empty). One Bash call per row, strictly sequential, no suffix after the tested command; the disk was checked in a separate call at 21:51:28. Exact per-row clock times were not captured (rows ran within roughly 21:51); the a3 row had a stray `date +%T;` prefix and was blocked anyway.
+- Payload cwd stayed claude-plugins for every row.
+
+| # | Command | Expected | Observed | Target on disk |
+|---|---------|----------|----------|----------------|
+| a3 | `cd P && cp /tmp/live-cpmv-x t.ts` | DENY | DENY | no |
+| b3 | `cd P && mv /tmp/live-cpmv-y t2.ts` | DENY | DENY | no (source still in /tmp) |
+| c3 | `cd P && cp notes.txt src/n.ts` | DENY | DENY | no |
+| d3 | `cd P && install /tmp/live-cpmv-x src/i.ts` | DENY | DENY | no |
+| e3 | `cd P && ln /tmp/live-cpmv-x src/l.ts` | DENY | DENY | no |
+| r3 | `cd <kimi-code-plugins> && cp /tmp/live-cpmv-x live-cpmv-stray.ts` | DENY | DENY | no |
+| q3 | `cd Q && cp /tmp/live-cpmv-x t.ts` | DENY | DENY | no |
+| x3 | `cp <codex-plugins>/scripts/fix-agent-toml.ts <Q>/src/ported.ts` | ALLOW | ALLOW | yes (1536 bytes) |
+| g3 | `cd P && cp src/a.ts src/b.ts` | ALLOW | ALLOW | yes (b.ts overwritten, mtime 21:51) |
+| j3 | `cd Q && cp src/ported.ts /tmp/live-cpmv-out.ts` | ALLOW | ALLOW | yes (1536 bytes) |
+
+Count: 10 of 10 match, 0 mismatches. Notable: a3-e3 are now DENIED although P is under the scratchpad (pass 1 let them through), and the cross-repo code copy (x3) is allowed as the owner decided.
+
+Hook message, verbatim (a3; same shape for every deny, only verb and parenthesised source change):
+
+```
+[BLOCKED] Bash write to code file
+cp onto a project code file from a source that is not a code file inside the project (/tmp/live-cpmv-x) — Use Write/Edit tools instead
+Next:
+  1. Use the Write/Edit tool instead
+```
+b3 `mv ... (/tmp/live-cpmv-y)`, c3 `cp ... (notes.txt)`, d3 `install ... (/tmp/live-cpmv-x)`, e3 `ln ... (/tmp/live-cpmv-x)`, r3 and q3 `cp ... (/tmp/live-cpmv-x)`.
+
+Cleanup: Q moved to `~/.Trash/live-cpmv-probe-pass3-2026-11-11`. `git status --short`:
+- claude-plugins: ` M docs/decisions.md` only (the report file no longer shows as untracked; it was apparently committed meanwhile, not by me).
+- kimi-code-plugins: `?? docs/real-conditions-kimi-cli-2026-11-11.md` only.

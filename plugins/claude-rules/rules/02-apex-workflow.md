@@ -5,7 +5,7 @@ Brainstorm → Analyze → Plan → Execute → **eLicit** (expert self-review) 
 Before starting, consult the `/apex` command and skill `fuse-ai-pilot:apex-methodology`. The full methodology lives there, not here.
 
 **When APEX applies:** any request that touches code (create, implement, add, build, refactor, migrate, new component, multi-file, architecture, fix). Analyze = `explore-codebase` + `research-expert` + the domain expert in one message (COORDINATOR PATH 3).
-**Trivial 1-3 line change:** `/apex-quick` — one delegated domain expert; it skips Brainstorm, the Analyze trio and the team split, but still runs eLicit, a real functional check (an executed build/test/run, not linter-only) and sniper.
+**Trivial 1-3 line change:** `/apex-quick` — one delegated domain expert; it skips Brainstorm, the Analyze trio and the team split, but still runs eLicit, a real functional check (an executed build/test/run, not linter-only) and sniper. (Engine fast path: a non-replace Edit of < 5 lines, at most 4 per window, skips only the PreToolUse doc/freshness/SOLID-read gates; protected paths, the sniper reminder and lint still run. eLicit and Verify are not machine-gated.)
 **No APEX:** questions, read-only lookups (`explore-codebase` alone), simple read-only git.
 **Debug/investigation** ("why", "not working", "bug", "crash", "doesn't load") always goes through Analyze first, never straight to a fix.
 

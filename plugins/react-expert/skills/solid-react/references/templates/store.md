@@ -1,10 +1,10 @@
 ---
 name: store-template
 applies-to: "**/*.tsx, **/*.jsx"
-description: Zustand store template with persistence (< 40 lines)
+description: Zustand store template with persistence (budget 0.4 x FUSE_SOLID_MAX_LINES, 40 at default)
 ---
 
-# Zustand Store (< 40 lines)
+# Zustand Store (budget 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at default)
 
 ## Basic Store
 
@@ -138,7 +138,7 @@ export const selectLocale = (state: SettingsStore) => state.locale
 
 ## Rules
 
-- Max 40 lines
+- Store budget 0.4 × `FUSE_SOLID_MAX_LINES` (40 at the default 100), per `07-state-management`
 - Import types from `../interfaces/`
 - Use `persist` middleware for localStorage
 - Use `immer` for complex nested updates

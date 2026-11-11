@@ -167,7 +167,7 @@ import { UserCard } from '@user/components/UserCard';
 
 ### 4. File Limits
 
-Components and hooks stay within the hook ceiling `FUSE_SOLID_MAX_LINES`; Zustand stores keep the owner rule of max 40 lines (`07-state-management.md`).
+Components and hooks stay within the hook ceiling `FUSE_SOLID_MAX_LINES`; Zustand stores use the store budget 0.4 × `FUSE_SOLID_MAX_LINES` (40 lines at the default 100, `07-state-management.md`).
 
 Split large files by responsibility.
 

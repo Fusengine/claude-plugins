@@ -76,7 +76,7 @@ modules/cores/
 | Component | UI rendering only |
 | Hook | Single logic concern |
 | Service | API operations |
-| Store | State management (max 40 lines, owner rule) |
+| Store | State management (store budget 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at default) |
 
 All source files must stay within `FUSE_SOLID_MAX_LINES`.
 

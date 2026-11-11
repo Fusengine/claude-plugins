@@ -14,7 +14,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Task",
+        "matcher": "Agent|Task",
         "hooks": [
           {
             "type": "command",
@@ -47,7 +47,7 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "TaskCreate|TaskUpdate|Write|Edit",
+        "matcher": "TaskCreate|TaskUpdate|Write|Edit|NotebookEdit",
         "hooks": [
           {
             "type": "command",

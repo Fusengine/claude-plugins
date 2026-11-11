@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.39.54] - 11-11-2026
+
+- docs(rules): align four rule wordings with harness engine behaviour — `00-critical-rules` "When to ask" (`rm -rf` is confirmation-gated, blocked outright only on `/`, `~` and system directories) and Critical Rule 7 (the hook only proves research happened; the three-source cross-check stays the agent's duty), `07-state-management` (store budget = 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at the default 100), `02-apex-workflow` (what the engine fast path skips for an Edit under 5 lines) (fuse-rules 1.0.29)
+- docs(skills): state the Zustand store cap as 0.4 × `FUSE_SOLID_MAX_LINES` (40 at the default 100) instead of a fixed "max 40 lines" in `solid-react`, `react-state`, `nextjs-zustand` and `fusecore/react-integration` (fuse-react 1.0.27, fuse-nextjs 1.1.30, fuse-laravel 1.2.14)
+- docs(decisions): record the owner decisions for these wordings and for this release in `docs/decisions.md`
+
 ## [1.39.53] - 11-11-2026
 
 - chore(license): name « Fusengine Sàrl » as copyright holder in `plugins/commit-pro/LICENSE` (MIT, year 2025 kept), replacing the personal name; record the owner decision in `docs/decisions.md` (fuse-commit-pro 1.2.32)

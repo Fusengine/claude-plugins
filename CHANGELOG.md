@@ -1,5 +1,13 @@
 # Release Notes
 
+## [1.39.57] - 13-11-2026
+
+- fix(hooks): hook matchers now reach `NotebookEdit` (added next to `Write|Edit` in the `ai-pilot`, `core-guards` and per-language PreToolUse matchers) and `Agent` (`Task` becomes `Agent|Task`). `NotebookEdit` enforcement stays inert until the harness reads `notebook_path` (harness branch `fix/tool-payloads`); until then those hooks allow. The `MultiEdit` matcher entry is harmless: the tool no longer exists. Verified in a real headless Claude Code run with the source plugins: `NotebookEdit` hooks fire, a `.ts` Write is still APEX-denied, the `Agent` hook fires (fuse-ai-pilot 1.2.52, core-guards 1.1.44, fuse-cartographer 1.0.18, fuse-design 2.2.14, fuse-lessons 1.0.10, fuse-go 1.0.11, fuse-hermes 1.0.2, fuse-laravel 1.2.15, fuse-nextjs 1.1.31, fuse-php 1.0.12, fuse-react 1.0.28, fuse-rust 1.0.12, fuse-security 1.0.24, fuse-seo 1.0.19, fuse-shadcn-ui 1.0.23, fuse-solid 1.0.23, fuse-swift-apple-expert 1.1.28, fuse-tailwindcss 1.1.15, fuse-tanstack-start 1.0.12, fuse-typescript 1.0.12)
+- docs(hooks): hook descriptions and plugin docs state the real matchers
+- perf(agents): `commit-detector` and `cartographer` now run on Haiku instead of Sonnet; a Haiku vs Sonnet test gave identical results (fuse-commit-pro 1.2.33, fuse-cartographer 1.0.18)
+- docs(harness): add the real-condition battery reports for the installed `aa1d13c` build, the live cp/mv guard runs and the live remote-ssh run
+- docs(decisions): record the owner decisions of 11-13 November 2026 in `docs/decisions.md`, including the matcher release test results and the `origin/main` sync
+
 ## [1.39.56] - 13-11-2026
 
 - feat(ai-pilot): add a "Senior mode" to `lead-orchestration` step 5 — when the owner says "senior" ("lance les senior"), every executor `Agent` call of that mandate passes `model: "opus"` and leaves effort to the agent's frontmatter; agents already on Opus and helpers launched by executors are unchanged, no duplicate "senior" agents, mode lasts for that mandate only; the step's Check line verifies it (fuse-ai-pilot 1.2.51)

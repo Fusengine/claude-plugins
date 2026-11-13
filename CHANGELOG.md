@@ -1,8 +1,9 @@
 # Release Notes
 
-## [Unreleased]
+## [1.39.55] - 13-11-2026
 
-- feat(solid-swift): add `references/state-machines.md` (sum-type state modeling, `LoadState<Value>` with a `Sendable` + `Equatable` `LoadFailure`, Tier 2 transition functions) and move the `viewmodel.md` / `view.md` templates from `isLoading` booleans to `state: LoadState<…>`; adapted from the `coreyfloyd/agents` fork, credit to coreyfloyd (https://github.com/coreyfloyd/agents) (fuse-swift-apple-expert)
+- feat(solid-swift): add `references/state-machines.md` (sum-type state modeling, `LoadState<Value>` with a `Sendable` + `Equatable` `LoadFailure`, Tier 2 transition functions) and move the `viewmodel.md` / `view.md` templates from `isLoading` booleans to `state: LoadState<…>`; adapted from the `coreyfloyd/agents` fork, credit to coreyfloyd (https://github.com/coreyfloyd/agents) (fuse-swift-apple-expert 1.1.27)
+- docs(swift-apple-expert): add the real-conditions test report `docs/real-test-solid-swift-load-state-2026-11-13.md`
 
 ## [1.39.54] - 11-11-2026
 

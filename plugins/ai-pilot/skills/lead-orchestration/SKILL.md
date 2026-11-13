@@ -62,7 +62,9 @@ One named agent per task (domain expert per rule 01). Write the table before lau
 | `api-auth` | ... | `src/auth/**` | solid-*, domain skills, `verification` |
 
 A shared resource (build, simulator, dev server, database) has exactly one owner; the others ask it via `SendMessage`. Pick the skills each agent must load: the stack's SOLID skill via `fuse-solid:solid-detection`, the domain skills (`design-method` -> `design-web`/`design-ios`, `motion-method` -> `motion-*`, `swiftui-core`...), plus `verification`. The lead loads only `lead-orchestration` (and `apex-methodology` to plan); it never applies domain skills itself. Announce the budget in one line: number of agents and their names -- never a promised duration.
-**Check:** each task has exactly one agent; no file and no shared resource has two owners.
+
+**Senior mode**: domain experts run on their frontmatter model (Sonnet medium). When the owner's request says "senior" ("lance les senior"), every executor `Agent` call of that mandate passes `model: "opus"` and leaves effort to the agent's frontmatter (never set `effort`). Agents already on Opus (sniper, challenger, commit, design-expert, security-expert...) are unchanged; helpers an executor launches itself keep their own model; never create duplicate "senior" agents. The mode lasts for that mandate only, unless the owner says otherwise.
+**Check:** each task has exactly one agent; no file and no shared resource has two owners; in senior mode, every executor `Agent` call carries `model: "opus"`.
 
 ### 6. Brief -- fixed headers
 Fill `references/brief-template.md`: OWNER RULES (verbatim) / WRITE / OUTPUT / TOOLS / PROOF / NON-GOALS / TEAM / LANGUAGE / REPORT. A protected path (HARD STOP 3: `~/.claude`, `~/.codex`, deployed marketplace, install scripts) goes into WRITE only when the owner named it -- quote his exact sentence; the agent writes that target and nothing else.

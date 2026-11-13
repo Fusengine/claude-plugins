@@ -1,9 +1,9 @@
 {
-  "description": "Tailwind CSS Expert — SOLID/skill/DRY/file-size enforcement via @fusengine/harness (framework-routed by applies-to) | PreToolUse[0]: Harness: framework-routed SOLID/skill/DRY/file-size/interface enforcement before Write/Edit | PostToolUse[0]: Harness (scope tailwindcss): record doc/ref/agent activity feeding the APEX gates + Tailwind best-practice warnings on Write/Edit (deprecated @tailwind directives, excessive @apply, overlong className)",
+  "description": "Tailwind CSS Expert — SOLID/skill/DRY/file-size enforcement via @fusengine/harness (framework-routed by applies-to) | PreToolUse[0]: Harness: framework-routed SOLID/skill/DRY/file-size/interface enforcement before Write/Edit/NotebookEdit | PostToolUse[0]: Harness (scope tailwindcss): record doc/ref/agent activity feeding the APEX gates + Tailwind best-practice warnings on Write/Edit (deprecated @tailwind directives, excessive @apply, overlong className)",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Write|Edit",
+        "matcher": "Write|Edit|NotebookEdit",
         "hooks": [
           {
             "type": "command",

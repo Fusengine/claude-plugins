@@ -37,7 +37,7 @@ In order: `<role>` block (3 paragraphs: identity, "Your posture is ...", "You ow
 
 ### 1.4 `hooks/hooks.json` (byte-identical shape in go, rust, hermes)
 Only the `description` string changes ("Go Expert — SOLID/skill/DRY/file-size/interface enforcement via @fusengine/harness (framework-routed by applies-to) | ..."). Two entries, both running `bun $HOME/.claude/plugins/marketplaces/fusengine-plugins/plugins/node_modules/@fusengine/harness/dist/cli/bin.mjs hook claude-code`:
-- `PreToolUse`, matcher `Write|Edit`.
+- `PreToolUse`, matcher `Write|Edit|NotebookEdit`.
 - `PostToolUse`, matcher `""` (records doc/ref/agent activity feeding the APEX gates).
 There are no per-plugin hook scripts.
 
@@ -74,7 +74,7 @@ Checked and not needed: `plugins/ai-pilot` (no per-expert list), `MEMORY/`, `doc
 
 ## 3. Hooks, SOLID and framework detection for a non-code expert
 
-- Registered hooks (all three models): `PreToolUse` `Write|Edit` and `PostToolUse` `""`, both -> `@fusengine/harness ... hook claude-code`. hermes-expert (no code framework) carries the identical file (`plugins/hermes-expert/hooks/hooks.json`), so a devops plugin should copy it verbatim and only change `description`.
+- Registered hooks (all three models): `PreToolUse` `Write|Edit|NotebookEdit` and `PostToolUse` `""`, both -> `@fusengine/harness ... hook claude-code`. hermes-expert (no code framework) carries the identical file (`plugins/hermes-expert/hooks/hooks.json`), so a devops plugin should copy it verbatim and only change `description`.
 - Framework detection is done by the harness, not the plugin: `~/.claude/plugins/marketplaces/fusengine-plugins/plugins/node_modules/@fusengine/harness/src/policy/detect-framework.ts` maps by extension: `.swift`, `.php`, `.java`, `.go`, `.rb`, `.rs`, tailwind CSS content, JS family via project caps; everything else returns `"generic"` (fail-open). `Dockerfile`, `*.yml`, `*.tf`, `*.sh`, `*.yaml` therefore resolve to `generic`.
 - The SOLID file-size gate only applies to `FILE_SIZE_CODE_EXT = ts|tsx|js|jsx|py|go|rs|java|php|cpp|c|rb|swift|kt|dart|vue|svelte|astro` (`src/policy/file-size-scope.ts:11`). Pure devops artefacts (YAML, Dockerfile, HCL, shell) are outside it; a `.py`/`.go`/`.ts` helper written by the devops agent is inside it (framework key from the file extension, then `solid-generic` for python/ts-without-framework).
 - APEX authorization falls back to `solid-generic` for `generic` (`src/policy/apex-authorization.ts` ~line 82; lesson 2026-10-09: read `plugins/solid/skills/solid-generic/SKILL.md`). So a devops plugin needs no SOLID skill of its own; the agent should say "SOLID: `fuse-solid:solid-generic`, applies only to script/code files".

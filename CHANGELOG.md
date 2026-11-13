@@ -1,5 +1,9 @@
 # Release Notes
 
+## [Unreleased]
+
+- feat(solid-swift): add `references/state-machines.md` (sum-type state modeling, `LoadState<Value>` with a `Sendable` + `Equatable` `LoadFailure`, Tier 2 transition functions) and move the `viewmodel.md` / `view.md` templates from `isLoading` booleans to `state: LoadState<…>`; adapted from the `coreyfloyd/agents` fork, credit to coreyfloyd (https://github.com/coreyfloyd/agents) (fuse-swift-apple-expert)
+
 ## [1.39.54] - 11-11-2026
 
 - docs(rules): align four rule wordings with harness engine behaviour — `00-critical-rules` "When to ask" (`rm -rf` is confirmation-gated, blocked outright only on `/`, `~` and system directories) and Critical Rule 7 (the hook only proves research happened; the three-source cross-check stays the agent's duty), `07-state-management` (store budget = 0.4 × `FUSE_SOLID_MAX_LINES`, 40 at the default 100), `02-apex-workflow` (what the engine fast path skips for an Edit under 5 lines) (fuse-rules 1.0.29)

@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.39.56] - 13-11-2026
+
+- feat(ai-pilot): add a "Senior mode" to `lead-orchestration` step 5 — when the owner says "senior" ("lance les senior"), every executor `Agent` call of that mandate passes `model: "opus"` and leaves effort to the agent's frontmatter; agents already on Opus and helpers launched by executors are unchanged, no duplicate "senior" agents, mode lasts for that mandate only; the step's Check line verifies it (fuse-ai-pilot 1.2.51)
+
 ## [1.39.55] - 13-11-2026
 
 - feat(solid-swift): add `references/state-machines.md` (sum-type state modeling, `LoadState<Value>` with a `Sendable` + `Equatable` `LoadFailure`, Tier 2 transition functions) and move the `viewmodel.md` / `view.md` templates from `isLoading` booleans to `state: LoadState<…>`; adapted from the `coreyfloyd/agents` fork, credit to coreyfloyd (https://github.com/coreyfloyd/agents) (fuse-swift-apple-expert 1.1.27)

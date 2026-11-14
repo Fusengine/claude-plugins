@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Professional Claude Code plugins with APEX workflow, SOLID principles, and expert development agents for Next.js, Laravel, Swift, Tailwind CSS, and more",
-    "version": "1.39.57"
+    "version": "1.40.0"
   },
   "core": [
     {
@@ -182,7 +182,7 @@
       "name": "fuse-swift-apple-expert",
       "source": "./plugins/swift-apple-expert",
       "description": "Expert Swift 6.4 + SwiftUI for iOS 27, macOS 27, iPadOS 27, watchOS 27, visionOS 27, tvOS 27 with Liquid Glass, @Observable, actors, SwiftData inheritance",
-      "version": "1.1.28",
+      "version": "1.2.0",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"
@@ -479,7 +479,7 @@
       "name": "fuse-design",
       "source": "./plugins/design-expert",
       "description": "UI Designer. Generates HTML/CSS via Gemini Design MCP. 7-phase pipeline with state tracking. Identity System, UX copy, page layouts, motion system, design audit. Anti-AI-Slop, WCAG 2.2.",
-      "version": "2.2.14",
+      "version": "2.3.0",
       "author": {
         "name": "Fusengine",
         "url": "https://github.com/fusengine"

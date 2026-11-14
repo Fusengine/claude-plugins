@@ -5,7 +5,7 @@ versions:
   swiftui: 6
   ios: 27.2
 user-invocable: false
-references: references/views-modifiers.md, references/navigation.md, references/data-swiftdata.md, references/state-management.md, references/liquid-glass.md, references/app-intents.md, references/hig-accessibility.md, references/hig-rtl.md, references/hig-modality.md, references/hig-system-surfaces.md, references/hig-iphone-duo.md
+references: references/views-modifiers.md, references/navigation.md, references/data-swiftdata.md, references/state-management.md, references/liquid-glass.md, references/app-intents.md, references/hig-accessibility.md, references/hig-rtl.md, references/hig-modality.md, references/hig-system-surfaces.md, references/hig-iphone-duo.md, references/data-swiftdata-27.md, references/swiftui-26-27-apis.md, references/toolbars-navigation.md, references/widgetkit-activitykit.md
 related-skills: swift-core, solid-swift, ios, macos, ipados, watchos, visionos, tvos
 ---
 
@@ -83,7 +83,7 @@ Modern persistence with @Model. Replaces Core Data for most use cases.
 | Liquid Glass all platforms | [liquid-glass.md](references/liquid-glass.md) |
 | Siri, Shortcuts, App Intents, long-running/cancellable/snippet intents | [app-intents.md](references/app-intents.md) |
 | WidgetKit push, controls, CarPlay/visionOS widgets, scheduled Live Activity | [widgetkit-activitykit.md](references/widgetkit-activitykit.md) |
-| Toolbars (ToolbarSpacer, shared glass background), search as a tab, tab bar minimize, scroll edge effects, menu icons, SF Symbols 8 | [toolbars-navigation.md](references/toolbars-navigation.md) |
+| Toolbars (ToolbarSpacer, shared glass background), search as a tab, tab bar minimize, scroll edge effects, menu icons, SF Symbols 27 | [toolbars-navigation.md](references/toolbars-navigation.md) |
 
 ### HIG Rules (load for any UI task)
 

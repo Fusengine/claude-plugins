@@ -1,8 +1,8 @@
 ---
 name: toolbars-navigation
-description: Liquid Glass toolbars, ToolbarSpacer, sharedBackgroundVisibility, search as a tab, tab bar minimize, scroll edge effects, menu item icons and SF Symbols 8 symbol APIs
+description: Liquid Glass toolbars, ToolbarSpacer, sharedBackgroundVisibility, search as a tab, tab bar minimize, scroll edge effects, menu item icons and SF Symbols 27 symbol APIs
 when-to-use: building or reviewing toolbars, navigation bars, tab bars, sidebars, search placement, menu icons or symbol animations on iOS/iPadOS/macOS 26+
-keywords: ToolbarSpacer, sharedBackgroundVisibility, DefaultToolbarItem, searchToolbarBehavior, Tab role search, tabBarMinimizeBehavior, scrollEdgeEffectStyle, backgroundExtensionEffect, menu icons, SF Symbols 8, drawOn
+keywords: ToolbarSpacer, sharedBackgroundVisibility, DefaultToolbarItem, searchToolbarBehavior, Tab role search, tabBarMinimizeBehavior, scrollEdgeEffectStyle, backgroundExtensionEffect, menu icons, SF Symbols 27, SF Symbols 8 beta, drawOn
 priority: high
 related: liquid-glass.md, navigation.md, views-modifiers.md, hig-modality.md
 ---
@@ -55,9 +55,9 @@ Existing toolbar APIs (`visibilityPriority`, `ToolbarOverflowMenu`, `topBarPinne
 - Within a group, give icons to all items or none. In SwiftUI use `Label("Rename", systemImage: "pencil")` inside `Button` in `Menu`, `contextMenu`, or `CommandMenu`.
 - iOS/iPadOS menus can show a top row: small layout = 4 symbol-only items (only for closely related actions: Bold, Italic, Underline, Strikethrough); medium layout = 3 items, symbol above a short label (three important actions, e.g. Notes: Scan, Lock, Pin). visionOS supports only the small and large layouts.
 
-## SF Symbols 8 (WWDC26 beta, read 2026-11-13)
+## SF Symbols 27 (announced at WWDC26 as "SF Symbols 8 beta", read 2026-11-14)
 
-Sources: https://developer.apple.com/sf-symbols/ (New Symbols for iOS/iPadOS/macOS/watchOS/tvOS/visionOS 27; Enhanced Search; Draw, Annotation, Variable Rendering, gradients), https://developer.apple.com/design/whats-new/ (SF Symbols 8 beta, 2026-06-08). The HIG sf-symbols page (alert 2025-07-28) still documents SF Symbols 7 features; symbols and features are unavailable on older OS versions, so gate by deployment target.
+Sources: https://developer.apple.com/sf-symbols/ (New Symbols for iOS/iPadOS/macOS/watchOS/tvOS/visionOS 27; Enhanced Search; Draw, Annotation, Variable Rendering, gradients), https://developer.apple.com/design/resources/ ("Download SF Symbols 27"), https://developer.apple.com/design/whats-new/ ("SF Symbols 8 beta", 2026-06-08). The HIG sf-symbols page (alert 2025-07-28) still documents SF Symbols 7 features; symbols and features are unavailable on older OS versions, so gate by deployment target.
 
 | API | Notes |
 |---|---|

@@ -33,8 +33,10 @@ Checked on the Apple documentation JSON, 2026-11-13.
 
 | Need | Symbol | Notes |
 |------|--------|-------|
-| Redeem offer codes in SwiftUI | `offerCodeRedemption(isPresented:onCompletion:)` | iOS, iPadOS, macOS, visionOS |
-| Redeem offer codes in UIKit / AppKit | `AppStore.presentOfferCodeRedeemSheet(in:)` (iOS, iPadOS, visionOS), `presentOfferCodeRedeemSheet(from:)` (macOS) | `RedeemOption` customizes the redemption |
+| Redeem offer codes in SwiftUI (27.0+) | `offerCodeRedemption(options:isPresented:onCompletion:)`; `options` is `Set<RedeemOption>`, completion gets `Result<VerificationResult<Transaction>, any Error>` | iOS, iPadOS, Mac Catalyst, macOS, visionOS 27.0 |
+| Redeem offer codes in UIKit (27.0+) | `AppStore.presentOfferCodeRedeemSheet(from: UIViewController, options: Set<RedeemOption> = [])` returns `VerificationResult<Transaction>` | iOS, iPadOS, Mac Catalyst, visionOS 27.0 |
+| Redeem offer codes in AppKit (27.0+) | `AppStore.presentOfferCodeRedeemSheet(from: NSWindow, options: Set<RedeemOption> = [])` returns `VerificationResult<Transaction>` | macOS 27.0 |
+| Deprecated 27.0 (keep only for targets below 27) | SwiftUI `offerCodeRedemption(isPresented:onCompletion:)`; `AppStore.presentOfferCodeRedeemSheet(in: UIWindowScene)` (iOS 16+, visionOS 1+); `AppStore.presentOfferCodeRedeemSheet(from:)` (macOS 15+) | Apple marks each "deprecated 27.0" with "Use `presentOfferCodeRedeemSheet(from:options:)` / `offerCodeRedemption(options:isPresented:onCompletion:)` instead" |
 | Detect an offer-code purchase | `Transaction.offerID` / `Transaction.offerType` (value `code`); same fields on `Product.SubscriptionInfo.RenewalInfo` | Server: `offerType` 3 in the signed payload; `OFFER_REDEEMED` notification for active subscribers |
 | Offer kinds | `Product.SubscriptionOffer.OfferType`: `introductory`, `promotional`, `winBack` | |
 | Win-back at purchase | `Product.PurchaseOption.winBackOffer(_:)` | |

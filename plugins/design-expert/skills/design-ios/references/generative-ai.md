@@ -46,8 +46,13 @@ record the assumption in the handoff, don't design around a guess.
   (https://developer.apple.com/apple-intelligence/get-started/, read 2026-11-13): Writing
   Tools (rewrite, proofread, summarize) work automatically in standard text views;
   Genmoji work in standard text fields and are **inline images**, not text; Image
-  Playground provides a system experience parallel to the Image Playground app, images
-  generated on device.
+  Playground provides a system experience parallel to the Image Playground app. That
+  page says images are generated on device, but Apple's pages disagree: the
+  /apple-intelligence/ overview says "Images are generated on Private Cloud Compute, so
+  photos are never stored or shared" and /apple-intelligence/whats-new/ says the new
+  model runs on Private Cloud Compute (both read 2026-11-14). Treat generation as Private
+  Cloud Compute and show a disclosure in the mockup (same rule as
+  swift-apple-expert `apple-intelligence/references/system-features.md`).
 - Mockup rule: these are **system UI** — don't redraw their panels. Use standard text
   views/fields in the mockup, mark where the system Writing Tools / Genmoji / Image
   Playground entry points appear, and size text layouts to accept an inline Genmoji

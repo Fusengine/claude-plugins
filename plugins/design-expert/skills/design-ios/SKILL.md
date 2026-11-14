@@ -114,7 +114,7 @@ After `design-system` tokens exist.
 | `references/system-surfaces.md` | Live Activities (limited width), widgets (Apple HomeView), design principles, emphasized weights — HIG |
 | `references/generative-ai.md` | Generative AI rules (refine/revert, generation feedback); Writing Tools / Genmoji / Image Playground — HIG |
 | `references/app-icons.md` | App icon format (Icon Composer layered preferred), appearances, specs — HIG |
-| `references/apple-design-tools.md` | SF Symbols 8, Icon Composer 2, Pass Designer, UI kits, bezels — Design Resources |
+| `references/apple-design-tools.md` | SF Symbols 27 (announced as SF Symbols 8 beta), Icon Composer 2, Pass Designer, UI kits, bezels — Design Resources |
 | `references/app-store-assets.md` | Screenshots (incl. iPhone Duo), previews, product pages, creative assets, guideline 2.3.14 |
 | `references/mockup.md` | Device-frame HTML/CSS technique (safe areas, viewport-fit) |
 | `references/handoff-swiftui.md` | SwiftUI-ready handoff spec format |

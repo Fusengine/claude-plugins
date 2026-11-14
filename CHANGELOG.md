@@ -1,5 +1,14 @@
 # Release Notes
 
+## [1.40.0] - 14-11-2026
+
+- feat(swift-apple-expert): Apple skills updated against developer.apple.com (design, distribute, documentation, Apple Intelligence); new skills `apple-intelligence`, `apple-frameworks`, `graphics-games` and `media-vision` (fuse-swift-apple-expert 1.2.0)
+- docs(swift-apple-expert): `build-distribution` deadlines — Developer ID G2 certificates (2027-02-01), new age ratings (2027-01-12), April 2027 requirements (SDK 27, iOS 15 minimum, iPhone Duo screenshots); platform, SwiftUI, Swift and visionOS skills updated for the 27 SDK (fuse-swift-apple-expert 1.2.0)
+- docs(design-ios): add App Store assets, generative AI guidance and touch on Mac, plus current Apple design tools (fuse-design 2.3.0)
+- fix(apple-skills): remove the invented `@Schema` macro, the visionOS eye-tracking API claim and the wrong `notarytool` TestFlight upload; update the offer-code APIs, SF Symbols 27 naming and the Image Playground location (fuse-swift-apple-expert 1.2.0, fuse-design 2.3.0)
+- docs: update README and plugin docs for the Apple skills update; record the owner decisions (MINOR bump) in `docs/decisions.md`
+- Verified in a real headless Claude Code run with the source plugins: 6/6 PASS (offer-code 27.0 API, Developer ID G2, Foundation Models, visionOS no eye-tracking API, `xcrun mcpbridge`, iPhone Duo screenshot sizes); the negative control without `--plugin-dir` lacks the 27.0 API
+
 ## [1.39.57] - 13-11-2026
 
 - fix(hooks): hook matchers now reach `NotebookEdit` (added next to `Write|Edit` in the `ai-pilot`, `core-guards` and per-language PreToolUse matchers) and `Agent` (`Task` becomes `Agent|Task`). `NotebookEdit` enforcement stays inert until the harness reads `notebook_path` (harness branch `fix/tool-payloads`); until then those hooks allow. The `MultiEdit` matcher entry is harmless: the tool no longer exists. Verified in a real headless Claude Code run with the source plugins: `NotebookEdit` hooks fire, a `.ts` Write is still APEX-denied, the `Agent` hook fires (fuse-ai-pilot 1.2.52, core-guards 1.1.44, fuse-cartographer 1.0.18, fuse-design 2.2.14, fuse-lessons 1.0.10, fuse-go 1.0.11, fuse-hermes 1.0.2, fuse-laravel 1.2.15, fuse-nextjs 1.1.31, fuse-php 1.0.12, fuse-react 1.0.28, fuse-rust 1.0.12, fuse-security 1.0.24, fuse-seo 1.0.19, fuse-shadcn-ui 1.0.23, fuse-solid 1.0.23, fuse-swift-apple-expert 1.1.28, fuse-tailwindcss 1.1.15, fuse-tanstack-start 1.0.12, fuse-typescript 1.0.12)

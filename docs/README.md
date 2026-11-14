@@ -8,7 +8,7 @@
 - [APEX Methodology](workflow/apex.md) - Analyze → Plan → Execute → eLicit → eXamine
 - [Agents](workflow/agents.md) - 42 specialized agents
 - [Agent Teams](workflow/agent-teams.md) - Delegation, parallel execution, coordination
-- [Skills](workflow/skills.md) - 236 specialized skills
+- [Skills](workflow/skills.md) - 240 specialized skills
 - [Commands](workflow/commands.md) - 35 slash commands
 
 ## Plugins
@@ -21,7 +21,7 @@
 - [astro](plugins/astro.md) - Astro 7 expert (Islands, Content Layer, Server Actions)
 - [typescript](plugins/typescript.md) - Pure TypeScript 7.0 expert (Node 26 LTS / Bun 1.4)
 - [php](plugins/php.md) - Framework-agnostic PHP 8.5 expert
-- [swift](plugins/swift.md) - Swift/SwiftUI expert
+- [swift](plugins/swift.md) - Swift/SwiftUI expert (15 skills: Apple Intelligence, system frameworks, Metal, media)
 - [tailwindcss](plugins/tailwindcss.md) - Tailwind CSS v4.1
 - [design](plugins/design.md) - UI/UX with shadcn/ui
 - [shadcn](plugins/shadcn.md) - shadcn/ui expert with Radix/Base UI detection

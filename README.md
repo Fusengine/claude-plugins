@@ -1,6 +1,6 @@
 # Fusengine Claude Code Plugins
 
-![version](https://img.shields.io/badge/version-v1.39.57-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-28-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-42-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-236-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
+![version](https://img.shields.io/badge/version-v1.40.0-blue?style=flat-square) ![plugins](https://img.shields.io/badge/plugins-28-brightgreen?style=flat-square) ![agents](https://img.shields.io/badge/agents-42-blueviolet?style=flat-square) ![skills](https://img.shields.io/badge/skills-240-orange?style=flat-square) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square) ![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey?style=flat-square) ![Windows](https://img.shields.io/badge/Windows-soon-orange?style=flat-square)
 
 > A plugin ecosystem that turns Claude Code into a supervised, multi-agent development environment. Expert agents write code, hooks enforce quality in real-time, skills inject framework-specific knowledge, and **intelligent cartography auto-maps plugins and projects** — so Claude never guesses, never duplicates, and always follows your architecture.
 
@@ -18,7 +18,7 @@
 
 - **Expert agents** detect your project type (Next.js, Laravel, React, Astro, Swift...) and load framework-specific documentation via MCP servers before writing a single line
 - **60+ hook checks** intercept Write/Edit/Bash **and** agent/session lifecycle events to enforce file-size limits (<100 lines), block code duplication (DRY), require SOLID reference reads, gate documentation lookup, and block destructive shell commands
-- **236 skills** inject copy-paste-ready templates, architecture patterns, and best practices directly into agent context — no hallucination needed
+- **240 skills** inject copy-paste-ready templates, architecture patterns, and best practices directly into agent context — no hallucination needed
 - **APEX workflow** structures every task through Analyze → Plan → Execute (TDD) → Review → Validate — preventing the "just write code and hope" approach
 - **Sniper agent** — a 7-phase post-edit quality check (explore → research → grep usages → lint → fix → zero errors) the APEX workflow invokes after every modification
 
@@ -65,7 +65,7 @@ Each plugin provides an **expert agent** that auto-activates when it detects the
 | [fuse-laravel](docs/plugins/laravel.md) | `composer.json` + `artisan` | Eloquent, Livewire, Blade, queues, Sanctum, Stripe Connect |
 | [fuse-react](docs/plugins/react.md) | `package.json` + React | React 19 hooks, TanStack Router/Form, Zustand stores |
 | [fuse-astro](docs/plugins/astro.md) | `astro.config.*` | Islands, Content Layer, Actions, SEO, Starlight, i18n |
-| [fuse-swift-apple-expert](docs/plugins/swift.md) | `Package.swift` | SwiftUI, concurrency, all Apple platforms (iOS → visionOS) |
+| [fuse-swift-apple-expert](docs/plugins/swift.md) | `Package.swift` | SwiftUI, concurrency, Apple Intelligence, system frameworks, Metal, media; all Apple platforms (iOS → visionOS) |
 | [fuse-tailwindcss](docs/plugins/tailwindcss.md) | `tailwind.config.*` | v4.1 CSS-first config, @theme, @utility, OKLCH colors |
 | [fuse-design](docs/plugins/design.md) | Any UI task | Gemini Design MCP + shadcn/ui + WCAG 2.2 accessibility |
 | [fuse-shadcn-ui](docs/plugins/shadcn.md) | `components.json` | Radix/Base UI detection, registry, theming, migration |

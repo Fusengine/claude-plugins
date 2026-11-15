@@ -48,7 +48,8 @@ For every folder an agent will write: `ls -lT <folder>` + `date`. Mtime under ~5
 
 ### 3. Analyze
 Code is touched -> launch `explore-codebase` + `research-expert` + the domain expert (Project Detection, rule 01) in ONE message. A trivial 1-3 line change goes to `apex-quick` (one agent). A read-only question -> `explore-codebase` alone. Debug ("why", "not working") always goes through Analyze.
-**Check:** the analysis reports are in hand before any task is cut.
+**Brainstorm** (rule 02): a new feature or major change -> agent `fuse-ai-pilot:brainstorming` (design mode) before or alongside the trio, given the trio's findings when they exist; an "analyse / improve this project" request -> the same agent in ideas mode. It never asks the owner: it states its assumptions or asks the lead one binary question, and the lead escalates at most one binary question.
+**Check:** the analysis reports (and, for a new feature, the design doc approved by the lead, or by the owner when escalated) are in hand before any task is cut.
 
 ### 4. Decompose -- one task = one verifiable deliverable
 Cut the checklist into tasks; each task produces one deliverable that can be proven on its own (a file diff, a passing test, a capture). Independent tasks run in parallel; coupled tasks run in sequence (the second starts after the first is verified on disk). Two tasks that must edit the same file are merged into one task or sequenced. Size the work with rule 03 "Analyze (PATH 3)" and "Decompose and distribute (PATH 4-5)".
@@ -100,8 +101,9 @@ Once every agent has finished: `sniper` once on all changes, then the `challenge
 
 ### 11. Report -- answer first, then learn
 Mandate complete, or the owner asks for the commit cycle (rule 06 "Commit cycle"; relays per template "Relayed message") -> launch `fuse-ai-pilot:commit` in full mode; the step 10 full gate still runs first. Owner reply per template AUTONOMY "Replies" and step 11, in the owner's language (rule 00): line 1 = the answer (done / not done / blocked). Deliverables per template AUTONOMY.
+**Suggestions**: the agents' REPORT "Suggestions" field, and an ideas-mode `brainstorming` pass when the mandate analysed or improved a project, feed the report's grounded suggestions (« Suggestion: <idea> → gain: <benefit> »); proposed, never built without the owner's go.
 Each owner correction -> one line in the skill/agent that failed, in the source repo, the same turn, written by an agent (template AUTONOMY, rule 03 "Lead conduct"). Sync to the marketplace only when the owner asked for it (HARD STOP 3).
-**Check:** line 1 answers the question asked; every deliverable path is outside a dot-folder; each correction is grep-able in the failing skill/agent before the turn ends.
+**Check:** line 1 answers the question asked; each agent's final report carries its "Suggestions" field (or "none"); every deliverable path is outside a dot-folder; each correction is grep-able in the failing skill/agent before the turn ends.
 
 ---
 

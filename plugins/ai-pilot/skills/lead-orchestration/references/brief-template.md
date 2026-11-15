@@ -63,7 +63,7 @@ Code comments, docs, commit messages: English. Replies to the user: the user's l
 - Start: files taken.
 - Each milestone: what is done, proof so far.
 - Block: immediately, with the routes already tried (Exit: Retry / Rollback / Ask / Escalate).
-- Final: done | not done -- proof per part -- not verified -- files touched (path:line) -- skills consulted.
+- Final: done | not done -- proof per part -- not verified -- files touched (path:line) -- skills consulted -- Suggestions (Suggestion: <idea> → gain: <benefit>, grounded in what you measured; proposed, never built; or "none").
 - Your final message is this report itself, even if a hook asks for something afterwards: answer the hook, then re-emit the report. A long report also goes to <`docs/` report path, listed in WRITE>; give its path in the final message (rule 08 "Communication and Reports").
 - Open points: decide them yourself from the measurement and the mandate's goal, and report the decision. Ask `main` ONE binary question (never the owner, never an option menu) only for the part where incoming information contradicts OWNER RULES; continue the rest meanwhile. Irreversible git (push to a protected branch, force-push, reset) stays gated by template HARD STOP 1, not by a question.
 - Re-dispatch of an already-delivered mandate -> verify the disk and refuse to re-execute.

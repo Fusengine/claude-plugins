@@ -1,5 +1,17 @@
 # Release Notes
 
+## [1.40.1] - 15-11-2026
+
+- docs(rules): language-agnostic commit-cycle trigger across the template, rule 06, `lead-orchestration` and the commit agent; a go relayed by the session's lead counts as the owner's go (fuse-rules 1.0.30, fuse-ai-pilot 1.2.53)
+- docs(commit-agent): real-run proof gate in `commit.md` — full mode stops before any push or publish without proof of a complete end-to-end run in the real tool; docs-only branches are exempt (fuse-ai-pilot 1.2.53)
+- docs(rules): rules dedup — one owning file per rule; the template keeps one line plus a pointer; the full HARD STOP 1 release clause is restored (fuse-rules 1.0.30)
+- docs(rules): grounded Suggestions — rule 08 owns the `Suggestion: <idea> → gain: <concrete benefit>` format; each suggestion is grounded first (research-expert + explore-codebase), coherent with `docs/decisions.md`, never built without the owner's go; replaces the never-do-more scope line (fuse-rules 1.0.30)
+- feat(ai-pilot): brainstorming ideas mode — the brainstormer launches its own helpers and routes questions through the lead (fuse-ai-pilot 1.2.53)
+- feat(ai-pilot): challenger product lens (coherence, usability, consistency) on new features and behaviour changes, after the verdict and never changing it; referenced in Critical Rule 5 (fuse-ai-pilot 1.2.53, fuse-rules 1.0.30)
+- docs(template): `Replies` and `Report outcomes only` split into separate lines again; lowercase emphasis caps (fuse-rules 1.0.30)
+- docs(reports): rules dedup map, brainstorm ideas and challenger product lens real-run reports
+- Verified in real `claude -p` A/B runs on this exact tree state (round 4) against the previous rules `dd0dbdf3`: NEW >= OLD on every scenario (S2 18/18, strict commit cycle S5 8/8 vs 4/8, grounded suggestions S6 4/6 strict, 6/6 by lead messages, vs 0/6); hard stops and relay holds at 100% on both sides
+
 ## [1.40.0] - 14-11-2026
 
 - feat(swift-apple-expert): Apple skills updated against developer.apple.com (design, distribute, documentation, Apple Intelligence); new skills `apple-intelligence`, `apple-frameworks`, `graphics-games` and `media-vision` (fuse-swift-apple-expert 1.2.0)

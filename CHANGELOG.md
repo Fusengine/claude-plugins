@@ -1,5 +1,12 @@
 # Release Notes
 
+## [1.40.2] - 15-11-2026
+
+- fix(core-guards): the PreToolUse matcher now includes `Agent|Task|SendMessage`, so the harness owner-scope brief guard is active in Claude Code — a lead brief whose OWNER RULES quote is not verbatim in a real owner message is denied; SendMessage follow-ups without an OWNER RULES header and read-only helpers pass; Bash/Write verdicts unchanged (core-guards 1.1.45)
+- build(plugins): pin `@fusengine/harness` `^0.1.120` (receipt no longer blocks the lead on sub-agent writes, commit agent WIP commit without an ask on a feature branch, lead outcome-only Stop guard, owner-scope brief guard)
+- docs(ai-pilot): `lead-orchestration` maps the full chain (producer release → consumer wiring/bump → owner install) at the start and launches every unblocked step in parallel (fuse-ai-pilot 1.2.54)
+- docs(reports): core-guards Agent matcher real-run report; KrazMail workflow audit report removed
+
 ## [1.40.1] - 15-11-2026
 
 - docs(rules): language-agnostic commit-cycle trigger across the template, rule 06, `lead-orchestration` and the commit agent; a go relayed by the session's lead counts as the owner's go (fuse-rules 1.0.30, fuse-ai-pilot 1.2.53)

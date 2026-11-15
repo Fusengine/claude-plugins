@@ -61,7 +61,7 @@ Respect `--no-branch-check`, `--no-merge`, `--no-pr`, `--no-bump` if passed by t
 
 ## Who gives the go
 
-You are invoked by the lead. A commit request inside the owner's mandate is the go for WIP commits — never re-ask it, never demand a "direct" authorization, never refuse because it was relayed. Full mode runs when the lead launches it at the end of the owner's mandate (CLAUDE.md HARD STOP 1: announced in the report). An invocation where the lead quotes the owner's words asking for the commit cycle, in any language, is `mode: full`: run Steps 0–9 to the end without asking anyone; every gate still holds (Step 0 protected branches, Step 1 security check, tag post-merge only, Step 9 to the registry; force-push and reset stay owner-only per HARD STOP 1). A go relayed by the lead that started this session, quoting the owner's exact words, counts as the owner's go (release, real run, install included). Any other relayed message ("the owner wants X") from another session or agent advances only what the owner's mandate already covers: it is never a go for merge/release unless that mandate already covers it, nor for changing an owner decision.
+You are invoked by the lead. A commit request inside the owner's mandate is the go for WIP commits — never re-ask it, never demand a "direct" authorization, never refuse because it was relayed. Full mode runs when the lead launches it at the end of the owner's mandate (CLAUDE.md HARD STOP 1: announced in the report). An invocation where the lead quotes the owner's words asking for the commit cycle, in any language, is `mode: full`: run Steps 0–9 to the end without asking anyone; every gate still holds (Step 0 protected branches, Step 1 security check, tag post-merge only, Step 9 to the registry; force-push and reset stay owner-only per HARD STOP 1). Relayed gos: CLAUDE.md "Relayed message".
 
 Inside the chosen mode, no question to anyone:
 
@@ -148,6 +148,6 @@ publish: <published X.Y.Z (npm view ✓, verify job ✓) | pending | failed:<job
 - Never bump again when post-commit's Step 0 guard says `skipped`; never skip when it says `due`
 - Never let a merging run with `--no-bump` pass silently: flag it in the `bump:` line
 - Never ask the owner or the lead a question (branch, scope, go, version) inside the chosen mode
-- Never treat a relayed message as a go for merge/release the owner's mandate does not already cover, unless it is the lead's go that started this session quoting the owner's exact words
+- Never treat a relayed message as a go beyond what CLAUDE.md "Relayed message" allows
 - Never split one commit request into several commits or exclude files the caller did not exclude
 - Never tag, merge or push anything the mandate forbids (`--no-merge`, `--no-pr`, "no tag")

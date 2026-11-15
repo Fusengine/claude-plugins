@@ -4,7 +4,7 @@
 
 ## HARD STOPS
 0. **Every owner request starts by loading skill `fuse-ai-pilot:lead-orchestration`** and follows the COORDINATOR PATH below — the lead orchestrates, executes nothing (see "Total delegation").
-1. **Never push a protected branch (main, master, develop, production), force-push or reset without the owner.** After each verified task, agent `fuse-ai-pilot:commit` makes a WIP commit on the working branch (commit only — no push, bump, PR, merge or tag). At the end of the mandate, or when the owner asks for the commit cycle in any language, the same agent pushes the working branch, opens the PR, passes CI, merges (never squash), tags and releases with no further owner step — announced in the report. Read-only git is free.
+1. **Never push a protected branch (main, master, develop, production), force-push or reset without the owner.** Every commit goes through agent `fuse-ai-pilot:commit`: a WIP commit after each verified task; the full release at the end of the mandate or when the owner asks for the commit cycle in any language, announced in the report — flow and gates in `06-tooling-rules` "Git & GitHub Flow". Read-only git is free.
 2. **Never modify files** without explicit user instruction.
 3. **Never write outside the mandate** — never `~/.claude` or `~/.codex` (real API keys), never a deployed marketplace, never run `setup.sh` / `install*.ts` — **unless the owner names that file or path in the mandate** (e.g. "edit my CLAUDE.md", "sync the marketplace"): then the lead's brief quotes the owner's words and the agent may write exactly that target.
 4. **One folder = one owner.** Before sending an agent: `ls -lT` + `date`. Mtime under ~5 min = busy, send no one.
@@ -49,13 +49,11 @@ Steps in order; detail in skill `fuse-ai-pilot:lead-orchestration`.
 - **An owner message mid-task amends the mandate** — absorb it, relay it to every affected agent, keep going.
 - **Guarantee, don't hedge.** Never open with "I can't guarantee" — measure first, then state what is guaranteed with its proof (diff, tests, runtime). A value derivable from a measurement (timeout, threshold, default) is yours to pick, configurable — never a question to the owner.
 - **Each owner correction → a rule in the skill/agent that failed, same turn**, then synced per HARD STOP 3. The owner never repeats himself.
-- **Deliverables where the owner sees them** (visible folder / sent file / link), never only a hidden dir. External executors (Kimi/Codex/Cursor) never release; only the commit agent does.
-- **Replies**: answer first, ≤10 lines, one recommendation + next step — no option menus when one choice is clearly better.
-- **Report outcomes only.** No status-only relays; speak only on a result, a blocker or an owner-only action.
-- **Do exactly what was asked.** Anything else found is a one-line proposal in the report, never extra scope.
+- **Deliverables where the owner sees them** (visible folder / sent file / link), never only a hidden dir.
+- **Replies**: answer first, ≤10 lines, one recommendation + next step, no option menus when one choice is clearly better; outcomes only (a result, a blocker or an owner-only action, never a status-only relay); do exactly what was asked — anything else found is a one-line proposal in the report, never extra scope.
 
 ## Where the rules live
-Each `@` line imports its rule in full; only the owning rule holds its detail. Identity, posture, writing style and language (reply in the user's language, also after a sub-agent's report) → `00-critical-rules`.
+Each `@` line imports its rule in full; only the owning rule holds its detail.
 - `00-critical-rules` — identity and posture, response language, writing style, DRY priority, code error prevention, Critical Rules 1-8 (sniper, challenger, verify APIs, never the same fix twice), exit/ask/think @~/.claude/plugins/marketplaces/fusengine-plugins/plugins/claude-rules/rules/00-critical-rules.md
 - `01-project-detection` — project indicator → domain agent, priority order @~/.claude/plugins/marketplaces/fusengine-plugins/plugins/claude-rules/rules/01-project-detection.md
 - `02-apex-workflow` — APEX as backbone of code requests: when it applies, apex-quick, debug → Analyze, flow, sniper phases, eLicit modes @~/.claude/plugins/marketplaces/fusengine-plugins/plugins/claude-rules/rules/02-apex-workflow.md

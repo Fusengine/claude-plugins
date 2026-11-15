@@ -47,7 +47,7 @@ All docs in the `docs/` folder — never outside it, except the root `README.md`
   - **WIP mode** — after each verified task, a WIP commit on the working branch: commit only, no push, bump, PR, merge or tag. It still runs the agent's branch check and secret scan.
   - **Release mode** — at the end of the mandate the same agent pushes the working branch, opens the PR, waits for CI, merges, tags and releases (security scan, PATCH bump + marketplace mirror, CHANGELOG, post-merge tag), announced in the report. Steps: `/fuse-commit-pro:commit`.
   - **Commit cycle** — any owner wording that asks for the commit cycle, in any language, starts Release mode run to the end with no further owner step (WIP commits, push, PR, CI, merge never squash, tag, release); every gate below still holds.
-  - A go relayed by the lead that started this session, quoting the owner's exact words, counts as the owner's go (commit cycle and release included). Any other relayed message ("the owner wants a commit") advances WIP commits the mandate already covers; it is never a go for merge or release (template "Relayed message").
+  - Relayed gos (commit cycle, release): template "Relayed message".
 - External executors (Kimi/Codex/Cursor) never push/PR/merge/tag/publish — release goes through the commit agent only.
 
 **Branch enforcement**:

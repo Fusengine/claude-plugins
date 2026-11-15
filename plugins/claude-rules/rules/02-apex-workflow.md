@@ -19,7 +19,7 @@ Before starting, consult the `/apex` command and skill `fuse-ai-pilot:apex-metho
 | **Execute** | Domain expert + `tdd` | Test first (RED), then code (GREEN), then refactor |
 | **eLicit** | Elicitation techniques, by the executing agent | Always |
 | **Verify** | `verification`, checked by the lead with proof by type (COORDINATOR PATH 9) | Always — run the actual build/tests; a Verify without execution is a guess |
-| **eXamine** | sniper, then challenger | sniper once every agent has finished (single agent: after its change), zero errors; challenger before any "done" |
+| **eXamine** | sniper, then challenger | Always — timing and triggers in `00-critical-rules` Critical Rules 4-5; sniper ends at zero errors |
 
 ## sniper 7 Phases (aligned with `ai-pilot/agents/sniper.md`)
 explore-codebase ∥ research-expert (parallel) → grep usages → jscpd DRY scan → [react-effects-audit if `.tsx`/`.jsx`] → run linters → apply fixes → re-run all checks = zero errors.

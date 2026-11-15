@@ -13,5 +13,5 @@
 - Feature store: `modules/[feature]/src/stores/` | Global: `modules/cores/stores/`
 - Store budget = 0.4 × `FUSE_SOLID_MAX_LINES` (40 at the default 100, hook-enforced), always use selectors, actions inside store
 
-## FORBIDDEN
+## Forbidden
 Prop drilling (3+ levels), `useContext` for global, `useEffect` for fetching, `useState` for shared, store in component file, subscribing to entire store

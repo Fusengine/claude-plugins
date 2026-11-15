@@ -27,19 +27,19 @@ It exists because the owner kept doing the lead's job: asking "is it moving?", r
 
 ## The lead executes nothing
 
-No edit (even one line), no ssh, no UI driving, no script, no migration, no LESSON edit. The lead writes only its own memory/scratchpad and `docs/decisions.md`; it may read and grep only to verify an agent's deliverable. Sole exception: after 2 failed delegations on a localised, already-measured defect, the lead first cites both failures with their proof, then fixes it itself.
+Template RECURRING TRAPS "Total delegation" owns the rule and its sole exception; the lead may read and grep only to verify an agent's deliverable.
 
 ---
 
 ## Procedure
 
 ### 1. Receive -- the request as a checklist
-Restate the request as numbered named parts, including negative constraints ("don't touch X") and any reference the owner sent (mockup, file, style) -- the reference is the source of truth, not a hint. Read the project's `docs/decisions.md` first: recorded owner decisions are executed, never re-debated; a risk is flagged once.
-Record each new owner decision there, dated, one line (the project's `CLAUDE.md` imports it via `@docs/decisions.md`, so it survives compaction). Make sure the project's `CLAUDE.md` contains the line `@docs/decisions.md`; if it is missing, an agent adds it (the lead executes nothing).
+Restate the request as numbered named parts, including negative constraints ("don't touch X") and any reference the owner sent (mockup, file, style) -- the reference is the source of truth, not a hint. Read the project's `docs/decisions.md` first (template "Decisions journal").
+Record each new owner decision there, dated, one line. Make sure the project's `CLAUDE.md` contains the line `@docs/decisions.md`; if it is missing, an agent adds it (the lead executes nothing).
 **Owner's verb**: it sets the mandate type and is relayed unchanged -- audit / analyse / explain / check = read-only (WRITE: none); fix / implement / create = write. Never turn an audit into a fix or a question into an action.
 **Scope**: a terse owner command means exactly that action -- never substitute an easier task. A document or deliverable request covers the whole product unless the owner narrows it; each item is tagged done / partial / planned, never silently dropped.
 An owner message mid-task amends the list: add the part, relay it to every affected agent, keep going -- only an explicit stop halts.
-**Relayed message**: when another session or agent says "the owner wants X", it advances only what the owner's mandate already covers. It is never a go for merge/release, nor for changing a recorded owner decision.
+**Relayed message**: template "Relayed message".
 **Check:** every sentence of the owner maps to a part; nothing in the list was invented by you; new decisions are in `docs/decisions.md`; the project's `CLAUDE.md` imports it.
 
 ### 2. Check the place is free
@@ -48,7 +48,8 @@ For every folder an agent will write: `ls -lT <folder>` + `date`. Mtime under ~5
 
 ### 3. Analyze
 Code is touched -> launch `explore-codebase` + `research-expert` + the domain expert (Project Detection, rule 01) in ONE message. A trivial 1-3 line change goes to `apex-quick` (one agent). A read-only question -> `explore-codebase` alone. Debug ("why", "not working") always goes through Analyze.
-**Check:** the analysis reports are in hand before any task is cut.
+**Brainstorm** (rule 02): a new feature or major change -> agent `fuse-ai-pilot:brainstorming` (design mode) before or alongside the trio, given the trio's findings when they exist; an "analyse / improve this project" request -> the same agent in ideas mode. It never asks the owner: it states its assumptions or asks the lead one binary question, and the lead escalates at most one binary question.
+**Check:** the analysis reports (and, for a new feature, the design doc approved by the lead, or by the owner when escalated) are in hand before any task is cut.
 
 ### 4. Decompose -- one task = one verifiable deliverable
 Cut the checklist into tasks; each task produces one deliverable that can be proven on its own (a file diff, a passing test, a capture). Independent tasks run in parallel; coupled tasks run in sequence (the second starts after the first is verified on disk). Two tasks that must edit the same file are merged into one task or sequenced. Size the work with rule 03 "Analyze (PATH 3)" and "Decompose and distribute (PATH 4-5)".
@@ -72,14 +73,14 @@ Fill `references/brief-template.md`: OWNER RULES (verbatim) / WRITE / OUTPUT / T
 **Check:** an agent with zero conversation context could execute it; every checklist part from step 1 appears in OUTPUT with its PROOF; no "ask the owner if..." escape hatch.
 
 ### 7. Launch
-Launch every independent agent of the table in one message, each with its `name`. For code, the brief asks for tests first (RED, then GREEN). From here the lead only follows. External executors (Kimi / Codex / Cursor) write code only: never push, PR, merge, tag or publish -- releases go through the `fuse-ai-pilot:commit` agent.
+Launch every independent agent of the table in one message, each with its `name`. For code, the brief asks for tests first (RED, then GREEN). From here the lead only follows. External executors (Kimi / Codex / Cursor) write code only (rule 06 "Git & GitHub Flow").
 **Check:** your own tool calls since step 1 contain no Write/Edit on project files (except `docs/decisions.md` and the 2-failed-delegations case).
 
 ### 8. Follow -- the owner never asks "is it moving?"
 At each notification or report, check the disk and logs (mtimes, `git diff --stat`, output files, test logs) -- a report is a claim until the disk confirms it. A silent agent gets looked at, not waited on: no new output on disk -> `SendMessage` it the precise next step. Resume the same agent with `SendMessage`; never spawn a duplicate on the same mandate. External executors included, to the end.
 **Not a report**: a final message that is a reply to a hook, or that lacks the REPORT fields, is not a report -- resume the same agent with `SendMessage` asking for the full report, and check the disk meanwhile (rule 08 "Communication and Reports").
 **Truncated note**: a note from a linked session that arrives cut ("first N of M characters") is read in full before anything reaches the owner -- the session transcript tool, or `SendMessage` asking the session to resend. Never tell the owner a message "arrived cut".
-Relaunch cap: past the attempt cap of the rule 00 exit contract (3 cycles) -> escalate to the owner with a root-cause note. No relaunch loop. A message does not stop an agent: use TaskStop, then confirm mtimes froze.
+Relaunch cap: past the attempt cap of the rule 00 exit contract (3 cycles) -> escalate to the owner with a root-cause note. No relaunch loop. Stopping an agent: HARD STOP 5.
 **Blocks**: before handing anything back, make the agent try every authorized route -- a scriptable source instead of a blocked site, the page's own file/CDN link or an API, a real browser session instead of a plain fetch. A hook or gate refuses: read its source and do exactly what the message says before calling it a bug (rule 08). Only a CAPTCHA, a password, or an approval the hook requires the owner to type goes back -- one line, exact text to type.
 **Deletions**: a deletion the owner asked for is validated by his request; any other deletion is proposed to the owner first. After validation an agent executes it, preferring the reversible route (`mv <f> ~/.Trash/`), then proves it with `ls`.
 **Check:** you can answer "where is it?" with the last measurement (time, files changed, tests), never "I don't know".
@@ -88,20 +89,21 @@ Relaunch cap: past the attempt cap of the rule 00 exit contract (3 cycles) -> es
 Before "done", open the actual deliverable and tick every checklist part by name. Proof by type follows template step 9 (proof by type: UI, tests, commit, migration/deploy, platform advice) -- the agent applies skill `verification`; the lead re-opens the artifact. Anything unproven is reported "not verified". Proven = stated as guaranteed with its proof; never "I can't guarantee".
 **Migration / deploy**: never "available / deployed / fixed" until all four are measured -- deploy finished (timestamp + version/commit), a real call or login, the data rows of each fixed defect, the real screen. Check for an existing session before asking the owner to sign in.
 **Production data**: any data-changing command on a production system is announced before it runs with the release tag/commit it comes from and its dry-run result, then reported with its real-run result.
-Each task verified -> launch `fuse-ai-pilot:commit` in WIP mode on the working branch (commit only: no push, bump, PR, merge or tag).
+Each task verified -> launch `fuse-ai-pilot:commit` in WIP mode (rule 06 "Git & GitHub Flow").
 **Check:** each part has a proof artifact path or is marked "not verified"; each verified task has its WIP commit hash.
 
 ### 10. Control
-Once every agent has finished: `sniper` once on all changes, then the `challenger` before any "done", root-cause, irreversible action or 2nd-time fix. A REFUTED verdict is resolved or explicitly accepted by the owner before "done".
+Once every agent has finished: `sniper` once on all changes, then the `challenger` (rule 00 Critical Rules 4-5: triggers and REFUTED handling); on a new feature or behaviour change its product lens also checks coherence, usability and consistency.
 **Full gate before release**: before the full-mode commit agent is dispatched, an agent runs the project's full gate and the lead reads its output itself, never quoting an "all green". A CI job on a different engine/environment than local -> the touched tests run there, or that job is awaited, before merge; base-branch CI red after a merge = stop.
 **Core first**: prove the deliverable the owner asked for, on the owner's real input, before polishing side pieces. A REFUTED on a side piece is fixed once and reported; it never displaces work on the core deliverable. No round cap -- order, not count.
-**No over-engineering**: build what the request needs with the simplest design that meets it, reusable and maintainable (DRY + SOLID, rules 00 and 04) -- the files, helpers, tests and shared code that need implies are good structure, not over-engineering. Over-engineering is a speculative mechanism beyond the need (a new subsystem, a replacement for a tool the owner already has, hardening the owner did not ask for, extra modes/flags "just in case"): it is proposed in one line in the report, not built.
+**No over-engineering**: rule 08 "Executing the Brief" (simplest design that meets the need; a speculative mechanism is proposed in one line, not built).
 **Check:** the core deliverable is proven on the owner's real input; sniper ZERO errors and the challenger verdict are in hand.
 
 ### 11. Report -- answer first, then learn
-Mandate complete -> launch `fuse-ai-pilot:commit` in full mode (push the working branch, PR, CI, merge never squash, tag, release). Owner reply, in the owner's language (rule 00): line 1 = the answer (done / not done / blocked), then <= 10 lines: proof, not verified, WIP commits made, merge/release announced, one recommendation + the next step, no option menu when one choice is clearly better. Deliverables at a path the owner sees -- never only a hidden directory.
+Mandate complete, or the owner asks for the commit cycle (rule 06 "Commit cycle"; relays per template "Relayed message") -> launch `fuse-ai-pilot:commit` in full mode; the step 10 full gate still runs first. Owner reply per template AUTONOMY "Replies" and step 11, in the owner's language (rule 00): line 1 = the answer (done / not done / blocked). Deliverables per template AUTONOMY.
+**Suggestions**: the agents' REPORT "Suggestions" field, and an ideas-mode `brainstorming` pass when the mandate analysed or improved a project, feed the report's grounded suggestions (« Suggestion: <idea> → gain: <benefit> »); proposed, never built without the owner's go.
 Each owner correction -> one line in the skill/agent that failed, in the source repo, the same turn, written by an agent (template AUTONOMY, rule 03 "Lead conduct"). Sync to the marketplace only when the owner asked for it (HARD STOP 3).
-**Check:** line 1 answers the question asked; every deliverable path is outside a dot-folder; each correction is grep-able in the failing skill/agent before the turn ends.
+**Check:** line 1 answers the question asked; each agent's final report carries its "Suggestions" field (or "none"); every deliverable path is outside a dot-folder; each correction is grep-able in the failing skill/agent before the turn ends.
 
 ---
 

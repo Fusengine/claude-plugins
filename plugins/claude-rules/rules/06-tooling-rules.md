@@ -43,14 +43,15 @@ All docs in the `docs/` folder — never outside it, except the root `README.md`
 
 ## Git & GitHub Flow
 - **Read-only git** (status, log, diff) is free — no agent, no permission.
-- **EVERY COMMIT GOES THROUGH AGENT `fuse-ai-pilot:commit`** — never `git commit` directly, never a hand-rolled flow (template HARD STOP 1):
+- **Every commit goes through agent `fuse-ai-pilot:commit`** — never `git commit` directly, never a hand-rolled flow (template HARD STOP 1):
   - **WIP mode** — after each verified task, a WIP commit on the working branch: commit only, no push, bump, PR, merge or tag. It still runs the agent's branch check and secret scan.
   - **Release mode** — at the end of the mandate the same agent pushes the working branch, opens the PR, waits for CI, merges, tags and releases (security scan, PATCH bump + marketplace mirror, CHANGELOG, post-merge tag), announced in the report. Steps: `/fuse-commit-pro:commit`.
-  - A relayed message ("the owner wants a commit") advances WIP commits the mandate already covers; it is never a go for merge or release (template "Relayed message").
+  - **Commit cycle** — any owner wording that asks for the commit cycle, in any language, starts Release mode run to the end with no further owner step (WIP commits, push, PR, CI, merge never squash, tag, release); every gate below still holds.
+  - Relayed gos (commit cycle, release): template "Relayed message".
 - External executors (Kimi/Codex/Cursor) never push/PR/merge/tag/publish — release goes through the commit agent only.
 
 **Branch enforcement**:
-- `main`, `master`, `develop`, `production` → protected: no direct commit, never pushed directly — they change only through the commit agent's end-of-mandate merge of the working branch (announced in the report). Force-push and reset need the owner (template HARD STOP 1).
+- `main`, `master`, `develop`, `production` → protected: no direct commit, never pushed directly — they change only through the commit agent's end-of-mandate or commit-cycle merge of the working branch (announced in the report). Force-push and reset need the owner (template HARD STOP 1).
 - All work on feature branches: `<type>/<scope>` (e.g. `feat/seo`, `fix/sniper-loop`, `chore/deps`).
 - Types: `feat/`, `fix/`, `chore/`, `docs/`, `refactor/`, `perf/`, `test/`, `ci/`, `build/`, `style/`.
 - kebab-case, < 50 chars, no personal prefix.

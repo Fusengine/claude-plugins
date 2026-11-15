@@ -114,8 +114,8 @@ Watch for these signals that brainstorming is being skipped:
 | Single approach presented | No alternatives considered | Propose at least 2 options |
 | No design doc saved | No audit trail | Save to `docs/plans/` |
 | "This is straightforward" in reasoning | Rationalization detected | Challenge the assumption |
-| User says "just do X" | May still need clarification | Ask 1-2 questions to confirm |
-| Large feature, zero questions asked | Requirements assumed, not gathered | Full brainstorming needed |
+| User says "just do X" | May still need clarification | State assumptions; one message to the lead if one changes the design |
+| Large feature, no assumptions stated and no open point sent to the lead | Requirements guessed silently | Write the assumptions or ask the lead one binary question |
 | Code written before approval | Design step skipped | Revert and brainstorm |
 
 ---
@@ -124,9 +124,9 @@ Watch for these signals that brainstorming is being skipped:
 
 Before transitioning to APEX, verify:
 
-- [ ] At least 2 clarifying questions were asked and answered
+- [ ] Open points resolved (explicit assumptions, or answered by the lead)
 - [ ] At least 2 alternative approaches were presented
-- [ ] User explicitly approved the chosen approach
+- [ ] Chosen approach approved (through the lead)
 - [ ] Design document saved to `docs/plans/`
 - [ ] Edge cases and constraints documented
 - [ ] Out-of-scope items explicitly listed

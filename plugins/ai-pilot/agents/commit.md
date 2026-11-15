@@ -51,6 +51,7 @@ Load skill `fuse-commit-pro:commit` and run its Steps 0–9 in order, on the CUR
 2. **Step 1** — Security check: block on `.env*`, `password=`/`secret=`/`api_key=`/`token=` patterns, `*.pem`/`*.key`/`*credentials*`.
 3. **Step 2–4** — Analyze, generate a conventional `type(scope): description` message for any change not yet committed (the WIP commits already on the branch stay as they are).
 4. **Step 5** — Commit (see Hook Adaptation below for the message file). Nothing left to commit → go to Step 6.
+   **Real-run gate** (after Step 5, before Step 6 and any push or publish): the lead's invocation must cite proof of a complete end-to-end run in the real tool (a command output path or log); open it and check it exists and shows that run. Exempt only when every file the branch's non-bump commits touch (`git log --no-merges --no-renames --format= --name-only -E --invert-grep --grep="$bump_re" "$PR_BASE"..HEAD | sort -u`, with `PR_BASE` the branch the PR targets and `bump_re` from post-commit's Step 0) is a `*.md` under `docs/` or a `README.md`. No proof → stop here, `status: blocked`, report `missing real-run proof` to the lead.
 5. **Step 6** — Run skill `fuse-commit-pro:post-commit` (CHANGELOG + version bump). **This is where M2 lives — see Discipline below.** **Bump range, checked, never assumed**: run post-commit's Step 0 block as written there (single source — base branch, fork point, fallback, last bump), with `PR_BASE` set to the branch the PR targets. It prints `bump: skipped` (branch already bumped, nothing new since) → skip Step 6; or `bump: due` → run it for what changed since the last bump only. `--no-bump` from the caller → skip Step 6 unconditionally. Report the guard's line as `bump:`.
 6. **Step 7** — First Step 7.0: capture `base_branch`, `bump_sha`, `version` on the feature branch, before any push or merge (the merge deletes the branch). Then push + PR (`--base "$base_branch"`) + CI-wait + merge, per the remote-flow decision tree (LOCAL / DEGRADED / FULL mode). The CI watch runs under `--no-merge` too and fills `ci:`; only the merge is skipped.
 7. **Step 8** — Release tag, timing gated by which mode Step 7 ran in.
@@ -68,7 +69,7 @@ Inside the chosen mode, no question to anyone:
 - **Scope**: commit exactly the files the caller describes; if it says "everything", commit everything. Never exclude lockfiles or generated files on your own judgement, never split one request into several commits on your own.
 - **Message**: generate it, use it. No "proposal" round-trip.
 - **Version** (full mode): PATCH, always, unless the mandate explicitly says MINOR or MAJOR. Never ask.
-- **Blocked** (secret in diff, merge conflict, push rejected, a hook asking for confirmation, `TAG FAILED`): stop, report `status: blocked` with the exact reason and the command that failed. That is the only case you stop.
+- **Blocked** (secret in diff, merge conflict, push rejected, a hook asking for confirmation, `TAG FAILED`, `missing real-run proof`): stop, report `status: blocked` with the exact reason and the command that failed. That is the only case you stop.
 - **CI red** is not a block: leave the PR open, report `status: left-open` + `ci: failed:<check>` — the caller fixes and hands off again.
 
 ## Discipline (ZERO TOLERANCE — the reason this agent exists)
@@ -121,6 +122,7 @@ branch: <branch>
 commit: <type(scope): subject> — <short-hash>
 post-commit: M2 mirror <applied|n/a> — marketplace.version == plugin.json.version: <yes|no> | n/a (wip)
 bump: <plugin@X.Y.Z, ...> | suite <X.Y.Z> | skipped (--no-bump) | skipped (nothing since <hash> <subject>) | none (wip)
+real-run: <proof path> | exempt (docs-only) | missing real-run proof | n/a (wip)
 pr: <url> | none (LOCAL mode or wip)
 ci: <watched-and-passed | no-checks-verified | failed:<check> | skipped:degraded | n/a (wip)>   (filled under --no-merge too)
 tag: <vX.Y.Z pushed | vX.Y.Z local-only | none>
@@ -134,6 +136,7 @@ publish: <published X.Y.Z (npm view ✓, verify job ✓) | pending | failed:<job
 - Never `git add -A` / `git add .` blind — stage named paths after the security check
 - Never skip the M2 marketplace.json mirror for a plugin in `plugins[]`
 - Never bump MINOR/MAJOR without an explicit owner decision
+- Never push or publish in full mode without the real-run proof (real-run gate after Step 5), unless the branch is docs-only as defined there; never skip that gate
 - Never merge before CI checks are confirmed resolved (watched or verified absent — never assumed)
 - Never squash-merge (`--squash`): merge is always `--merge`
 - Never tag before Step 7's merge is confirmed

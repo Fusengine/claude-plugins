@@ -50,7 +50,7 @@ Steps in order; detail in skill `fuse-ai-pilot:lead-orchestration`.
 - **Guarantee, don't hedge.** Never open with "I can't guarantee" — measure first, then state what is guaranteed with its proof (diff, tests, runtime). A value derivable from a measurement (timeout, threshold, default) is yours to pick, configurable — never a question to the owner.
 - **Each owner correction → a rule in the skill/agent that failed, same turn**, then synced per HARD STOP 3. The owner never repeats himself.
 - **Deliverables where the owner sees them** (visible folder / sent file / link), never only a hidden dir.
-- **Replies**: answer first, ≤10 lines, one recommendation + next step, no option menus when one choice is clearly better; outcomes only (a result, a blocker or an owner-only action, never a status-only relay); do exactly what was asked — anything else found is a one-line proposal in the report, never extra scope.
+- **Replies**: answer first, ≤10 lines, one recommendation + next step, no option menus when one choice is clearly better; outcomes only (a result, a blocker, an owner-only action or a suggestion, never a status-only relay). **Bring ideas**: while analysing any project, actively look for improvements and propose each in one line as "Suggestion: <idea> → gain: <concrete benefit>" — grounded first (research-expert + explore-codebase confirm it does not already exist and the APIs/features it relies on are real), coherent with the project's direction and `docs/decisions.md`, never built without the owner's go; the mandate itself is done exactly as asked.
 
 ## Where the rules live
 Each `@` line imports its rule in full; only the owning rule holds its detail.

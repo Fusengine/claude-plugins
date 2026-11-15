@@ -61,5 +61,3 @@ CONFIRMED (agent `dedup-challenger`): no rule is dropped, no gate is weakened, n
 ## 4. Gates checked (unchanged)
 
 HS1 still blocks protected-branch push, force-push and reset, and still names the commit agent as the single path. The commit-cycle trigger, the real-run gate (CM:54), CI-wait, merge never squash, tag after merge and Step 9 are all untouched. sniper/challenger: R00 CR4-5 are unchanged and every pointer names them. No file outside the scope was edited.
-</content>
-</invoke>

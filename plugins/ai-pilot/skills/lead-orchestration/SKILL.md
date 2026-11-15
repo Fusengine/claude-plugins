@@ -53,6 +53,7 @@ Code is touched -> launch `explore-codebase` + `research-expert` + the domain ex
 
 ### 4. Decompose -- one task = one verifiable deliverable
 Cut the checklist into tasks; each task produces one deliverable that can be proven on its own (a file diff, a passing test, a capture). Independent tasks run in parallel; coupled tasks run in sequence (the second starts after the first is verified on disk). Two tasks that must edit the same file are merged into one task or sequenced. Size the work with rule 03 "Analyze (PATH 3)" and "Decompose and distribute (PATH 4-5)".
+Map the full chain to its end at the start (producer release → consumer wiring/bump → owner install) and launch every unblocked step in parallel; a downstream step is prepared against the local build while an upstream blocker is resolved, never parked behind it.
 **Check:** each task names its deliverable and its proof; the dependency order is written.
 
 ### 5. Distribute -- ownership table

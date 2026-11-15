@@ -43,7 +43,7 @@ All docs in the `docs/` folder — never outside it, except the root `README.md`
 
 ## Git & GitHub Flow
 - **Read-only git** (status, log, diff) is free — no agent, no permission.
-- **EVERY COMMIT GOES THROUGH AGENT `fuse-ai-pilot:commit`** — never `git commit` directly, never a hand-rolled flow (template HARD STOP 1):
+- **Every commit goes through agent `fuse-ai-pilot:commit`** — never `git commit` directly, never a hand-rolled flow (template HARD STOP 1):
   - **WIP mode** — after each verified task, a WIP commit on the working branch: commit only, no push, bump, PR, merge or tag. It still runs the agent's branch check and secret scan.
   - **Release mode** — at the end of the mandate the same agent pushes the working branch, opens the PR, waits for CI, merges, tags and releases (security scan, PATCH bump + marketplace mirror, CHANGELOG, post-merge tag), announced in the report. Steps: `/fuse-commit-pro:commit`.
   - A relayed message ("the owner wants a commit") advances WIP commits the mandate already covers; it is never a go for merge or release (template "Relayed message").

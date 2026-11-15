@@ -93,7 +93,7 @@ Each task verified -> launch `fuse-ai-pilot:commit` in WIP mode (rule 06 "Git & 
 **Check:** each part has a proof artifact path or is marked "not verified"; each verified task has its WIP commit hash.
 
 ### 10. Control
-Once every agent has finished: `sniper` once on all changes, then the `challenger` (rule 00 Critical Rules 4-5: triggers and REFUTED handling).
+Once every agent has finished: `sniper` once on all changes, then the `challenger` (rule 00 Critical Rules 4-5: triggers and REFUTED handling); on a new feature or behaviour change its product lens also checks coherence, usability and consistency.
 **Full gate before release**: before the full-mode commit agent is dispatched, an agent runs the project's full gate and the lead reads its output itself, never quoting an "all green". A CI job on a different engine/environment than local -> the touched tests run there, or that job is awaited, before merge; base-branch CI red after a merge = stop.
 **Core first**: prove the deliverable the owner asked for, on the owner's real input, before polishing side pieces. A REFUTED on a side piece is fixed once and reported; it never displaces work on the core deliverable. No round cap -- order, not count.
 **No over-engineering**: rule 08 "Executing the Brief" (simplest design that meets the need; a speculative mechanism is proposed in one line, not built).

@@ -1,6 +1,6 @@
 ---
 name: challenge
-description: "Use before a root-cause, done/verified claim, irreversible action, or 2nd-time fix reaches the owner (APEX or plain conversation); also fires at every eLicit/Verify gate. Not for code correctness (use sniper)."
+description: "Use before a root-cause, done/verified claim, irreversible action, or 2nd-time fix reaches the owner (APEX or plain conversation); also fires at every eLicit/Verify gate. Adds a product lens (coherence, usability, consistency) on new features and behaviour changes. Not for code correctness (use sniper)."
 ---
 
 <objective>
@@ -46,6 +46,16 @@ This is a scope by claim TYPE, not a reduced-coverage shortcut -- the 3 real fai
 | 2. Counter-example hunt | Per hypothesis, search Context7 -> Exa -> fuse-browser -> Read/Grep/Glob for the source or scenario that falsifies it. |
 | 3. Round 1 | State the concrete failure scenario found, or "none found this round." If unresolved, round 2 uses a DIFFERENT angle/source -- never repeat the same check. |
 | 4. Round 2 + verdict | Deepen once more, then ALWAYS produce a verdict. Never continue past round 2. |
+| 5. Product lens | Only on a new feature or behaviour change, after the verdict is fixed. See below. |
+
+## Product Lens (new feature or behaviour change only)
+
+An extra section after the claims verdict: it never changes the VERDICT, never uses the 2 rounds, never shortens Steps 0-4.
+- **Classify from the diff** (commit prefix = hint only). RUN on a new capability/command/option/agent/skill/API or a change, by design, to what a user, agent or caller does or sees (a rule or prompt change that alters agent behaviour counts). SKIP on a bug fix (an existing feature now does what it was already meant to do, including cases it missed: missed input, renamed tool, matcher or coverage gap, wrong value), refactor, dedup, behaviour-free rename, tests, chores, bumps, typos. Mixed change: lens on the feature part only.
+- **Coherence** -- duplicates or contradicts an existing feature, or a second way to do the same thing? Grep the project for the same capability; evidence = `file:line` of the existing feature (or what was grepped, for an `OK`).
+- **Usability** -- the touched user path (CLI, plugin/agent/skill use, API, error message, rule an agent follows): steps before vs after, `simpler` / `same` / `harder`. UI screens: cite `fuse-design:design-review` or recommend it, never re-run its heuristics.
+- **Consistency** -- naming, messages, behaviour vs the project's conventions; evidence = `file:line`.
+- Each point `OK` or `ISSUE` + evidence; each `ISSUE` ends with `Suggestion: <idea> → gain: <benefit>`, grounded (grep confirms it does not already exist).
 
 ## Output Format (mandatory)
 
@@ -57,7 +67,13 @@ Untested hypotheses: [...]
 Sources checked: [Context7: ..., Exa: ..., fuse-browser: ..., code read: <file:line>]
 What remains to verify (if UNCERTAIN): <the specific check that resolves it>
 Recommendation: <escalate to owner / safe to proceed / block until re-verified>
+PRODUCT LENS: RUN | SKIPPED — <change type + diff evidence>
+  1. Coherence: OK | ISSUE — <file:line>   [Suggestion: <idea> → gain: <benefit>]
+  2. Usability: OK | ISSUE — before <N> / after <M> steps (<path>): simpler | same | harder   [Suggestion: ...]
+  3. Consistency: OK | ISSUE — <file:line>   [Suggestion: ...]
 ```
+
+The `PRODUCT LENS` block always appears; when SKIPPED it is that one line only.
 
 ## Integration with APEX
 
@@ -78,3 +94,5 @@ Analyze -> Plan -> Execute -> eLicit [+ CHALLENGE: independent adversary] -> [VE
 - Never exceed 2 rounds without a verdict
 - Never act as veto -- consultative only
 - Never skip triggering on any of the 4 claim types or on a scheduled eLicit/Verify gate, in APEX or in plain conversation -- engagement is systematic by type, never a judgment call on stakes
+- Never let the product lens replace, shorten or soften the claims check, or change the VERDICT
+- Never run the product lens on a pure bug fix or refactor, or give a usability verdict without the step count

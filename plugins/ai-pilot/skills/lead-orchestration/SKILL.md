@@ -36,11 +36,12 @@ Template RECURRING TRAPS "Total delegation" owns the rule and its sole exception
 ### 1. Receive -- the request as a checklist
 Restate the request as numbered named parts, including negative constraints ("don't touch X") and any reference the owner sent (mockup, file, style) -- the reference is the source of truth, not a hint. Read the project's `docs/decisions.md` first (template "Decisions journal").
 Record each new owner decision there, dated, one line. Make sure the project's `CLAUDE.md` contains the line `@docs/decisions.md`; if it is missing, an agent adds it (the lead executes nothing).
+**Roadmap**: the project keeps `docs/roadmap.md` (three sections: Done / In progress / Next), imported by the project's `CLAUDE.md` with the line `@docs/roadmap.md`, like decisions.md. Read it with decisions.md; if the file or the import is missing, an agent creates it in this mandate.
 **Owner's verb**: it sets the mandate type and is relayed unchanged -- audit / analyse / explain / check = read-only (WRITE: none); fix / implement / create = write. Never turn an audit into a fix or a question into an action.
 **Scope**: a terse owner command means exactly that action -- never substitute an easier task. A document or deliverable request covers the whole product unless the owner narrows it; each item is tagged done / partial / planned, never silently dropped.
 An owner message mid-task amends the list: add the part, relay it to every affected agent, keep going -- only an explicit stop halts.
 **Relayed message**: template "Relayed message".
-**Check:** every sentence of the owner maps to a part; nothing in the list was invented by you; new decisions are in `docs/decisions.md`; the project's `CLAUDE.md` imports it.
+**Check:** every sentence of the owner maps to a part; nothing in the list was invented by you; new decisions are in `docs/decisions.md`; the project's `CLAUDE.md` imports it and `docs/roadmap.md`.
 
 ### 2. Check the place is free
 For every folder an agent will write: `ls -lT <folder>` + `date`. Mtime under ~5 min = busy, send no one there (HARD STOP 4).
@@ -49,7 +50,18 @@ For every folder an agent will write: `ls -lT <folder>` + `date`. Mtime under ~5
 ### 3. Analyze
 Code is touched -> launch `explore-codebase` + `research-expert` + the domain expert (Project Detection, rule 01) in ONE message. A trivial 1-3 line change goes to `apex-quick` (one agent). A read-only question -> `explore-codebase` alone. Debug ("why", "not working") always goes through Analyze.
 **Brainstorm** (rule 02): a new feature or major change -> agent `fuse-ai-pilot:brainstorming` (design mode) before or alongside the trio, given the trio's findings when they exist; an "analyse / improve this project" request -> the same agent in ideas mode. It never asks the owner: it states its assumptions or asks the lead one binary question, and the lead escalates at most one binary question.
-**Check:** the analysis reports (and, for a new feature, the design doc approved by the lead, or by the owner when escalated) are in hand before any task is cut.
+**Project skill bootstrap**: when `<project root>/.claude/skills/project-<name>/SKILL.md` does not exist (`<name>` = the project root folder name, kebab-case), the lead hands the `explore-codebase` report of this Analyze (an `apex-quick` or no-Analyze mandate -> the lead launches `explore-codebase` for it first) to `fuse-ai-pilot:skill-creator`, in the same mandate, to create the initial project skill once, full layout below. One-time cost per project: every later session and sub-agent reads the skill instead of re-exploring; an existing project is covered the first time the lead works in it. When the skill exists, every brief names it so agents read it before exploring. Layout (`skill-creator` "Project skill mode" owns it):
+
+```
+<project root>/.claude/skills/project-<name>/
+  SKILL.md                    what it does (2 lines), stack (1 line), key commands, table need -> references/ file (~30 lines)
+  references/architecture.md  modules, data flow, where things live
+  references/stack.md         versions, key libs, technical choices
+  references/commands.md      install, dev, test, build, deploy
+  references/conventions.md   naming, file structure, style
+  references/pitfalls.md      known traps and how to avoid them (history stays in LESSON.md)
+```
+**Check:** the analysis reports (and, for a new feature, the design doc approved by the lead, or by the owner when escalated) are in hand before any task is cut; the project skill exists or its bootstrap is launched.
 
 ### 4. Decompose -- one task = one verifiable deliverable
 Cut the checklist into tasks; each task produces one deliverable that can be proven on its own (a file diff, a passing test, a capture). Independent tasks run in parallel; coupled tasks run in sequence (the second starts after the first is verified on disk). Two tasks that must edit the same file are merged into one task or sequenced. Size the work with rule 03 "Analyze (PATH 3)" and "Decompose and distribute (PATH 4-5)".
@@ -101,10 +113,11 @@ Once every agent has finished: `sniper` once on all changes, then the `challenge
 **Check:** the core deliverable is proven on the owner's real input; sniper ZERO errors and the challenger verdict are in hand.
 
 ### 11. Report -- answer first, then learn
-Mandate complete, or the owner asks for the commit cycle (rule 06 "Commit cycle"; relays per template "Relayed message") -> launch `fuse-ai-pilot:commit` in full mode; the step 10 full gate still runs first. Owner reply per template AUTONOMY "Replies" and step 11, in the owner's language (rule 00): line 1 = the answer (done / not done / blocked). Deliverables per template AUTONOMY.
+Mandate complete, or the owner asks for the commit cycle (rule 06 "Commit cycle"; relays per template "Relayed message") -> launch `fuse-ai-pilot:commit` in full mode; the step 10 full gate still runs first.
+**Roadmap + project skill, before the release**: at the commit cycle, AFTER the WIP commits are validated and BEFORE the release PR, the lead launches `fuse-ai-pilot:skill-creator` ONCE with the mandate's diff (`git diff <base>...HEAD`): it updates only the affected `references/` file(s) of the single project skill `<project root>/.claude/skills/project-<name>/` (layout in step 3; in place, never a second project skill, never a duplicated section), and in the same run `docs/roadmap.md` (finished items to Done, new items to Next) -- the lead writes neither file itself (Total delegation). Once per mandate, not per WIP commit; the lead opens both diffs before dispatching the full-mode commit agent (step 9 Verify; markdown only, no sniper); both land in the same PR as the code and ship with the release. No skill yet -> full creation from the `explore-codebase` report (step 3 bootstrap). Owner reply per template AUTONOMY "Replies" and step 11, in the owner's language (rule 00): line 1 = the answer (done / not done / blocked). Deliverables per template AUTONOMY.
 **Suggestions**: the agents' REPORT "Suggestions" field, and an ideas-mode `brainstorming` pass when the mandate analysed or improved a project, feed the report's grounded suggestions (« Suggestion: <idea> → gain: <benefit> »); proposed, never built without the owner's go.
 Each owner correction -> one line in the skill/agent that failed, in the source repo, the same turn, written by an agent (template AUTONOMY, rule 03 "Lead conduct"). Sync to the marketplace only when the owner asked for it (HARD STOP 3).
-**Check:** line 1 answers the question asked; each agent's final report carries its "Suggestions" field (or "none"); every deliverable path is outside a dot-folder; each correction is grep-able in the failing skill/agent before the turn ends.
+**Check:** line 1 answers the question asked; each agent's final report carries its "Suggestions" field (or "none"); every deliverable path is outside a dot-folder (the project skill under `.claude/skills/` is the owner-chosen exception); `docs/roadmap.md` and the project skill were updated before the release; each correction is grep-able in the failing skill/agent before the turn ends.
 
 ---
 

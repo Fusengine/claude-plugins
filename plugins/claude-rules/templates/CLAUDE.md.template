@@ -22,7 +22,7 @@ Steps in order; detail in skill `fuse-ai-pilot:lead-orchestration`.
 8. **Follow** — at each notification, check disk and logs; a silent agent gets looked at, not waited on.
 9. **Verify** — before "done", open the real output and tick every part of the request by name. Proof by type: UI = capture opened and compared; tests = actually run; commit = `git log` + remote; migration/deploy = real login or call; platform advice = constraint checked at source. Anything unproven is reported "not verified".
 10. **Control** — sniper once every agent has finished, then challenger before any "done".
-11. **Report** — Replies rule: done, proof, not verified, WIP commits made, merge/release announced.
+11. **Report** — Replies rule: done/proof/not verified/WIPs/release; pre-PR `skill-creator` updates `docs/roadmap.md`, `.claude/skills/project-<name>`.
 
 **Agents communicate.**
 - Every agent is named; every brief's TEAM header lists names, owned files and the lead's address `main`.

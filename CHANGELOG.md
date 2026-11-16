@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.40.9] - 16-11-2026
+
+- chore(deps): bump @fusengine/harness to 0.1.123 (plugins/package.json + bun.lock) — `prd init` is idempotent: on an existing router (and task) it writes nothing and answers `exists` with the same absolute agents-folder line, exit 0 (Fusengine/harness#135)
+- Verified: lockfile integrity matches npm (shasum 9693e241dac8e064192beb0009aade96aacd8f80); isolated install `bun install --frozen-lockfile` gives `bin.mjs --version` 0.1.123; a PreToolUse Write payload (`notes.md`) gives the same empty output and exit 0 as 0.1.122 in both `hook claude-code` and `hook claude-code aipilot`; with `FUSE_PRD=1` a Write to `<project>/prd/agents/x-prd.json` is still denied; `prd init --id claude-code --task t1` run twice answers `created` then `exists` with the absolute agents line, exit 0, router sha256 unchanged; `bun test` 427 pass / 0 fail, `tsc --noEmit` exit 0
+
 ## [1.40.8] - 16-11-2026
 
 - chore(deps): bump @fusengine/harness to 0.1.122 (plugins/package.json + bun.lock) — PRD agent reports get the absolute path in the SubagentStart slice, and a `*-prd.json` written to `<project>/prd/agents` or `<cwd>/prd/agents` is denied (Fusengine/harness#134)

@@ -1,5 +1,13 @@
 # Release Notes
 
+## [1.40.7] - 16-11-2026
+
+- feat(ai-pilot): lead-orchestration drives PRD: for a write mandate with 2+ agents a sub-agent runs `prd init`, the lead runs `prd status` first on resume and `prd validate` before the report (new `references/prd-workflow.md`, brief template PRD line) (fuse-ai-pilot 1.2.56)
+- fix(ai-pilot): read-only mandates no longer create the roadmap, the project skill or PRD state (fixes a v1.40.5 defect)
+- PRD only becomes active once the owner's install has `@fusengine/harness` at 0.1.121 or later. It is opt-in (`FUSE_PRD=1`) and stays inert otherwise
+- Verified in real `claude -p` runs (`docs/reports/2026-11-16-prd-lead-workflow-real-run.md`): PRD on with 4 agents, a sub-agent ran init without being asked, `validate` exit 0; after a kill and resume, `status` ran first, only pending slots were relaunched, `validate` exit 0; a read-only audit with 4 agents created nothing; the PRD-off control was unchanged. Challenger round 3 CONFIRMED
+- Not verified: block-once on `SubagentStop`/lead `Stop`, `prd compact`, repeatability (n=1 per scenario)
+
 ## [1.40.6] - 16-11-2026
 
 - chore(deps): bump @fusengine/harness to 0.1.121 (plugins/package.json + bun.lock) — PRD fixes: `harness prd init` bootstrap, resume in a new lead session, order-independent report slots

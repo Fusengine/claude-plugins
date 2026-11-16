@@ -1,5 +1,12 @@
 # Release Notes
 
+## [1.40.4] - 16-11-2026
+
+- chore(deps): bump statusline and scripts dependencies (core-guards 1.1.46)
+- statusline: @clack/prompts ^1.9.0, zod ^4.6.7, @biomejs/biome ^2.6.8, @types/bun ^1.4.4
+- scripts: @clack/prompts ^1.9.0, @types/bun ^1.4.4 (bun.lock refreshed)
+- Verified: statusline biome lint + tsc + build green and a real render from a sample stdin JSON; scripts tsc green, bun test 420 pass / 0 fail
+
 ## [1.40.3] - 16-11-2026
 
 - fix(claude-rules): template COORDINATOR PATH step 3 now calls `brainstorming` (design or ideas mode) on a new feature or an "analyse / improve" request, in the same message as the Analyze trio (fuse-rules 1.0.31)

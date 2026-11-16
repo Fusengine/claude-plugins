@@ -1,5 +1,13 @@
 # Release Notes
 
+## [1.40.3] - 16-11-2026
+
+- fix(claude-rules): template COORDINATOR PATH step 3 now calls `brainstorming` (design or ideas mode) on a new feature or an "analyse / improve" request, in the same message as the Analyze trio (fuse-rules 1.0.31)
+- Measured cause: in an owner session the lead launched 163 agents and 0 `brainstorming`; the template had 0 mention of brainstorm
+- Verified in one real `claude -p --setting-sources project` run with this branch's ai-pilot plugin, prompt "ajoute une fonctionnalité d'export CSV au projet": the lead launched `fuse-ai-pilot:brainstorming` as its first agent (was 0)
+- Not verified: the Analyze trio alongside brainstorming on a real codebase (the throwaway project held only `package.json` + `tsconfig.json`, and the lead launched brainstorming alone)
+- Template length 9948 chars (< 10000, JS `text.length`)
+
 ## [1.40.2] - 15-11-2026
 
 - fix(core-guards): the PreToolUse matcher now includes `Agent|Task|SendMessage`, so the harness owner-scope brief guard is active in Claude Code — a lead brief whose OWNER RULES quote is not verbatim in a real owner message is denied; SendMessage follow-ups without an OWNER RULES header and read-only helpers pass; Bash/Write verdicts unchanged (core-guards 1.1.45)

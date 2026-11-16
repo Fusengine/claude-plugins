@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.40.5] - 16-11-2026
+
+- feat(ai-pilot): per-project roadmap and project skill in lead-orchestration (fuse-ai-pilot 1.2.55, fuse-rules 1.0.32)
+- Verified in one real `claude -p --setting-sources project --plugin-dir <branch ai-pilot>` run in a throwaway project: the lead created `docs/roadmap.md` and `.claude/skills/project-statusline/` (SKILL.md + references) and ran the commit cycle to v1.0.1
+- Template length 9999 chars (< 10000, JS `text.length`)
+
 ## [1.40.4] - 16-11-2026
 
 - chore(deps): bump statusline and scripts dependencies (core-guards 1.1.46)

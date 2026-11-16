@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.40.8] - 16-11-2026
+
+- chore(deps): bump @fusengine/harness to 0.1.122 (plugins/package.json + bun.lock) — PRD agent reports get the absolute path in the SubagentStart slice, and a `*-prd.json` written to `<project>/prd/agents` or `<cwd>/prd/agents` is denied (Fusengine/harness#134)
+- docs: decisions journal records that `explore-codebase` always explores the whole project; the project skill and roadmap never narrow it
+- Verified: lockfile integrity matches npm; isolated install `bun install --frozen-lockfile` gives `bin.mjs --version` 0.1.122; a PreToolUse Write payload (`notes.md`) gives the same empty output and exit 0 as 0.1.121 in both `hook claude-code` and `hook claude-code aipilot`; with `FUSE_PRD=1` after `prd init`, a Write to `<project>/prd/agents/x-prd.json` is denied by 0.1.122 (allowed by 0.1.121) and names the absolute `.claude/apex/prd/agents/` path; `bun test` 427 pass / 0 fail, `tsc --noEmit` exit 0
+
 ## [1.40.7] - 16-11-2026
 
 - feat(ai-pilot): lead-orchestration drives PRD: for a write mandate with 2+ agents a sub-agent runs `prd init`, the lead runs `prd status` first on resume and `prd validate` before the report (new `references/prd-workflow.md`, brief template PRD line) (fuse-ai-pilot 1.2.56)

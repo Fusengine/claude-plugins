@@ -26,6 +26,7 @@ A brief summarised from memory drifts from the owner's request: parts get droppe
 - Exclusive files: <absolute paths this task owns -- no other agent touches them>
 - Read only: <paths you may read>
 - Re-read each file on disk right before editing; start from the on-disk state, preserve others' work.
+- PRD report (only when PRD is on -- lead-orchestration step 5): slot `<slot>`, task `<task>`, sub-task `<sub>`. Once PROOF passes, Write (Write tool, never Bash) `<project root>/.claude/apex/prd/agents/<slot>-prd.json` = `{ "<task>": { "<sub>": { "status": "done", "modified": [<files changed>], "unchanged": [<owned files left as is>] } } }`. Write no other PRD file.
 
 ## OUTPUT
 Context: <what exists, why this mandate, what was already tried and failed>
@@ -74,7 +75,7 @@ Code comments, docs, commit messages: English. Replies to the user: the user's l
 | Header | Rule |
 |--------|------|
 | OWNER RULES | Copy the sentence. A mockup/capture the owner sent is given by path: it is the source of truth, not a hint. Protected target only when the owner named it in this session; otherwise omit the line. |
-| WRITE | Absolute paths; the same file never appears in two concurrent briefs. |
+| WRITE | Absolute paths; the same file never appears in two concurrent briefs. PRD off -> drop the "PRD report" line; PRD on -> fill it from the task PRD (prd-workflow.md). |
 | OUTPUT | One line per checklist part from step 1; context stays in two or three lines. |
 | PROOF | One proof per OUTPUT line, something the lead can open or re-run. |
 | TOOLS | Visual task -> name the capture tool; without it, the part cannot be proven. |

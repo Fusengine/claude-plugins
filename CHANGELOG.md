@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.40.6] - 16-11-2026
+
+- chore(deps): bump @fusengine/harness to 0.1.121 (plugins/package.json + bun.lock) — PRD fixes: `harness prd init` bootstrap, resume in a new lead session, order-independent report slots
+- docs: first PRD real-run report (0.1.120, "do not activate") kept and marked superseded; decisions journal adds Cursor to every port
+- Verified: `bun install --frozen-lockfile` OK, installed harness 0.1.121 (integrity matches npm); PreToolUse Write and UserPromptSubmit payloads through `dist/cli/bin.mjs hook claude-code aipilot` give the same output and exit 0 as 0.1.120; `harness prd init` creates the router then is idempotent (exit 0 both)
+
 ## [1.40.5] - 16-11-2026
 
 - feat(ai-pilot): per-project roadmap and project skill in lead-orchestration (fuse-ai-pilot 1.2.55, fuse-rules 1.0.32)

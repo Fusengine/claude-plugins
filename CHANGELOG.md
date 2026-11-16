@@ -1,5 +1,9 @@
 # Release Notes
 
+## [1.40.10] - 16-11-2026
+
+- docs(reports): record the 2026-11-16 cleanup triage of claude-plugins, harness and ports (`docs/reports/2026-11-16-cleanup-*.md`) and keep the abandoned hooks-loader dedupe measurement (`docs/perf-hooks-loader-dedupe-2026-11-13.md`); the dedupe code itself was not landed
+
 ## [1.40.9] - 16-11-2026
 
 - chore(deps): bump @fusengine/harness to 0.1.123 (plugins/package.json + bun.lock) — `prd init` is idempotent: on an existing router (and task) it writes nothing and answers `exists` with the same absolute agents-folder line, exit 0 (Fusengine/harness#135)

@@ -1,5 +1,10 @@
 # Release Notes
 
+## [1.40.11] - 17-11-2026
+
+- chore(deps): bump @fusengine/harness to 0.1.124 (plugins/package.json + bun.lock) — MultiEdit and NotebookEdit on a protected path are now denied like Write/Edit, one-shot crediting fix, receipt bound to the session MAC (Fusengine/harness#136-#141); the core-guards PreToolUse matcher already routes `NotebookEdit|MultiEdit`
+- Verified: lockfile integrity matches npm; `bun install --frozen-lockfile` gives `bin.mjs --version` 0.1.124; PreToolUse payloads through `dist/cli/bin.mjs hook claude-code` with an isolated HOME: MultiEdit and NotebookEdit on `.claude/plugins/{marketplaces,cache}` denied by 0.1.124 (allowed by 0.1.123), Edit on the same path denied by both, a plain Edit on a project `README.md` allowed (empty output, exit 0) by both; `prd init` prints the same absolute agents-folder line on both; the SubagentStart slice/report-path code is byte-identical between both versions; `bun test` 427 pass / 0 fail, `tsc --noEmit` exit 0 (scripts + statusline)
+
 ## [1.40.10] - 16-11-2026
 
 - docs(reports): record the 2026-11-16 cleanup triage of claude-plugins, harness and ports (`docs/reports/2026-11-16-cleanup-*.md`) and keep the abandoned hooks-loader dedupe measurement (`docs/perf-hooks-loader-dedupe-2026-11-13.md`); the dedupe code itself was not landed

@@ -1,5 +1,11 @@
 # Release Notes
 
+## [1.40.12] - 17-11-2026
+
+- chore(deps): bump @fusengine/harness to 0.1.125 (plugins/package.json + bun.lock)
+- docs(decisions): record the Cursor PR #23 one-off exception and the post-cycle residue cleanup rule (`docs/decisions.md`)
+- Verified: `bun install --frozen-lockfile` gives `node_modules/@fusengine/harness` 0.1.125 (registry latest 0.1.125, `npm view --prefer-online`); PreToolUse payloads through `dist/cli/bin.mjs hook claude-code` with an isolated HOME: Bash `rm -rf` on the harness state dir denied, MultiEdit on `.claude/plugins/marketplaces` denied, Edit on a project `README.md` allowed (empty output, exit 0); `bun test` 427 pass / 0 fail / 1 skip, `tsc --noEmit` exit 0 (scripts + statusline)
+
 ## [1.40.11] - 17-11-2026
 
 - chore(deps): bump @fusengine/harness to 0.1.124 (plugins/package.json + bun.lock) — MultiEdit and NotebookEdit on a protected path are now denied like Write/Edit, one-shot crediting fix, receipt bound to the session MAC (Fusengine/harness#136-#141); the core-guards PreToolUse matcher already routes `NotebookEdit|MultiEdit`
